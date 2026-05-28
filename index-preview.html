@@ -1,0 +1,853 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Повышение доступности ПМСП — публичный отчет</title>
+  <meta name="description" content="Публичный отчет о реализации проекта по повышению доступности первичной медико-санитарной помощи в субъектах Российской Федерации." />
+  <style>
+:root {
+  --bg: #f3f8fb;
+  --bg-soft: #eaf4f8;
+  --surface: #ffffff;
+  --surface-strong: #f8fbfd;
+  --text: #102033;
+  --muted: #607085;
+  --muted-strong: #3d4f66;
+  --blue: #1157b8;
+  --blue-dark: #083d86;
+  --cyan: #10a8c6;
+  --teal: #00a88f;
+  --green: #53b36a;
+  --line: #d9e7ef;
+  --line-strong: #c3d7e4;
+  --shadow: 0 24px 70px rgba(10, 59, 110, .12);
+  --shadow-soft: 0 14px 34px rgba(12, 58, 95, .08);
+  --radius-xl: 34px;
+  --radius-lg: 24px;
+  --radius-md: 18px;
+  --container: 1180px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at 7% 2%, rgba(16,168,198,.18), transparent 30rem),
+    radial-gradient(circle at 94% 12%, rgba(83,179,106,.16), transparent 28rem),
+    linear-gradient(180deg, #f7fbfd 0%, #fff 38%, var(--bg) 100%);
+  line-height: 1.6;
+  min-width: 320px;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: linear-gradient(rgba(17,87,184,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(17,87,184,.045) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: linear-gradient(180deg, #000 0%, transparent 70%);
+}
+
+a { color: inherit; }
+a:focus-visible, button:focus-visible { outline: 3px solid rgba(16,168,198,.45); outline-offset: 4px; }
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 14px clamp(18px, 4vw, 56px);
+  background: rgba(255,255,255,.9);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(217,231,239,.86);
+}
+.brand {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-width: max-content;
+  color: var(--blue-dark);
+  text-decoration: none;
+  font-weight: 850;
+  letter-spacing: -.02em;
+}
+.brand::before {
+  content: "38";
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  color: #fff;
+  background: linear-gradient(135deg, var(--blue), var(--cyan) 58%, var(--teal));
+  box-shadow: 0 12px 24px rgba(17,87,184,.22);
+  font-size: 15px;
+  font-weight: 900;
+}
+.top-nav { display: flex; align-items: center; justify-content: flex-end; gap: 6px; flex-wrap: wrap; }
+.top-nav a {
+  color: #30445d;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 750;
+  padding: 9px 11px;
+  border-radius: 999px;
+  transition: .18s ease;
+}
+.top-nav a:hover { color: var(--blue-dark); background: #eef7fb; }
+
+main { overflow: hidden; }
+.hero {
+  position: relative;
+  padding: clamp(52px, 7vw, 92px) clamp(18px, 5vw, 72px) clamp(58px, 8vw, 102px);
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  left: clamp(18px, 5vw, 72px);
+  right: clamp(18px, 5vw, 72px);
+  bottom: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--line-strong), transparent);
+}
+.hero-grid {
+  position: relative;
+  z-index: 1;
+  width: min(100%, var(--container));
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1.12fr) minmax(330px, .88fr);
+  gap: clamp(28px, 5vw, 62px);
+  align-items: center;
+}
+.hero.compact { padding-block: 58px; }
+.hero.compact .hero-content { width: min(100%, var(--container)); margin: 0 auto; }
+.hero-content { max-width: 760px; }
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--teal);
+  font-weight: 850;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  margin-bottom: 12px;
+}
+.eyebrow::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 0 5px rgba(0,168,143,.12);
+}
+h1, h2, h3 { line-height: 1.12; margin: 0 0 16px; }
+h1 { font-size: clamp(38px, 6.2vw, 76px); letter-spacing: -.055em; max-width: 980px; }
+h2 { font-size: clamp(28px, 4.1vw, 48px); letter-spacing: -.04em; }
+h3 { font-size: clamp(18px, 2vw, 22px); letter-spacing: -.018em; }
+p { margin-top: 0; }
+.lead { font-size: clamp(19px, 2.2vw, 27px); color: var(--muted-strong); margin-bottom: 18px; line-height: 1.35; }
+.hero p, .section-heading p { font-size: 18px; color: #40536c; }
+.hero-actions, .card-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 30px; }
+.button, .card-actions a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  padding: 12px 19px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 850;
+  border: 1px solid transparent;
+  transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+}
+.button:hover, .card-actions a:hover { transform: translateY(-1px); }
+.button.primary, .card-actions a:first-child { background: linear-gradient(135deg, var(--blue-dark), var(--blue) 52%, var(--cyan)); color: #fff; box-shadow: 0 16px 34px rgba(17,87,184,.24); }
+.button.secondary, .card-actions a:last-child { background: rgba(255,255,255,.82); color: var(--blue-dark); border-color: var(--line-strong); box-shadow: var(--shadow-soft); }
+
+.dashboard-card {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  gap: 22px;
+  padding: clamp(24px, 4vw, 34px);
+  border-radius: var(--radius-xl);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.92), rgba(246,251,253,.86)),
+    radial-gradient(circle at 80% 0%, rgba(16,168,198,.30), transparent 18rem);
+  border: 1px solid rgba(255,255,255,.86);
+  box-shadow: var(--shadow);
+}
+.hero-decoration {
+  position: absolute;
+  inset: auto -52px -62px auto;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: conic-gradient(from 180deg, rgba(17,87,184,.18), rgba(16,168,198,.34), rgba(83,179,106,.24), rgba(17,87,184,.18));
+  filter: blur(.2px);
+}
+.hero-decoration::before {
+  content: "";
+  position: absolute;
+  inset: 42px;
+  border-radius: inherit;
+  background: #fff;
+}
+.dashboard-header, .dashboard-metrics { position: relative; z-index: 1; }
+.dashboard-title { font-size: clamp(26px, 3vw, 34px); }
+.dashboard-metrics { display: grid; gap: 13px; }
+.dashboard-metric {
+  padding: 18px;
+  border-radius: 22px;
+  background: rgba(255,255,255,.78);
+  border: 1px solid var(--line);
+  box-shadow: 0 10px 24px rgba(12,58,95,.06);
+}
+.dashboard-metric strong { display: block; color: var(--blue-dark); font-size: clamp(24px, 3.1vw, 36px); line-height: 1; letter-spacing: -.035em; }
+.dashboard-metric span { display: block; color: var(--muted); margin-top: 8px; }
+
+.section { padding: clamp(54px, 7vw, 84px) clamp(18px, 5vw, 72px); }
+.section > .section-heading, .section > .cards, .section > .metrics, .section > .timeline, .section > .result-list, .section > .roadmap-panel, .section > .contact-list, .section > .contact-note, .about-grid, .materials-content, .repo-nav { width: min(100%, var(--container)); margin-left: auto; margin-right: auto; }
+.section-heading { margin-bottom: 32px; }
+.section-heading h2 { max-width: 900px; }
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+.about-card, .card, .metric, .timeline-card, .result-card, .material-category-card, .roadmap-panel, .contact-panel .contact-list {
+  background: rgba(255,255,255,.88);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-soft);
+}
+.about-card {
+  position: relative;
+  padding: 25px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.about-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--blue), var(--cyan), var(--teal));
+}
+.about-card p { color: var(--muted-strong); margin-bottom: 0; }
+
+.accent-panel, .tinted { background: linear-gradient(135deg, rgba(231,244,251,.92), rgba(246,252,249,.96)); border-block: 1px solid var(--line); }
+.incident-panel { position: relative; }
+.incident-panel::before {
+  content: "";
+  position: absolute;
+  inset: 34px clamp(18px, 5vw, 72px) auto auto;
+  width: 180px;
+  height: 180px;
+  border-radius: 42px;
+  background: linear-gradient(135deg, rgba(17,87,184,.10), rgba(0,168,143,.10));
+  transform: rotate(8deg);
+}
+.incident-start { display: inline-flex; flex-wrap: wrap; gap: 8px; padding: 10px 14px; border-radius: 999px; background: #fff; border: 1px solid var(--line); box-shadow: var(--shadow-soft); }
+.label { color: var(--muted); font-weight: 800; }
+.incident-goal { max-width: 880px; }
+.accent-number { color: var(--blue-dark); font-weight: 900; white-space: nowrap; }
+.cards { display: grid; gap: 20px; }
+.cards.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.cards.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.cards.four { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.card {
+  position: relative;
+  border-radius: var(--radius-lg);
+  padding: 25px;
+}
+.card p { color: var(--muted); margin-bottom: 0; }
+.criterion-card { display: grid; grid-template-columns: auto 1fr; gap: 14px; padding-top: 24px; }
+.card.check::before { content: none; }
+.criterion-marker, .result-check {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  color: #fff;
+  background: linear-gradient(135deg, var(--teal), var(--green));
+  font-weight: 950;
+  box-shadow: 0 8px 18px rgba(0,168,143,.22);
+  flex: 0 0 auto;
+}
+
+.activity-card { min-height: 220px; overflow: hidden; }
+.activity-number {
+  display: inline-flex;
+  color: rgba(17,87,184,.20);
+  font-size: 46px;
+  line-height: 1;
+  font-weight: 950;
+  letter-spacing: -.06em;
+  margin-bottom: 20px;
+}
+.activity-marker, .partner-icon, .category-marker {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 42px;
+  height: 42px;
+  border-radius: 15px;
+  background: linear-gradient(135deg, rgba(17,87,184,.12), rgba(16,168,198,.18));
+}
+.activity-marker::after, .partner-icon::after, .category-marker::after {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--blue), var(--cyan));
+}
+.featured-card {
+  color: #fff;
+  background: linear-gradient(135deg, var(--blue-dark), var(--blue) 50%, var(--cyan));
+  border-color: transparent;
+}
+.featured-card p, .featured-card .activity-number { color: rgba(255,255,255,.82); }
+.featured-card .activity-marker { background: rgba(255,255,255,.18); }
+.featured-card .activity-marker::after { background: #fff; }
+
+.metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
+.metric {
+  border-radius: 24px;
+  padding: 24px;
+}
+.metric strong { display: block; color: var(--blue-dark); font-size: clamp(30px, 4vw, 48px); line-height: .98; letter-spacing: -.05em; }
+.metric span { display: block; color: var(--muted); margin-top: 12px; font-weight: 650; }
+.metric-date strong { color: var(--blue); }
+.metric-percent strong { color: var(--teal); }
+
+.timeline { position: relative; display: grid; gap: 18px; max-width: 980px; }
+.timeline-line {
+  position: absolute;
+  left: 20px;
+  top: 22px;
+  bottom: 22px;
+  width: 2px;
+  background: linear-gradient(180deg, var(--blue), var(--cyan), var(--teal));
+  border-radius: 999px;
+}
+.timeline-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 42px 1fr;
+  gap: 16px;
+  align-items: start;
+}
+.timeline-dot {
+  position: relative;
+  z-index: 1;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #fff;
+  border: 10px solid var(--cyan);
+  box-shadow: 0 0 0 6px rgba(16,168,198,.12);
+}
+.timeline-card {
+  border-radius: var(--radius-lg);
+  padding: 24px;
+}
+.timeline-card p { color: var(--muted); margin-bottom: 0; }
+
+.materials-cta {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 28px;
+  color: #fff;
+  background:
+    radial-gradient(circle at 85% 20%, rgba(16,168,198,.40), transparent 22rem),
+    linear-gradient(135deg, #062e66, #0f4fa3 52%, #087f8f);
+}
+.materials-cta .eyebrow { color: #97f0e2; }
+.materials-cta p { color: rgba(255,255,255,.82); max-width: 900px; }
+.materials-categories { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 24px; }
+.material-category-card {
+  position: relative;
+  min-height: 126px;
+  padding: 22px;
+  border-radius: 24px;
+  color: var(--text);
+}
+.material-category-card h3 { padding-right: 46px; margin-bottom: 0; }
+
+.result-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; padding-left: 0; }
+.result-card {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 19px;
+  border-radius: 22px;
+}
+.result-card p { margin-bottom: 0; color: var(--muted-strong); }
+
+.partner-card { min-height: 190px; padding-top: 72px; }
+.key-organization {
+  border-color: rgba(17,87,184,.25);
+  background: linear-gradient(180deg, #fff, #eef7ff);
+}
+.key-organization .partner-icon { background: linear-gradient(135deg, rgba(17,87,184,.20), rgba(16,168,198,.18)); }
+.neutral-partner { background: #fbfcfd; }
+.chips, .roadmap-chips { display: flex; gap: 12px; flex-wrap: wrap; }
+.chips span, .tag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 8px 13px;
+  border-radius: 999px;
+  background: #e6f8fb;
+  color: #08778a;
+  font-weight: 850;
+  font-size: 13px;
+}
+.roadmap-panel { padding: clamp(24px, 4vw, 34px); border-radius: var(--radius-xl); }
+.plans-intro { color: var(--muted-strong); font-weight: 700; }
+.contact-panel { background: linear-gradient(180deg, #fff, #f2f8fb); }
+.contact-list {
+  display: grid;
+  gap: 10px;
+  padding: 24px;
+  border-radius: var(--radius-xl);
+}
+.contact-item { display: grid; grid-template-columns: 170px 1fr; gap: 16px; margin: 0; padding: 13px 0; border-bottom: 1px solid var(--line); }
+.contact-item:last-child { border-bottom: 0; }
+.contact-note { color: var(--blue-dark); font-weight: 850; margin-top: 18px; }
+.placeholder { color: #7b8797; font-style: italic; }
+
+.repo-nav { display: flex; gap: 12px; flex-wrap: wrap; padding-top: 24px; padding-bottom: 24px; }
+.repo-nav a { padding: 12px 16px; border: 1px solid var(--line); border-radius: 999px; background: #fff; text-decoration: none; color: var(--blue-dark); font-weight: 850; box-shadow: var(--shadow-soft); }
+.material dl { display: grid; grid-template-columns: auto 1fr; gap: 4px 10px; color: #40516a; }
+.material dt { font-weight: 850; }
+.material dd { margin: 0; }
+
+.site-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 28px clamp(18px, 5vw, 72px);
+  color: #637083;
+  border-top: 1px solid var(--line);
+  background: #fff;
+}
+.site-footer p { margin: 0; }
+.footer-nav { display: flex; gap: 14px; flex-wrap: wrap; }
+.footer-nav a { color: var(--blue-dark); font-weight: 800; text-decoration: none; }
+.footer-nav a:hover { text-decoration: underline; }
+
+@media (max-width: 1120px) {
+  .site-header { align-items: flex-start; flex-direction: column; }
+  .top-nav { justify-content: flex-start; }
+  .hero-grid { grid-template-columns: 1fr; }
+  .dashboard-card { max-width: 720px; }
+  .cards.three, .cards.four, .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .materials-cta { grid-template-columns: 1fr; }
+}
+@media (max-width: 760px) {
+  body { background-size: auto; }
+  .site-header { position: static; gap: 12px; padding-block: 12px; }
+  .brand { font-size: 15px; }
+  .brand::before { width: 36px; height: 36px; border-radius: 12px; }
+  .top-nav { gap: 5px; }
+  .top-nav a { font-size: 12px; padding: 8px 9px; background: #f4f8fb; }
+  .hero { padding-top: 42px; }
+  h1 { font-size: clamp(34px, 11vw, 48px); }
+  h2 { font-size: clamp(27px, 8vw, 36px); }
+  .hero-actions, .card-actions { flex-direction: column; }
+  .button, .card-actions a { width: 100%; }
+  .about-grid, .cards.two, .cards.three, .cards.four, .metrics, .result-list, .materials-categories { grid-template-columns: 1fr; }
+  .dashboard-metric strong, .metric strong { font-size: 32px; }
+  .criterion-card { grid-template-columns: 1fr; }
+  .timeline { gap: 14px; }
+  .timeline-line { left: 15px; }
+  .timeline-item { grid-template-columns: 32px 1fr; gap: 12px; }
+  .timeline-dot { width: 32px; height: 32px; border-width: 8px; }
+  .contact-item { grid-template-columns: 1fr; gap: 3px; }
+  .site-footer { align-items: flex-start; flex-direction: column; }
+}
+@media (max-width: 420px) {
+  .section, .hero { padding-left: 14px; padding-right: 14px; }
+  .card, .about-card, .timeline-card, .metric, .contact-list { padding: 20px; }
+  .activity-number { font-size: 40px; }
+}
+
+
+/* Точечные правки меню и hero */
+.brand { white-space: normal; line-height: 1.18; }
+.brand .brand-title { display: block; }
+.brand .brand-subtitle { display: block; color: var(--muted); font-size: 12px; font-weight: 750; letter-spacing: 0; }
+.hero-logos { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 18px; }
+.hero-logo { display: inline-flex; align-items: center; justify-content: center; min-height: 76px; width: min(220px, 100%); padding: 12px 16px; border-radius: 20px; background: rgba(255,255,255,.92); border: 1px solid var(--line); box-shadow: var(--shadow-soft); }
+.hero-logo img { display: block; max-width: 100%; max-height: 54px; object-fit: contain; }
+.hero-logo.mednet-logo img { max-width: 58px; max-height: 58px; }
+.project-report-note { display: inline-flex; max-width: 100%; margin: 0 0 14px; padding: 9px 13px; border-radius: 999px; background: rgba(255,255,255,.86); border: 1px solid var(--line); color: var(--blue-dark); font-weight: 850; font-size: 13px; line-height: 1.35; }
+.project-map-card { position: relative; overflow: hidden; padding: clamp(22px, 3vw, 32px); }
+.project-map-card .hero-decoration { inset: auto -70px -80px auto; opacity: .78; }
+.map-stat { position: relative; z-index: 1; display: grid; gap: 4px; margin-bottom: 12px; }
+.map-stat strong { display: block; color: var(--blue-dark); font-size: clamp(64px, 8vw, 104px); line-height: .86; letter-spacing: -.07em; }
+.map-stat span { display: block; color: var(--muted-strong); font-size: clamp(18px, 2.1vw, 25px); line-height: 1.15; font-weight: 900; }
+.russia-map { position: relative; z-index: 1; width: 100%; height: auto; display: block; margin-top: 10px; filter: drop-shadow(0 18px 28px rgba(10,59,110,.14)); }
+.rf-outline { fill: url(#greenWave); stroke: rgba(9, 91, 72, .42); stroke-width: 2.2; }
+.rf-border { fill: none; stroke: rgba(255,255,255,.82); stroke-width: 1.25; stroke-linecap: round; opacity: .9; }
+.rf-subject { fill: rgba(255,255,255,.01); stroke: rgba(9, 91, 72, .16); stroke-width: 1; cursor: pointer; }
+.rf-subject:hover, .rf-subject:focus { fill: rgba(255,255,255,.22); stroke: rgba(9, 91, 72, .72); outline: none; }
+.rf-wave { fill: none; stroke: #0b8f71; stroke-width: 2; opacity: 0; pointer-events: none; }
+.rf-point:hover .rf-wave, .rf-point:focus-within .rf-wave { animation: rfPulse 1.15s ease-out infinite; }
+.map-tooltip { position: relative; z-index: 2; margin-top: 12px; padding: 12px 14px; border-radius: 18px; background: #10382f; color: #fff; box-shadow: 0 14px 30px rgba(16,56,47,.18); font-size: 13px; line-height: 1.35; }
+.map-tooltip b { display: block; font-size: 15px; margin-bottom: 2px; }
+@keyframes rfPulse { 0% { r: 7; opacity: .65; } 100% { r: 25; opacity: 0; } }
+@media (max-width: 1120px) { .project-map-card { max-width: 760px; } }
+@media (max-width: 760px) { .hero-logos { display: grid; grid-template-columns: 1fr 1fr; } .hero-logo { width: 100%; min-height: 68px; } .project-report-note { border-radius: 18px; } .map-stat strong { font-size: 68px; } .map-stat span { font-size: 18px; } .russia-map { margin-top: 4px; } }
+@media (max-width: 420px) { .hero-logos { grid-template-columns: 1fr; } .brand .brand-subtitle { font-size: 11px; } .project-map-card { padding: 18px; } .map-tooltip { font-size: 12px; } }
+
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="На главную страницу проекта"><span class="brand-title">Инцидент №38</span><span class="brand-subtitle">первичная медико-санитарная помощь</span></a>
+    <nav class="top-nav" aria-label="Основная навигация">
+      <a href="#about">О проекте</a>
+      <a href="#incident">Инцидент №38</a>
+      <a href="#results">Результаты</a>
+      <a href="#materials">Материалы</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero hero-modern" aria-labelledby="hero-title">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <div class="hero-logos" aria-label="Организации проекта">
+            <a class="hero-logo mednet-logo" href="https://mednet.ru/" target="_blank" rel="noopener"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAYAAAA9zQYyAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAOdEVYdFNvZnR3YXJlAEZpZ21hnrGWYwAAFjJJREFUeAHtnT1sXNeVx8+b4ZAz/JBmnCKiFMDDzjKwKzKV7MZ0KsdbmLYbb1KEgpoNsoBlZHvTxRYLbCAHiOFtDNGFsW5s043jKqIaJ5VII0HkKhwBCamk8KMlUjMkNfNy/2/mDR+Hb4b3vnfe9/0BFEmRfPyY/5z3v+ece65BGmUsc/vpx2TNW1SoGkR1oo54MaoWUe998Tndt6ueX0+0Kz62K97atcjov01UaIiPNYr2S2F3vPb9r0mjhEGaoZhbW9Xx6vgLFhXrBrXnxZ9rkXqCjQ5rU3zfhnjZLBCtt3ZbX9fm5nZJ44kWtAtE3n0qLMUnXmka4mVTRPe1cSps6kh+TK4FjQhcqpZfMaizKMSxNMwipABhVax18fOvHe4e3slzBM+doLsirvxM+F4IeJEyiPDh6+KhXS0KkVdqF+9TjsiFoCHicrV8pU3WSlZFPII1WJPp2uyHlAMyLehD8+9XjujJknhAb6TYTnBh25IiGStZjtqZFHTT3Hkhp9FYClgSg6x3p2qXPqeMkSlB75k7whtby1rI0oiobaxkyY5kQtAQsog4K5TcNFvSyYywUy1oLWR2Ui/sVApae+TQaRTIWK7UZu9QykiVoM2dnfpY2bopSsBLpAkdkRVZTVtWJDWCfmxuv9khWtHpt2gRokbzFDIi71AKSLyg90Qu2aAnq+JHnSdNnAgbQotJj9YFSjD75t/eNqi9qcWcCOriDtnAY0IJJpERGl55vNz5TAs5sSQ2WicuQsMrl8rWhhZzoqmLLNMmHitKGImJ0N0uuAlhMegGZZRHn4ibTqVMk88/R8VqNta2ooz+7hEdvFOrJaNlNRGCzoPFONpq0O4Ht/rvl384T5M/ejErwk6MBYld0L0iyVrW03GIzq2NzVP/D2GXFxaoNFenlNMoUXEp7t0zsQoaHgy3LMo4bdOkb381+tcszl4QVuSqLe40A8s4Wbv4a4qJ2ATdTf8YK5QDhkVnL4q1qrAiiykXtrUSVyEmlizHnvm3W3kRM6KzrJi7n79Lrbvyn59MjJU9c/smxUDkgoaYDTKWKScc3vuGVEGETjuwHt3AFS2RCRppOWEzNvIkZtD86g9Kn18QlmN8bo6yAB5rPOamuRXZgj8SQfcGttxOU1rucGuL2rvBUqutuxvK18hCdD6JMT9O47ejEvUYRUDaxAz2PlmzxRgkX/z4d+sqn25H50rKsxzedEUt3gj9lws9QvcWgKkS88G9e/3IigXat/97kx59+pldHJFFR+dBjPkoPHWoERorXbE4WKaU4eV7IWy8yOaLVTIbIEveeRjw1ELUNF27dI1CIrQI3W39TF9fBtJsoyJxe+eByCuviULJTSHaDV/X8AKVwqz0d4yit1AMrQU1FEF3u7DSmWeW9b3IFzvC7rRavq7hZkr49PxgrITVqccuaPRmpLWcrVoEAWNzdSqUy4GuMSEWnnmIzm6gEWiFmGEVNLrmOmStUkrxE1knn7sa+Br5is7HtKmz1jS3nyZG2ARt55rLFlIzdUohfn3v2OzsiWscKFYG8+KdvRB+uioC4Bpnjpoty4HmfErxwBeIWTXNBqsweA1rwE+fhSHsyt4Xv7W/Dr4cftxqDr+GUSnbFgdfh0Ym+7V4QhRrNTsD47Y/6cCYL5GtnbeIARZB99pAU73ThKMI4sduKPd67OJWPRwIfEwIu/9yYdZ+nWSQDRMaanC0nQYWdM83r6R5phhHEcTPNcIAkR53Crd9ckQ+fvkZO9edRIFDQ8JPrwXd9RJY0D3fnGoTGFd0jgq3yPep23MN756knTKOn6aA5fFAgu4lyOuUYvx458pAZsPPNeIEXr1t9iqfPXEnY3+jMb9v7rw9VZv1vTnAt1Pobmy1tijlYOOqanbjqf9668SD7+caScSO2r09jrH+HFSc97s30XeE7lmNVOMnVTdYBPFzjaTi2BLYp4kFIewfLsQStY/s0W/+rIevPHQWrAbgKIIk2Tv7BZYEv5f5m/ftLsPo7ZQx77c0rixoWA0cwkMph6NE7ecaaQKLSfjs74Sl2v/d7VM9K2HSy3ooVxGVBV0q09tZmKHhJ7KWF+YDXyONOBF79733h3YYctPNeqj3BCkJGs0kBlnLlHI6vTSWClgwufuV/Vwj7bg7DCOyIUuqDUxKgk5z45Gbwz/fC1zm9nONrABhYxcPbEjo36t7ho400lmO3pFpdcoASSykIF1WvHCh36OB3gyA953+DLvPQ7x0ms3j3g/xpHqy86D/OkrwNzgQa4jz16+Flg3BOTrQnuxBRtJ56H1zGznnOqUclKgffbqm9DXTry+dELSfa5wFRFwWBZuJZy/7FgcE/2Rnp59+i9ISTb38kj1VNSQaU7WLUvvTpATdOz5tlTKAKRY2KpEM0fl7v3wr0DVUQESeePYZlsodsjCHQtSIolGIG3eZqZd/HErHn8isLctEaSlBZyU6D460lQFNSO7cs59r+IVz5K4jbtiETojeH3eakCyIVJQ+c1HY9c7pFzOAVVAF1TI3R+KWHhXOCAWO0jo8eUX8Lt8TZfvp15aoEJLnha9H3voJ/9+p3tPiSM6M0FmJzjIjbQdBZuPca6+e+n9MVYLYDiIuqnBPJm2KJ3hYERvWafrfXmLtC7GI1qdrF0fuVxsp6H3zwStiqcG7+okJlZG2DuevL4+clYEnyX5vpR8ljrBL4mfjuLWHKWzuxWKBjMVRJ9yOFLSop9+2MnD8sJ/o7ICmeDwgo/qGnRI4onYnwtw0Z+tnmE/OwXVIEM6K0kMFnZX2UIACQNC8seztPsxoNwou0YT183NG6lHtpUMXhejZoIxwwDBA3F32RT/DsEYd98Iryt0gSC9ygJ+/en2ZfZvW/hdfsvWBHFFnadjHhkboPBdSZJC93Ue1gBzcdMABx51tkNov/uPE6Ac/4PzxIzqc8zpKruj1Bd1CSvqGLHrx8KOPlUcLyGDZVbkH9mBH3J7xIHkVFJAuQ/UPnXqI6u0H/AUZZGPCGMPrLIg5izIHf/wTTfzrvwQqvhgih1Ki0pf//T+/un/6Yx6I6PyZeDU0rKeFsKLzMBCx4WOjXkCGEZ3dwFfvMf4dcXer/uLngUQ9bHF4StBZWgzGnVaLYgE5LFfODWZmYw3BdbdDFXQm4M99SAe1QdtxStBZ6ttwSHq+GML2229xVq6cE+5IHTTz4XUm4ilBh517figKHFzCUn0wk54vVl1A4prV66HNDveEU9SoJnYzKv4WiV6244SgMTRvnCZMCpE4Be0mrnyxTMOR7B1lsK01KjizH5jH95Tw034ZtB0n8tDjVGGf15tU4soXIwKf1a2HzMi511+lp355w7YsXo1EcR4whIVv5fmrxAFORAiy86VE5Vfc758QtMjvpT6zoUq3kHDNjvYTA5tgw0L2cCAIG+Lx6pCL+4Ah3GW4ii9IffrdzmZQZ9H9fuHkB61FyimwLk5UDFPYfiOr+46C/pK4j39Dyu3cT96wfXBQkDlB85ivrx1IL/cFvfePv+JRrFPOkbndB6Ec8MkCYZ//6b9TEsDfiutOgQwPFsWqYNyB1Tye33EcoUvFK6TpM+p2H4TBDQNp56xORBX8LjSbreMo3Re0kUP/LAvXAjKrhwPNiL8Lh/XwG6XF2q9/23N76GhWRCkm6AIyq4cD2du7mLIe/qK0sei8ZQu6d2hLnTRS+FlAZv3otoqwHjFG6bpz8JAt6DKVtX/2gcoCMuhiMOkg6xFnlHZqKLagOxnYZhUnZy0gB+fiZRXOKK0690Tko+t43fPQlvbPTLgXkE7hYXAuXlbhjNLo7lPBWRg6s+3qpGEFwsYL/GAeorMDojQqf0HbTHENtUV0d2HoZDl0hA6JPIkZIEqXGe5IeEIoLg7r9vfvVQg1GjZQmudA9ZhpVAwLxVLxPGk0jOCuxFFZVd2t/7hVmC8ctSlf90RNJHDZDpUZeWJhWB0rFknqYBauae2cu55bTGNi0WRevnyZNHxw9XdgYqrsjhZD+GhkOeoyn5zEA3I4BsgA+7BJLWhWYDuQkw6a7bADlvS+w05dZDms7NZjNbEyPlenoKjdgY1qIQtHtGmSydhcnYJinyUjuZvFgqAtLWhNSHBt0ZItgxtkwXIYWtCaUAg6w84Bu+BlKVjaQ2tCAlVDjny0vOWwtIfWhEuJwXZ0TDlBY3+h8lnfGo0SDO2kKiMOtKA1oVLkGMSukMvWgtaECkfDf6epBa1JCAWmQTTS3480mgyBwoq/oWIaTcLA2SsibWdoQWsyAbSsLYcmM8BtiAhtNUijCYkOw5ks8qk/EaG1h9aECcshQ5KZEgMemrSH1oRI2wwuL/nUn7WLHSsNmU/F4BQOsG3qCdNBjlzzm4s13c4SFhxn2Mg/PoXGWLtN94vFsz+1wjTX2B7zRDzkZcRWmuGwHLJBS9jnRqFYNEI99UqTb1Rn1Hkh21ctBH2/UCDra9JoQkBlBMEoilW50TEGtXcLldpsgzSaEOCIzmhuko3Q07UfbPYKK0aDNBpmOGamyO5LFHbDnmnhVArXSaNhhmsIkAxGL1tX6L5j8Exs0Wh6wD+3GVJ2E9KDH43jCG1J5qI1GlkOGaIz/LNsWrZDdAevbUEfUvMOaTSMHGwEv+mrzMd7Qq3jCN09zV4vDDU8YI4GR4Zj/FnpOdONroZP7lhZJ42GAa7BnhPyAzT7twPXSbJ6YajhgSO7gYOWZJuSCmSsHb/dwyDrc9JoAtK6u8GS3VA517FN7X61uy9oVAx1b7QmKBx2o1CrqjSdNVAh7H+t+yOGK3RrNKpwRWe0BctjrbvfOyHodpt0+k7jG67oPKF0mkLxRBA+KehiS0dojS84vbPKcJrBGsqY+x3k8h6b2+tWiGd/GxWeEaua5IC8M1d0LitsJLHIWHfyzw5jHpcVUbqzSCEx8/KPifCiyQwQM0d0rjx3lYoKwa5ItDr4f6fmchxQ80PSaCRBzrnFUOZGdJ6UPu2qS7l8ckFoX2fwPxDCDV011EgAq/Hok8+IA7XMhs2aUbl4f/A/x7w+U6TvViw6rf6kcXDvHjW/+gNxgj+s3ngrB5fVQFWwsqC2CbswJMVseP2naW5VSzSxlfTjKjCVx/zN+yxb5R3Qslj7z58rebk8gpOFuRaC1evXVP/ejanaRc+o4znbrms7jHcp4SC9M/M6z7wQB2y7/+6DWywjrLIK7oxcDUi4I6oHj+HuYeiwRovaqejtgD2oPH+VOMG0n4cf/T9pTnO0syN8M0+5wo/VAJNlY2XYx4YKGvXxtCwOJ3/0Itshjw5YvT/6lGfBkxXsReBHH/MMjxFWY0o8bqog9+y1GOxfd9QXY3FIKQDW49xP3mA5z8NN6+6mFnUPiPm7D1ZZFoF4nHz45u7XnmGFRwq6Upu9k5YoXazV6NxP3yButKh5xQz8+WYbsRi8MNIKnznwXDwjViklwE9PvfwScQNRf/ve+7lcKMJ6me/9H6uYVQsoDgUJx2CQBPvm9pZ4VaeUwJVSGgRTMM/7vFWmkcdf/Z72v/iSuICY/fjmHkNTdW6kjqQopMRLO+CPxp35AMh+IKXX2tigLIM70d4Xv2UV88TCfBAxS2tQKkKDtEVp8FCUZTm203sRMNokFqTl9j5dY9m17QAxn3v9VQqAVHQG0oJumjs/65C1SikDkYa7PO6QNQsCq4a/lcW4VmAQM6LzskhQSDXNSQsaPDa3b4fZKx0WYXlqh7IoECAXnlZhY+GHJz5nVAZlYftmgrcKS0dnoCRoEaVf6KSgacmLsEWNaF1+7qrvFXwc2IUSYS84xg4MwmXJOmS8OFObXZf9fCVBA+GlkZTlbaCICPQgoGxrhZh+g7DxYJYXeI7wCANE4qbIYLRCWl8gdcrzxLZWp2qXrql8hbKgRZSut8naSHon3jAQlXZFkYCzQ88LCBuz2ZJkRRCJcacKIyIDlLNRsS1JDigfBUZqTJVpflSZ2wtlQQPhpd8U3zDx3XjDgKj3hf0IKwMyCIQNn10ShZ+oxQ3xHm5tsS/2BsHvOCMWf3y/n7EyVZt9hxTxJWggrAeSsfLjbRIId+FABvvkrsvP2FFMZbqmLMghQ8RHQsQHf/6Gwr4TAT6L0UdpIejGt6APzb9fOaJ2NCEuRKKyIF50zw+5YL9gJzxEDqsisysewu2IQg9K0vgd2g8e0OFfGpH+HpiuP/PaEovFcDNZprqq1XDwLWiwb+68LdzOCmUARGtkQawE9WsME3YcTz43eCKiEhtOYcmf1eh/NQUkC9bDIWpvnUb4vfIJfFsNh8CCTnvWwwucD/LdRx/HHgmTRDdjE94GYr9ZjUECCxqkPesxjObdDduG5FnYhV5evRJyXl0I8cZk7eKvKSAsggZ75vZN/FCUQSBs2JCw8rdJxE41Cp9cVhqc6A8Ew+naxbeIATZBY/TBOE3cpoz4aS+Qz0Wzf5Y9dtjWwoPGJB0sGAMz6vzCJmiQRT/tBRaPOLYsK3YE2RQUfioil1xg3pd5Bg2RolsM6pvdsAoapLmByQ/oH0ZPxGFERQwukHrDGAEcbBnXpCjVxiMZ2AUNsrpIPAuI2y413/smkX4bdsJ5iXvcGdci0OO64ZClootf4LkhbHS34XWURRtEYAgXVcju69mo7cQIghVPRl6ZQmTP3LllkLVMGhuUq5HjhsBRskbpGiLHXkU/dgXet9AbII/0GoodKJ1DvEndbMCZ0fAiVEEDLWp5IHgIvNNsekZzzB4BiL7JibbyWGSsTtdmlfqbVQld0CBL5XGNX6zNqdql0Hc9SI0xCMohHaCLRTdI5BZrc5IOI9kiH0mEBnkovGi86IqZq3ByFpEJ2kF76vwQhWceJBLL4Qa/YB5z1HkjDjGDyAUNummbdI0X06hgrMQhZvs7U4zktaKYZcKqACp8/3jp9X6sUsrm5mlOggZ9YTNe5e7NUCV2QQN06QlRIwNSJ00KEZmMsrHE2TXnl1g89CCV2mxD5KoXtP1IH3jM7LRcAsQMEhGh3cBXd4hWst5TnXZgMUQ0XInTL3uROEEDbUGSTnIsxiCJsByDwIJ0t7Pr1F7yQOvnpYUkihkkMkK70dE6KVibpdLY8vj097+mBJN4QTtgw4BF1g3traMlqV55GKkRNOhGa8JOmGXSRMHaZJluJNVeeJEqQTs8MncWC2TdIm1DQsEgY71N9E7cRRI/pFLQDr2DjFZIC5uLBo5Pkz2gJ4mkWtAOWtiBSb2QHTIhaActbDVgLYQAVrMgZIdMCdrhobm9NEbGmyIrskiaU6TZI59FJgXt4MqKLFLOozbSb0LI71rU/ny69oPM7u/MtKDddO2IsUTUWaIc4UTjaWptRrWvL05yI2gHRG3x6gURsZazakkgYvHvWoWaH+ZBxG5yJ2g3lrlVfUQTi0UyXkmzLenZiTURie/MUGstbyJ2k2tBD7Jn/mO+SO0rPWuCcQt1SiRGQ/wjMhTGpkHW52jmIo2NFvQIEMH3qDxfEBZF/KmEwDt1inyuyLF4n1Dn/gwdrOc5Ap+FFrQPEMlFtqAqbvX1ItHTZEdyoyqipfg/q4q38XpYI1XPItiiFJ/TsOy3LbzfELbhPt4uCQHryKvOPwGYg4uQXKWggQAAAABJRU5ErkJggg==" alt="ФГБУ ЦНИИОИЗ"></a>
+            <a class="hero-logo" href="https://gnicpm.ru/" target="_blank" rel="noopener"><img src="data:image/png;base64,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" alt="ФГБУ НМИЦ ТПМ"></a>
+          </div>
+          <span class="project-report-note">Публичный отчет о реализации проекта в субъектах Российской Федерации за 2022–2026 года</span>
+          <h1 id="hero-title">Повышение доступности первичной медико-санитарной помощи</h1>
+          <p class="lead">Публичный отчет о реализации проекта в субъектах Российской Федерации</p>
+          <p>Проект направлен на развитие доступной и понятной записи граждан на прием к врачу, диспансеризацию, профилактические осмотры и вакцинацию.</p>
+          <div class="hero-actions" aria-label="Быстрые переходы">
+            <a class="button primary" href="#about">Узнать больше о проекте</a>
+            <a class="button secondary" href="#incident">Инцидент 38</a>
+            <a class="button secondary" href="#materials">Материалы проекта</a>
+          </div>
+        </div>
+
+        <aside class="hero-card dashboard-card project-map-card" aria-label="Карта субъектов Российской Федерации">
+          <div class="hero-decoration" aria-hidden="true"></div>
+          <div class="map-stat">
+            <strong>84</strong>
+            <span>субъекта РФ</span>
+          </div>
+          <svg class="russia-map" viewBox="0 0 760 390" role="img" aria-label="Интерактивная карта субъектов Российской Федерации с волнами включения">
+            <defs>
+              <linearGradient id="greenWave" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#e8f7e7" />
+                <stop offset=".42" stop-color="#b7dfb2" />
+                <stop offset=".72" stop-color="#73ba73" />
+                <stop offset="1" stop-color="#2f8d57" />
+              </linearGradient>
+              <clipPath id="rfClip">
+                <path d="M33 205 C63 146,116 123,178 138 C211 86,280 82,329 120 C372 83,447 94,487 137 C545 119,636 139,724 186 C704 222,649 222,608 249 C570 276,526 247,479 279 C426 314,363 285,309 301 C248 320,191 281,140 294 C88 307,48 269,33 205 Z M87 271 C128 268,153 300,191 305 C229 309,259 337,294 331 C266 355,204 361,153 344 C113 331,91 309,87 271 Z M633 264 C680 263,709 283,736 306 C703 317,659 310,628 288 Z" />
+              </clipPath>
+            </defs>
+            <path class="rf-outline" d="M33 205 C63 146,116 123,178 138 C211 86,280 82,329 120 C372 83,447 94,487 137 C545 119,636 139,724 186 C704 222,649 222,608 249 C570 276,526 247,479 279 C426 314,363 285,309 301 C248 320,191 281,140 294 C88 307,48 269,33 205 Z" />
+            <path class="rf-outline" d="M87 271 C128 268,153 300,191 305 C229 309,259 337,294 331 C266 355,204 361,153 344 C113 331,91 309,87 271 Z" opacity=".85" />
+            <path class="rf-outline" d="M633 264 C680 263,709 283,736 306 C703 317,659 310,628 288 Z" opacity=".9" />
+            <g clip-path="url(#rfClip)" aria-hidden="true">
+              <path class="rf-border" d="M87 150 L138 294 M138 132 L188 305 M195 105 L236 318 M260 93 L287 329 M324 118 L326 302 M389 105 L374 292 M457 126 L431 298 M525 128 L487 275 M592 132 L542 262 M660 155 L591 249" />
+              <path class="rf-border" d="M43 205 C132 187,228 190,318 202 C429 217,553 210,714 186 M60 238 C154 226,249 236,340 248 C442 263,536 250,640 235 M94 169 C201 159,316 164,424 177 C523 189,619 185,706 196" />
+              <path class="rf-border" d="M117 126 L205 190 L167 289 M247 92 L300 202 L246 322 M356 106 L407 210 L356 296 M480 137 L527 214 L486 279 M620 143 L650 220 L604 252" />
+            </g>
+            <g class="rf-point" tabindex="0" onmouseenter="showMapWave('Первая волна', 'Начало — 31.10.2022')" onfocus="showMapWave('Первая волна', 'Начало — 31.10.2022')"><circle class="rf-subject" cx="198" cy="212" r="15"/><circle class="rf-wave" cx="198" cy="212" r="7"/></g>
+            <g class="rf-point" tabindex="0" onmouseenter="showMapWave('Вторая волна', 'Начало — 06.03.2023')" onfocus="showMapWave('Вторая волна', 'Начало — 06.03.2023')"><circle class="rf-subject" cx="322" cy="166" r="15"/><circle class="rf-wave" cx="322" cy="166" r="7"/></g>
+            <g class="rf-point" tabindex="0" onmouseenter="showMapWave('Третья волна', 'Начало — 26.06.2023')" onfocus="showMapWave('Третья волна', 'Начало — 26.06.2023')"><circle class="rf-subject" cx="452" cy="206" r="15"/><circle class="rf-wave" cx="452" cy="206" r="7"/></g>
+            <g class="rf-point" tabindex="0" onmouseenter="showMapWave('Четвертая волна', 'Начало — 23.01.2024')" onfocus="showMapWave('Четвертая волна', 'Начало — 23.01.2024')"><circle class="rf-subject" cx="610" cy="205" r="15"/><circle class="rf-wave" cx="610" cy="205" r="7"/></g>
+          </svg>
+          <div class="map-tooltip" id="map-tooltip"><b>Наведите на субъект</b><span>Будет показана волна включения региона</span></div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="about" class="section about-section" aria-labelledby="about-title">
+      <div class="section-heading">
+        <span class="eyebrow">О проекте</span>
+        <h2 id="about-title">Системная работа по повышению доступности первичного звена</h2>
+      </div>
+      <div class="about-grid two-column">
+        <article class="about-card about-goal">
+          <h3>Цель проекта</h3>
+          <p>Цель проекта — повысить доступность первичной медико-санитарной помощи для граждан за счет развития записи на прием к врачу через ЕПГУ, регулярной работы с субъектами Российской Федерации и поддержки региональных команд.</p>
+        </article>
+        <article class="about-card about-incident-link">
+          <h3>Связь с федеральным инцидентом</h3>
+          <p>Проект связан с федеральным инцидентом №38 «Запись на прием к врачу» и решает практическую проблему доступности записи к основным медицинским специальностям, а также на диспансеризацию, профилактические осмотры и вакцинацию.</p>
+        </article>
+        <article class="about-card about-audience">
+          <h3>Целевая аудитория и охват</h3>
+          <p>Целевая аудитория проекта — широкая общественность, партнеры, участники проекта, доноры и представители органов власти. Охват проекта составляет 84 субъекта Российской Федерации.</p>
+        </article>
+        <article class="about-card about-organization-role">
+          <h3>Роль организации</h3>
+          <p>ФГБУ «ЦНИИОИЗ» Минздрава России обеспечивает аналитическое, организационное и методическое сопровождение проекта, включая сбор отчетности, проведение совещаний и развитие единого репозитория материалов.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="incident" class="section accent-panel incident-panel" aria-labelledby="incident-title">
+      <div class="section-heading incident-heading">
+        <span class="eyebrow">Федеральный инцидент №38</span>
+        <h2 id="incident-title">«Запись на прием к врачу»</h2>
+        <p class="incident-start"><span class="label">Дата старта:</span> <time datetime="2022-09-16">16 сентября 2022 года</time></p>
+        <p class="incident-goal">Его цель — обеспечить доступность для граждан записи на прием к врачу через ЕПГУ по <span class="accent-number">14</span> основным специальностям, а также запись на диспансеризацию, профилактические осмотры и вакцинацию.</p>
+      </div>
+      <div class="cards three criteria-list" aria-label="Критерии закрытия федерального инцидента №38">
+        <article class="card check criterion-card">
+          <span class="criterion-marker" aria-hidden="true">✓</span>
+          <div class="criterion-content">
+            <h3>Ошибки <span class="accent-number percent">менее 10%</span></h3>
+            <p>Во всех субъектах РФ последние 4 недели доля организационных и технических ошибок со стороны ГИСЗ субъекта РФ составляет <span class="accent-number percent">менее 10%</span>.</p>
+          </div>
+        </article>
+        <article class="card check criterion-card">
+          <span class="criterion-marker" aria-hidden="true">✓</span>
+          <div class="criterion-content">
+            <h3><span class="accent-number percent">90%</span> рабочего времени</h3>
+            <p>Целевой показатель рабочего времени от табеля учета рабочего времени медицинских работников, оказывающих помощь в амбулаторных условиях.</p>
+          </div>
+        </article>
+        <article class="card check criterion-card">
+          <span class="criterion-marker" aria-hidden="true">✓</span>
+          <div class="criterion-content">
+            <h3>Доступная запись на <span class="accent-number days">14 дней</span></h3>
+            <p>Во всех субъектах РФ доступна запись через ЕПГУ на 14 основных специальностей, диспансеризацию, профилактические осмотры и вакцинацию.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="activities" class="section activities-section" aria-labelledby="activities-title">
+      <div class="section-heading">
+        <span class="eyebrow">Основные мероприятия</span>
+        <h2 id="activities-title">Что включает проектная работа</h2>
+      </div>
+      <div class="cards three activity-cards">
+        <article class="card activity-card">
+          <span class="activity-number">01</span>
+          <span class="activity-marker" aria-hidden="true"></span>
+          <h3>Отчетность и аналитика</h3>
+          <p>Еженедельный сбор и анализ отчетности по показателям проекта.</p>
+        </article>
+        <article class="card activity-card">
+          <span class="activity-number">02</span>
+          <span class="activity-marker" aria-hidden="true"></span>
+          <h3>Совещания с регионами</h3>
+          <p>Регулярное обсуждение хода реализации проекта и практических вопросов.</p>
+        </article>
+        <article class="card activity-card">
+          <span class="activity-number">03</span>
+          <span class="activity-marker" aria-hidden="true"></span>
+          <h3>Доклады регионов</h3>
+          <p>Заслушивание регионов-участников о ходе реализации проекта.</p>
+        </article>
+        <article class="card activity-card">
+          <span class="activity-number">04</span>
+          <span class="activity-marker" aria-hidden="true"></span>
+          <h3>Выездные мероприятия</h3>
+          <p>Совместная работа с НМИЦ ТПМ в субъектах Российской Федерации.</p>
+        </article>
+        <article class="card activity-card">
+          <span class="activity-number">05</span>
+          <span class="activity-marker" aria-hidden="true"></span>
+          <h3>Модель зрелости</h3>
+          <p>Работа с субъектами РФ по модели зрелости пациентоцентричной записи к врачу.</p>
+        </article>
+        <article class="card activity-card featured-card">
+          <span class="activity-number">06</span>
+          <span class="activity-marker" aria-hidden="true"></span>
+          <h3>Трансформация 2025</h3>
+          <p>Переход к работе по достоверным данным, разбору отдельных тем и усилению методической составляющей.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="indicators" class="section indicators-section" aria-labelledby="indicators-title">
+      <div class="section-heading">
+        <span class="eyebrow">Ключевые показатели</span>
+        <h2 id="indicators-title">Ориентиры проекта</h2>
+      </div>
+      <div class="metrics indicator-grid" aria-label="Ключевые показатели проекта">
+        <div class="metric metric-date"><strong>2022–2026</strong><span>период реализации</span></div>
+        <div class="metric metric-date"><strong>16.09.2022</strong><span>старт федерального инцидента</span></div>
+        <div class="metric metric-number"><strong>14</strong><span>основных специальностей</span></div>
+        <div class="metric metric-number"><strong>84</strong><span>субъекта РФ в проекте</span></div>
+        <div class="metric metric-percent"><strong>&lt; 10%</strong><span>целевой уровень ошибок</span></div>
+        <div class="metric metric-date"><strong>14 дней</strong><span>горизонт доступности записи</span></div>
+        <div class="metric metric-percent"><strong>90%</strong><span>рабочее время по табелю</span></div>
+      </div>
+    </section>
+
+    <section id="timeline" class="section timeline-section" aria-labelledby="timeline-title">
+      <div class="section-heading">
+        <span class="eyebrow">Этапы реализации</span>
+        <h2 id="timeline-title">Поэтапное развитие проекта</h2>
+      </div>
+      <div class="timeline" aria-label="Этапы реализации проекта">
+        <div class="timeline-line" aria-hidden="true"></div>
+        <article class="timeline-item">
+          <span class="timeline-dot" aria-hidden="true"></span>
+          <div class="timeline-card">
+            <h3>Запуск федерального инцидента №38</h3>
+            <p>Определение фокуса работы и критериев доступности записи к врачу.</p>
+          </div>
+        </article>
+        <article class="timeline-item">
+          <span class="timeline-dot" aria-hidden="true"></span>
+          <div class="timeline-card">
+            <h3>Регулярная работа с субъектами РФ</h3>
+            <p>Сопровождение регионов, еженедельный сбор и анализ отчетности.</p>
+          </div>
+        </article>
+        <article class="timeline-item">
+          <span class="timeline-dot" aria-hidden="true"></span>
+          <div class="timeline-card">
+            <h3>Выездные мероприятия и методическая поддержка</h3>
+            <p>Совместная работа с НМИЦ ТПМ и развитие модели зрелости пациентоцентричной записи.</p>
+          </div>
+        </article>
+        <article class="timeline-item">
+          <span class="timeline-dot" aria-hidden="true"></span>
+          <div class="timeline-card">
+            <h3>Трансформация подходов в 2025 году</h3>
+            <p>Фокус на достоверных данных, аналитике и отдельных тематических направлениях.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="materials" class="section materials-cta materials-gateway" aria-labelledby="materials-title">
+      <div class="materials-content">
+        <span class="eyebrow">Материалы проекта</span>
+        <h2 id="materials-title">Единый репозиторий материалов проекта</h2>
+        <p>Создан единый репозиторий материалов проекта. В нем собраны шаблоны документов, методические рекомендации, презентации, вебинары, нормативные материалы и лучшие региональные практики.</p>
+        <div class="materials-categories" aria-label="Категории материалов проекта">
+          <article class="material-category-card">
+            <span class="category-marker" aria-hidden="true"></span>
+            <h3>Вебинары</h3>
+          </article>
+          <article class="material-category-card">
+            <span class="category-marker" aria-hidden="true"></span>
+            <h3>Лучшие региональные практики</h3>
+          </article>
+          <article class="material-category-card">
+            <span class="category-marker" aria-hidden="true"></span>
+            <h3>Нормативная база</h3>
+          </article>
+        </div>
+      </div>
+      <a class="button primary" href="materials.html">Перейти к материалам</a>
+    </section>
+
+    <section id="results" class="section results-section" aria-labelledby="results-title">
+      <div class="section-heading">
+        <span class="eyebrow">Результаты</span>
+        <h2 id="results-title">Что уже сформировано</h2>
+      </div>
+      <div class="result-list result-cards" role="list">
+        <article class="result-card" role="listitem"><span class="result-check" aria-hidden="true">✓</span><p>выстроена регулярная работа с регионами;</p></article>
+        <article class="result-card" role="listitem"><span class="result-check" aria-hidden="true">✓</span><p>организован еженедельный сбор и анализ отчетности;</p></article>
+        <article class="result-card" role="listitem"><span class="result-check" aria-hidden="true">✓</span><p>обеспечено сопровождение субъектов РФ;</p></article>
+        <article class="result-card" role="listitem"><span class="result-check" aria-hidden="true">✓</span><p>проведена работа по модели зрелости пациентоцентричной записи к врачу;</p></article>
+        <article class="result-card" role="listitem"><span class="result-check" aria-hidden="true">✓</span><p>начата работа по достоверным данным и разбору отдельных тематических направлений;</p></article>
+        <article class="result-card" role="listitem"><span class="result-check" aria-hidden="true">✓</span><p>создан единый репозиторий материалов проекта;</p></article>
+        <article class="result-card" role="listitem"><span class="result-check" aria-hidden="true">✓</span><p>сформирована основа для тиражирования лучших региональных практик.</p></article>
+      </div>
+    </section>
+
+    <section id="partners" class="section partners-section" aria-labelledby="partners-title">
+      <div class="section-heading">
+        <span class="eyebrow">Команда и партнеры</span>
+        <h2 id="partners-title">Участники проектной работы</h2>
+      </div>
+      <div class="cards four partner-cards">
+        <article class="card partner-card key-organization">
+          <span class="partner-icon" aria-hidden="true"></span>
+          <h3>ФГБУ «ЦНИИОИЗ»</h3>
+          <p>Организационное, аналитическое и методическое сопровождение.</p>
+        </article>
+        <article class="card partner-card">
+          <span class="partner-icon" aria-hidden="true"></span>
+          <h3>НМИЦ ТПМ</h3>
+          <p>Участие в выездных мероприятиях.</p>
+        </article>
+        <article class="card partner-card">
+          <span class="partner-icon" aria-hidden="true"></span>
+          <h3>Субъекты РФ</h3>
+          <p>Региональные команды и медицинские организации.</p>
+        </article>
+        <article class="card partner-card neutral-partner">
+          <span class="partner-icon" aria-hidden="true"></span>
+          <h3>Другие партнеры</h3>
+          <p>Будут добавлены при наличии подтвержденной информации.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="plans" class="section plans plans-section" aria-labelledby="plans-title">
+      <div class="section-heading">
+        <span class="eyebrow">Планы на будущее</span>
+        <h2 id="plans-title">Дальнейшее развитие</h2>
+      </div>
+      <div class="roadmap-panel">
+        <p class="plans-intro">Ключевые направления дальнейшей работы проекта:</p>
+        <div class="chips roadmap-chips" aria-label="Направления дальнейшего развития">
+          <span>работа с регионами</span>
+          <span>достоверность данных</span>
+          <span>пациентоцентричная запись</span>
+          <span>масштабирование практик</span>
+          <span>развитие репозитория</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacts" class="section contacts contact-panel" aria-labelledby="contacts-title">
+      <div class="section-heading">
+        <span class="eyebrow">Контакты</span>
+        <h2 id="contacts-title">Связаться с командой проекта</h2>
+      </div>
+      <div class="contact-list" aria-label="Контактная информация">
+        <p class="contact-item"><strong>Организация:</strong> <span>ФГБУ «ЦНИИОИЗ» Минздрава России</span></p>
+        <p class="contact-item"><strong>Email:</strong> <span class="placeholder">[вставить email]</span></p>
+        <p class="contact-item"><strong>Сайт:</strong> <span class="placeholder">[вставить сайт, если есть]</span></p>
+        <p class="contact-item"><strong>Социальные сети:</strong> <span class="placeholder">[вставить ссылки, если есть]</span></p>
+      </div>
+      <p class="contact-note">Для уточнения информации свяжитесь с командой проекта.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© 2026 ФГБУ «ЦНИИОИЗ» Минздрава России. Публичный отчет проекта.</p>
+    <nav class="footer-nav" aria-label="Навигация в подвале сайта">
+      <a href="index.html">Главная</a>
+      <a href="materials.html">Материалы проекта</a>
+    </nav>
+  </footer>
+</body>
+</html>
