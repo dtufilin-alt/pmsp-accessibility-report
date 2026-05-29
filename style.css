@@ -128,13 +128,13 @@ main { overflow: hidden; }
   width: min(100%, var(--container));
   margin: 0 auto;
   display: grid;
-  grid-template-columns: minmax(0, 1.12fr) minmax(330px, .88fr);
-  gap: clamp(28px, 5vw, 62px);
+  grid-template-columns: minmax(300px, .58fr) minmax(620px, 1.62fr);
+  gap: clamp(18px, 3vw, 38px);
   align-items: center;
 }
 .hero.compact { padding-block: 58px; }
 .hero.compact .hero-content { width: min(100%, var(--container)); margin: 0 auto; }
-.hero-content { max-width: 760px; }
+.hero-content { max-width: 640px; }
 .eyebrow {
   display: inline-flex;
   align-items: center;
@@ -495,29 +495,710 @@ p { margin-top: 0; }
 
 
 /* Точечные правки меню и hero */
-.brand { white-space: normal; line-height: 1.18; }
-.brand .brand-title { display: block; }
-.brand .brand-subtitle { display: block; color: var(--muted); font-size: 12px; font-weight: 750; letter-spacing: 0; }
-.hero-logos { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 18px; }
-.hero-logo { display: inline-flex; align-items: center; justify-content: center; min-height: 76px; width: min(220px, 100%); padding: 12px 16px; border-radius: 20px; background: rgba(255,255,255,.94); border: 1px solid rgba(200,216,194,.85); box-shadow: var(--shadow-soft); }
-.hero-logo img { display: block; max-width: 100%; max-height: 54px; object-fit: contain; }
-.hero-logo.mednet-logo img { max-width: 58px; max-height: 58px; }
-.project-report-note { display: inline-flex; max-width: 100%; margin: 0 0 14px; padding: 9px 13px; border-radius: 999px; background: rgba(245,225,223,.70); border: 1px solid rgba(165,85,81,.18); color: #6f3b38; font-weight: 850; font-size: 13px; line-height: 1.35; }
-.project-map-card { position: relative; overflow: hidden; padding: clamp(22px, 3vw, 32px); }
-.project-map-card .hero-decoration { inset: auto -70px -80px auto; opacity: .78; }
-.map-stat { position: relative; z-index: 1; display: grid; gap: 4px; margin-bottom: 12px; }
-.map-stat strong { display: block; color: var(--blue-dark); font-size: clamp(64px, 8vw, 104px); line-height: .86; letter-spacing: -.07em; }
-.map-stat span { display: block; color: var(--muted-strong); font-size: clamp(18px, 2.1vw, 25px); line-height: 1.15; font-weight: 900; }
-.russia-map { position: relative; z-index: 1; width: 100%; height: auto; display: block; margin-top: 10px; filter: drop-shadow(0 18px 28px rgba(10,59,110,.14)); }
-.rf-outline { fill: url(#greenWave); stroke: rgba(50, 77, 91, .42); stroke-width: 2.2; }
-.rf-border { fill: none; stroke: rgba(255,255,255,.82); stroke-width: 1.25; stroke-linecap: round; opacity: .9; }
-.rf-subject { fill: rgba(255,255,255,.01); stroke: rgba(50, 77, 91, .16); stroke-width: 1; cursor: pointer; }
-.rf-subject:hover, .rf-subject:focus { fill: rgba(255,255,255,.24); stroke: rgba(99,145,74,.78); outline: none; }
-.rf-wave { fill: none; stroke: #63914a; stroke-width: 2; opacity: 0; pointer-events: none; }
-.rf-point:hover .rf-wave, .rf-point:focus-within .rf-wave { animation: rfPulse 1.15s ease-out infinite; }
+.site-header { align-items: center; }
+.brand { white-space: normal; line-height: 1.12; min-width: 0; flex-shrink: 0; }
+.brand::before { flex: 0 0 auto; }
+.brand .brand-title { display: block; font-size: 16px; letter-spacing: -.015em; }
+.brand .brand-subtitle { display: block; color: var(--muted); font-size: 12px; font-weight: 750; letter-spacing: .01em; margin-top: 2px; }
+.hero-modern { isolation: isolate; }
+.hero-modern::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: clamp(18px, 3vw, 34px) clamp(14px, 4vw, 58px) auto;
+  height: min(62%, 520px);
+  border-radius: clamp(28px, 4vw, 54px);
+  background:
+    radial-gradient(circle at 12% 18%, rgba(152,193,133,.26), transparent 30%),
+    radial-gradient(circle at 78% 12%, rgba(117,166,184,.18), transparent 34%),
+    linear-gradient(135deg, rgba(255,255,255,.58), rgba(240,247,237,.30));
+  border: 1px solid rgba(255,255,255,.54);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.75);
+  pointer-events: none;
+}
+.hero-logos {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 0 12px;
+  padding: 7px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.34);
+  border: 1px solid rgba(255,255,255,.56);
+  box-shadow: 0 16px 36px rgba(50,77,91,.08);
+  backdrop-filter: blur(18px);
+}
+.hero-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  width: auto;
+  min-width: 126px;
+  max-width: 190px;
+  padding: 9px 16px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.48);
+  border: 1px solid rgba(255,255,255,.62);
+  box-shadow: 0 8px 18px rgba(50,77,91,.055);
+  transition: transform .18s ease, background .18s ease, box-shadow .18s ease;
+}
+.hero-logo:hover { transform: translateY(-1px); background: rgba(255,255,255,.64); box-shadow: 0 10px 22px rgba(50,77,91,.08); }
+.hero-logo img { display: block; max-width: 100%; max-height: 36px; object-fit: contain; }
+.hero-logo.mednet-logo { min-width: 74px; padding-inline: 14px; }
+.hero-logo.mednet-logo img { max-width: 42px; max-height: 42px; }
+.project-report-note { display: none; }
+.hero-content > p:not(.lead) { max-width: 640px; }
+.hero-modern .hero-grid { width: min(100%, 1540px); align-items: center; }
+.hero-modern h1 {
+  max-width: 660px;
+  margin: 0;
+  font-size: clamp(30px, 3.35vw, 48px);
+  line-height: 1.08;
+  letter-spacing: -.035em;
+}
+.hero-modern .hero-actions { margin-top: 18px; gap: 10px; }
+.hero-modern .hero-actions .button {
+  min-height: 42px;
+  padding: 10px 15px;
+  border-radius: 999px;
+  font-size: 13px;
+  color: var(--blue-dark);
+  background: linear-gradient(135deg, rgba(255,255,255,.72), rgba(238,246,234,.58));
+  border-color: rgba(99,153,181,.22);
+  box-shadow: 0 10px 22px rgba(50,77,91,.075);
+}
+.hero-modern .hero-actions .button.primary {
+  color: #fff;
+  background: linear-gradient(135deg, var(--blue-dark), var(--blue) 72%, var(--green));
+  box-shadow: 0 12px 26px rgba(50,77,91,.16);
+}
+.hero-modern .hero-actions .button.secondary:nth-child(2) {
+  background: linear-gradient(135deg, rgba(143,184,202,.20), rgba(255,255,255,.62));
+}
+.hero-modern .hero-actions .button.secondary:nth-child(3) {
+  background: linear-gradient(135deg, rgba(152,193,133,.20), rgba(255,255,255,.62));
+}
+.project-map-card { width: 100%; }
+.project-map-card { position: relative; overflow: hidden; padding: clamp(10px, 1.15vw, 16px); }
+.project-map-card .hero-decoration { inset: auto -70px -80px auto; opacity: .42; }
+.map-stat { position: relative; z-index: 1; display: flex; align-items: baseline; justify-content: center; gap: 8px; margin-bottom: 4px; text-align: center; white-space: nowrap; }
+.map-stat strong { display: inline; color: var(--blue-dark); font-size: clamp(24px, 2.35vw, 34px); line-height: 1; letter-spacing: -.045em; }
+.map-stat span { display: inline; color: var(--muted-strong); font-size: clamp(13px, 1.15vw, 16px); line-height: 1.1; font-weight: 900; }
+.map-shell { position: relative; z-index: 1; overflow: visible; padding: 0; }
+.russia-map { width: 100%; max-width: none; height: auto; display: block; margin: 0 auto; filter: drop-shadow(0 18px 28px rgba(10,59,110,.12)); }
+.real-russia-map { background: radial-gradient(circle at 43% 52%, rgba(255,255,255,.46), rgba(255,255,255,.08) 62%, transparent 76%); }
+.rf-map-outline { fill: none; stroke: rgba(50,77,91,.22); stroke-width: 12; stroke-linejoin: round; opacity: .42; pointer-events: none; }
+.rf-region, .rf-region path { fill: #dbeee9 !important; stroke: rgba(255,255,255,.96) !important; stroke-width: 2.1 !important; vector-effect: non-scaling-stroke; cursor: pointer; outline: none; transition: fill .18s ease, stroke .18s ease, filter .18s ease, opacity .18s ease; }
+.rf-region[data-wave="1"], .rf-region[data-wave="1"] path { fill: #cfe6d7 !important; }
+.rf-region[data-wave="2"], .rf-region[data-wave="2"] path { fill: #e4dfad !important; }
+.rf-region[data-wave="3"], .rf-region[data-wave="3"] path { fill: #efc7a3 !important; }
+.rf-region[data-wave="4"], .rf-region[data-wave="4"] path { fill: #e9aaa4 !important; }
+.rf-region[data-wave="out"], .rf-region[data-wave="out"] path { fill: #d7e6ee !important; }
+.rf-region.is-muted, .rf-region.is-muted path { opacity: .30; }
+.rf-region.is-wave, .rf-region.is-wave path { stroke: #fff !important; filter: drop-shadow(0 5px 10px rgba(50,77,91,.16)); opacity: .96; }
+.rf-region.is-active, .rf-region.is-active path { stroke: #fff !important; filter: drop-shadow(0 8px 14px rgba(50,77,91,.25)); opacity: 1; }
+.rf-region[data-wave="1"].is-wave, .rf-region[data-wave="1"].is-wave path { fill: #b8dcc4 !important; }
+.rf-region[data-wave="2"].is-wave, .rf-region[data-wave="2"].is-wave path { fill: #dcd38b !important; }
+.rf-region[data-wave="3"].is-wave, .rf-region[data-wave="3"].is-wave path { fill: #ebb47d !important; }
+.rf-region[data-wave="4"].is-wave, .rf-region[data-wave="4"].is-wave path { fill: #e58f88 !important; }
+.rf-region[data-wave="out"].is-wave, .rf-region[data-wave="out"].is-wave path { fill: #bfdbe8 !important; }
+.rf-region[data-wave="1"].is-active, .rf-region[data-wave="1"].is-active path { fill: #8fc9a4 !important; }
+.rf-region[data-wave="2"].is-active, .rf-region[data-wave="2"].is-active path { fill: #cfc467 !important; }
+.rf-region[data-wave="3"].is-active, .rf-region[data-wave="3"].is-active path { fill: #e69c5e !important; }
+.rf-region[data-wave="4"].is-active, .rf-region[data-wave="4"].is-active path { fill: #dc766f !important; }
+.rf-region[data-wave="out"].is-active, .rf-region[data-wave="out"].is-active path { fill: #9fcadf !important; }
+#rf-labels text { pointer-events: none; fill: #274a58; font-size: 22px; font-weight: 900; letter-spacing: -.04em; text-anchor: middle; dominant-baseline: central; paint-order: stroke; stroke: rgba(255,255,255,.88); stroke-width: 4px; }
+#rf-labels text.is-small { font-size: 16px; }
+#rf-labels text.is-tiny { font-size: 12px; }
+#rf-labels text.is-hidden-label { display: none; }
+.map-legend { position: relative; z-index: 1; display: flex; flex-wrap: wrap; gap: 7px; margin-top: 10px; }
+.map-legend-item { display: inline-flex; align-items: center; gap: 6px; padding: 6px 8px; border-radius: 999px; background: rgba(255,255,255,.48); border: 1px solid rgba(200,216,194,.56); color: var(--muted-strong); font-size: 11px; font-weight: 800; transition: .18s ease; }
+.map-legend-item::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #a8d7cb; box-shadow: 0 0 0 4px rgba(168,215,203,.18); }
+.map-legend-item[data-wave="1"]::before { background: #cfe6d7; }
+.map-legend-item[data-wave="2"]::before { background: #e4dfad; }
+.map-legend-item[data-wave="3"]::before { background: #efc7a3; }
+.map-legend-item[data-wave="4"]::before { background: #e9aaa4; }
+.map-legend-item[data-wave="out"]::before { background: #d7e6ee; }
+.map-legend-item.is-active { color: var(--blue-dark); background: rgba(255,255,255,.74); border-color: rgba(99,145,74,.35); box-shadow: 0 8px 20px rgba(50,77,91,.08); }
 .map-tooltip { position: relative; z-index: 2; margin-top: 12px; padding: 12px 14px; border-radius: 18px; background: #324d5b; color: #fff; box-shadow: 0 14px 30px rgba(50,77,91,.20); font-size: 13px; line-height: 1.35; }
 .map-tooltip b { display: block; font-size: 15px; margin-bottom: 2px; }
-@keyframes rfPulse { 0% { r: 7; opacity: .65; } 100% { r: 25; opacity: 0; } }
-@media (max-width: 1120px) { .project-map-card { max-width: 760px; } }
-@media (max-width: 760px) { .hero-logos { display: grid; grid-template-columns: 1fr 1fr; } .hero-logo { width: 100%; min-height: 68px; } .project-report-note { border-radius: 18px; } .map-stat strong { font-size: 68px; } .map-stat span { font-size: 18px; } .russia-map { margin-top: 4px; } }
-@media (max-width: 420px) { .hero-logos { grid-template-columns: 1fr; } .brand .brand-subtitle { font-size: 11px; } .project-map-card { padding: 18px; } .map-tooltip { font-size: 12px; } }
+@media (max-width: 1120px) { .hero-grid { grid-template-columns: 1fr; } .hero-content { max-width: 860px; } .project-map-card { max-width: 1060px; width: 100%; justify-self: center; } .hero-modern h1 { max-width: 820px; } }
+@media (max-width: 760px) { .hero-grid { grid-template-columns: 1fr; } .site-header { align-items: flex-start; gap: 12px; } .top-nav { width: 100%; justify-content: flex-start; } .hero-logos { width: 100%; border-radius: 26px; } .hero-logo { flex: 1 1 130px; min-height: 54px; max-width: none; } .hero-modern h1 { font-size: clamp(28px, 8vw, 38px); } .hero-modern .hero-actions .button { width: auto; flex: 1 1 190px; } .map-stat strong { font-size: clamp(22px, 7vw, 30px); } .map-stat span { font-size: clamp(12px, 3.6vw, 15px); } #rf-labels text { font-size: 18px; } #rf-labels text.is-small { font-size: 13px; } #rf-labels text.is-tiny { font-size: 10px; } }
+@media (max-width: 420px) { .site-header { flex-direction: column; } .brand .brand-subtitle { font-size: 11px; } .hero-logos { display: grid; grid-template-columns: 1fr 1fr; padding: 7px; gap: 8px; } .hero-logo { min-width: 0; padding-inline: 10px; } .project-map-card { padding: 10px; } .map-stat { gap: 5px; } .map-tooltip { font-size: 12px; } .map-legend-item { font-size: 10px; } }
+
+/* Hero as single report cover */
+.hero-modern .hero-cover {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 1540px);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: clamp(14px, 2vw, 24px);
+}
+.hero-modern .hero-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(16px, 2.4vw, 34px);
+  width: min(100%, 1260px);
+  margin: 0 auto;
+  padding: clamp(6px, 1vw, 10px) 0 0;
+}
+.hero-modern .hero-top .hero-logos {
+  flex: 0 0 auto;
+  margin: 0;
+}
+.hero-modern .hero-top h1 {
+  flex: 0 1 760px;
+  max-width: 760px;
+  margin: 0;
+  font-size: clamp(30px, 3.2vw, 48px);
+  line-height: 1.08;
+  letter-spacing: -.035em;
+}
+.hero-modern .hero-cover .project-map-card {
+  width: min(100%, 1380px);
+  max-width: 1380px;
+  margin: 0 auto;
+  padding: clamp(8px, 1vw, 14px);
+}
+.hero-modern .hero-cover .map-stat {
+  margin-bottom: 2px;
+}
+.hero-modern .hero-cover .map-shell {
+  padding: 0;
+}
+.hero-modern .hero-cover .russia-map {
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+.hero-modern .hero-cover .hero-actions {
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  width: min(100%, 960px);
+}
+@media (max-width: 900px) {
+  .hero-modern .hero-top {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 12px;
+  }
+  .hero-modern .hero-top .hero-logos {
+    justify-content: center;
+  }
+  .hero-modern .hero-top h1 {
+    max-width: 820px;
+  }
+}
+@media (max-width: 520px) {
+  .hero-modern .hero-cover { gap: 12px; }
+  .hero-modern .hero-top .hero-logos {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .hero-modern .hero-cover .hero-actions .button {
+    flex: 1 1 100%;
+  }
+}
+
+
+/* Compact first-screen hero */
+.hero.hero-modern {
+  padding: clamp(18px, 2.4vw, 34px) clamp(14px, 4vw, 56px) clamp(18px, 2.8vw, 38px);
+}
+.hero-modern::before {
+  inset: clamp(8px, 1.4vw, 20px) clamp(10px, 3vw, 46px) auto;
+  height: min(48%, 360px);
+}
+.hero-modern .hero-cover {
+  width: min(100%, 1540px);
+  gap: clamp(8px, 1.15vw, 14px);
+}
+.hero-modern .hero-top {
+  width: min(100%, 1380px);
+  justify-content: space-between;
+  align-items: center;
+  gap: clamp(14px, 2vw, 28px);
+  padding: 0;
+  text-align: left;
+}
+.hero-modern .hero-top .hero-logos {
+  flex: 0 0 auto;
+  margin: 0;
+  padding: 5px;
+  gap: 7px;
+  box-shadow: 0 8px 18px rgba(50,77,91,.055);
+}
+.hero-modern .hero-top .hero-logo {
+  min-height: 42px;
+  min-width: 104px;
+  max-width: 168px;
+  padding: 7px 12px;
+}
+.hero-modern .hero-top .hero-logo img { max-height: 28px; }
+.hero-modern .hero-top .hero-logo.mednet-logo { min-width: 58px; padding-inline: 10px; }
+.hero-modern .hero-top .hero-logo.mednet-logo img { max-width: 32px; max-height: 32px; }
+.hero-modern .hero-top h1 {
+  flex: 1 1 auto;
+  max-width: 720px;
+  font-size: clamp(20px, 2.05vw, 31px);
+  line-height: 1.08;
+  letter-spacing: -.025em;
+  text-align: left;
+}
+.hero-modern .hero-cover .project-map-card {
+  width: min(100%, 1460px);
+  max-width: 1460px;
+  padding: clamp(6px, .75vw, 10px);
+  border-radius: 22px;
+  box-shadow: 0 10px 28px rgba(50,77,91,.065);
+  background: rgba(255,255,255,.62);
+}
+.hero-modern .hero-cover .project-map-card .hero-decoration { display: none; }
+.hero-modern .hero-cover .map-stat {
+  margin-bottom: 0;
+}
+.hero-modern .hero-cover .map-stat strong {
+  font-size: clamp(18px, 1.6vw, 25px);
+}
+.hero-modern .hero-cover .map-stat span {
+  font-size: clamp(11px, .95vw, 14px);
+}
+.hero-modern .hero-cover .russia-map {
+  width: 100%;
+  height: clamp(390px, 52vh, 590px);
+  max-height: 58vh;
+  object-fit: contain;
+  margin: -4px auto 0;
+}
+.hero-modern .project-map-card .hero-actions {
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin: 4px auto 0;
+  width: min(100%, 900px);
+}
+.hero-modern .project-map-card .hero-actions .button {
+  min-height: 36px;
+  padding: 8px 13px;
+  font-size: 12px;
+  box-shadow: 0 8px 16px rgba(50,77,91,.06);
+}
+.hero-modern .project-map-card .map-legend {
+  justify-content: center;
+  gap: 5px;
+  margin-top: 6px;
+}
+.hero-modern .project-map-card .map-legend-item {
+  padding: 4px 7px;
+  font-size: 10px;
+}
+.hero-modern .project-map-card .map-tooltip {
+  margin-top: 6px;
+  padding: 8px 10px;
+  border-radius: 14px;
+  font-size: 12px;
+  box-shadow: 0 8px 18px rgba(50,77,91,.13);
+}
+.hero-modern .project-map-card .map-tooltip b { font-size: 13px; }
+@media (max-width: 900px) {
+  .hero-modern .hero-top {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    gap: 8px;
+  }
+  .hero-modern .hero-top .hero-logos { justify-content: flex-start; }
+  .hero-modern .hero-top h1 {
+    max-width: 100%;
+    font-size: clamp(22px, 5.6vw, 30px);
+  }
+  .hero-modern .hero-cover .russia-map {
+    height: auto;
+    max-height: none;
+  }
+}
+@media (max-width: 520px) {
+  .hero.hero-modern { padding-top: 16px; }
+  .hero-modern .hero-cover { gap: 8px; }
+  .hero-modern .hero-top .hero-logos {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .hero-modern .hero-top h1 { font-size: clamp(20px, 6.6vw, 26px); }
+  .hero-modern .project-map-card .hero-actions .button { flex: 1 1 100%; }
+}
+
+
+/* Final compact hero alignment tweaks */
+.hero-modern .hero-top {
+  justify-content: flex-start;
+  gap: clamp(12px, 1.6vw, 22px);
+}
+.hero-modern .hero-top h1 {
+  flex: 0 1 auto;
+  max-width: none;
+  white-space: nowrap;
+  font-size: clamp(18px, 1.55vw, 25px);
+  line-height: 1.05;
+}
+.hero-modern .project-map-card .map-tooltip {
+  margin-top: 3px;
+  margin-bottom: 0;
+}
+.hero-modern .project-map-card .map-bottom-row {
+  display: grid;
+  grid-template-columns: minmax(280px, .82fr) minmax(360px, 1.18fr);
+  align-items: center;
+  gap: 10px;
+  margin-top: 6px;
+}
+.hero-modern .project-map-card .hero-actions {
+  justify-content: flex-start;
+  margin: 0;
+  width: auto;
+}
+.hero-modern .project-map-card .map-legend {
+  justify-content: flex-end;
+  margin: 0;
+}
+@media (max-width: 1180px) {
+  .hero-modern .hero-top h1 {
+    white-space: normal;
+    max-width: 760px;
+  }
+  .hero-modern .project-map-card .map-bottom-row {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+  .hero-modern .project-map-card .hero-actions,
+  .hero-modern .project-map-card .map-legend {
+    justify-content: center;
+  }
+}
+@media (max-width: 520px) {
+  .hero-modern .hero-top h1 { white-space: normal; }
+  .hero-modern .project-map-card .map-bottom-row { margin-top: 5px; }
+}
+
+
+/* Side controls over the map on desktop */
+.hero-modern .hero-cover .project-map-card {
+  position: relative;
+}
+.hero-modern .project-map-card .map-bottom-row {
+  position: absolute;
+  z-index: 4;
+  top: clamp(42px, 4.2vw, 58px);
+  left: clamp(8px, 1vw, 14px);
+  right: clamp(8px, 1vw, 14px);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin: 0;
+  pointer-events: none;
+}
+.hero-modern .project-map-card .hero-actions,
+.hero-modern .project-map-card .map-legend {
+  pointer-events: auto;
+}
+.hero-modern .project-map-card .hero-actions {
+  width: min(190px, 18vw);
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: 7px;
+  margin: 0;
+}
+.hero-modern .project-map-card .hero-actions .button {
+  width: 100%;
+  min-height: 34px;
+  padding: 7px 10px;
+  font-size: 11px;
+  line-height: 1.15;
+  background: rgba(255,255,255,.76);
+  backdrop-filter: blur(10px);
+}
+.hero-modern .project-map-card .hero-actions .button.primary {
+  background: linear-gradient(135deg, rgba(50,77,91,.94), rgba(99,153,181,.90));
+}
+.hero-modern .project-map-card .map-legend {
+  width: min(230px, 22vw);
+  justify-content: flex-end;
+  align-content: flex-start;
+  gap: 5px;
+  margin: 0;
+  padding: 7px;
+  border-radius: 16px;
+  background: rgba(255,255,255,.58);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,.62);
+}
+.hero-modern .project-map-card .map-legend-item {
+  font-size: 9.5px;
+  padding: 4px 6px;
+  background: rgba(255,255,255,.56);
+}
+.hero-modern .project-map-card .map-tooltip {
+  position: relative;
+  z-index: 5;
+}
+@media (max-width: 980px) {
+  .hero-modern .project-map-card .map-bottom-row {
+    position: static;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 6px;
+    margin-top: 6px;
+    pointer-events: auto;
+  }
+  .hero-modern .project-map-card .hero-actions,
+  .hero-modern .project-map-card .map-legend {
+    width: 100%;
+    flex-direction: row;
+    justify-content: center;
+  }
+  .hero-modern .project-map-card .hero-actions .button {
+    width: auto;
+    flex: 1 1 180px;
+  }
+}
+
+
+/* Clean report structure after hero */
+.report-incident, .report-about, .report-results, .report-partners, .report-contacts { color: var(--text); }
+.incident-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, 320px); gap: clamp(18px, 3vw, 34px); align-items: start; }
+.minzdrav-sign { display: inline-flex; align-items: center; justify-content: center; justify-self: end; width: 86px; min-height: 96px; padding: 12px; border-radius: 22px; background: rgba(255,255,255,.72); border: 1px solid rgba(200,216,194,.62); text-decoration: none; box-shadow: var(--shadow-soft); }
+.minzdrav-sign img { display: block; width: 58px; height: auto; }
+.compact-heading { margin-bottom: 18px; }
+.compact-heading h3 { font-size: clamp(22px, 2.8vw, 32px); margin: 0; color: var(--blue-dark); }
+.subsection-block { margin-top: clamp(28px, 4vw, 44px); }
+.report-results .materials-cta { width: min(100%, var(--container)); margin: clamp(30px, 4vw, 46px) auto 0; border-radius: var(--radius-xl); }
+.report-results .result-check, .criterion-marker { color: var(--green-dark); }
+.contact-list a { color: var(--blue-dark); font-weight: 850; text-decoration: none; border-bottom: 1px solid rgba(99,153,181,.35); }
+.contact-list a:hover { border-bottom-color: currentColor; }
+@media (max-width: 900px) { .incident-layout { grid-template-columns: 1fr; } .minzdrav-sign { max-width: 120px; } }
+
+/* Reliable SVG hit-testing for map regions */
+.rf-map-outline,
+.rf-map-outline *,
+#rf-labels,
+#rf-labels * { pointer-events: none !important; }
+.rf-region,
+.rf-region path,
+.rf-region polygon,
+.rf-region polyline,
+.rf-region rect,
+.rf-region circle,
+.rf-region ellipse { pointer-events: visiblePainted; }
+.map-viewport { z-index: 1; }
+.map-tooltip,
+.map-controls,
+.map-bottom-row { position: relative; z-index: 3; }
+
+/* Mobile map interaction layer: desktop remains visually unchanged */
+.map-viewport,
+.map-pan-layer { position: relative; width: 100%; }
+.map-pan-layer { transform-origin: 0 0; will-change: transform; }
+.map-controls { display: none; }
+.map-control-button { font: inherit; }
+
+@media (max-width: 760px) {
+  html, body { max-width: 100%; overflow-x: hidden; }
+  body::before { opacity: .24; filter: blur(.2px); }
+  .site-header {
+    min-height: 0;
+    padding: 8px 10px;
+    gap: 8px;
+    align-items: center;
+  }
+  .brand { min-width: 168px; }
+  .brand .brand-title { font-size: 13px; }
+  .brand .brand-subtitle { font-size: 10px; line-height: 1.15; }
+  .top-nav {
+    width: auto;
+    flex: 1 1 auto;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    gap: 6px;
+    overflow-x: auto;
+    padding-bottom: 2px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .top-nav::-webkit-scrollbar { display: none; }
+  .top-nav a {
+    flex: 0 0 auto;
+    padding: 6px 9px;
+    min-height: 28px;
+    font-size: 11px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .hero.hero-modern {
+    padding-top: 10px;
+    background: linear-gradient(180deg, rgba(246,250,244,.96), rgba(235,245,240,.88));
+  }
+  .hero-modern::before,
+  .hero-modern::after,
+  .hero-decoration { opacity: .16; }
+  .hero-modern .hero-cover { gap: 10px; }
+  .hero-modern .hero-top {
+    gap: 8px;
+    align-items: stretch;
+  }
+  .hero-modern .hero-top .hero-logos {
+    order: 1;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 7px;
+    padding: 6px;
+    border-radius: 18px;
+  }
+  .hero-logo { min-height: 42px; padding: 6px 8px; }
+  .hero-logo img { max-height: 28px; }
+  .hero-logo.mednet-logo img,
+  .hero-modern .hero-top .hero-logo.mednet-logo img { max-width: 30px; max-height: 30px; }
+  .hero-modern .hero-top h1 {
+    order: 2;
+    font-size: clamp(19px, 6vw, 25px);
+    line-height: 1.08;
+    white-space: normal;
+    text-align: left;
+  }
+  .hero-modern .hero-cover .project-map-card,
+  .project-map-card {
+    padding: 10px;
+    border-radius: 22px;
+    overflow: hidden;
+  }
+  .map-stat {
+    justify-content: flex-start;
+    white-space: normal;
+    margin-bottom: 8px;
+  }
+  .map-stat strong { font-size: clamp(22px, 7vw, 29px); }
+  .map-stat span { font-size: 13px; }
+  .map-shell { overflow: hidden; border-radius: 18px; }
+  .map-viewport {
+    height: clamp(360px, 56vh, 560px);
+    min-height: 360px;
+    overflow: hidden;
+    touch-action: none;
+    user-select: none;
+    background: radial-gradient(circle at 50% 46%, rgba(255,255,255,.72), rgba(232,243,238,.44) 66%, rgba(220,235,229,.32));
+    border: 1px solid rgba(200,216,194,.58);
+    border-radius: 18px;
+    cursor: grab;
+  }
+  .map-viewport.is-dragging { cursor: grabbing; }
+  .map-pan-layer {
+    width: 188%;
+    height: 100%;
+  }
+  .hero-modern .hero-cover .russia-map,
+  .russia-map {
+    width: 100%;
+    height: 100%;
+    max-height: none;
+    object-fit: contain;
+    margin: 0;
+    filter: drop-shadow(0 12px 20px rgba(10,59,110,.12));
+  }
+  .map-tooltip {
+    margin-top: 8px;
+    padding: 10px 12px;
+    border-radius: 15px;
+    font-size: 12px;
+  }
+  .map-tooltip b { font-size: 14px; }
+  .map-controls {
+    display: flex;
+    justify-content: center;
+    gap: 7px;
+    margin-top: 8px;
+  }
+  .map-control-button {
+    min-width: 42px;
+    min-height: 38px;
+    padding: 0 12px;
+    border: 1px solid rgba(99,153,181,.32);
+    border-radius: 999px;
+    background: rgba(255,255,255,.82);
+    color: var(--blue-dark);
+    font-size: 18px;
+    font-weight: 900;
+    box-shadow: 0 8px 16px rgba(50,77,91,.08);
+  }
+  .map-control-reset { font-size: 12px; letter-spacing: .01em; }
+  .hero-modern .project-map-card .map-bottom-row {
+    position: static;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 8px;
+    pointer-events: auto;
+  }
+  .hero-modern .project-map-card .hero-actions {
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 6px;
+    overflow-x: auto;
+    justify-content: flex-start;
+    padding-bottom: 2px;
+    scrollbar-width: none;
+  }
+  .hero-modern .project-map-card .hero-actions::-webkit-scrollbar { display: none; }
+  .hero-modern .project-map-card .hero-actions .button {
+    flex: 0 0 auto;
+    width: auto;
+    min-height: 34px;
+    padding: 8px 10px;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+  .hero-modern .project-map-card .map-legend {
+    width: 100%;
+    justify-content: flex-start;
+    gap: 5px;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    backdrop-filter: none;
+  }
+  .map-legend-item { font-size: 10px; padding: 5px 7px; }
+  #rf-labels text { font-size: 18px; }
+  #rf-labels text.label-medium,
+  #rf-labels text.label-minor { display: none; }
+  .real-russia-map.map-zoom-medium #rf-labels text.label-medium { display: block; }
+  .real-russia-map.map-zoom-high #rf-labels text.label-medium,
+  .real-russia-map.map-zoom-high #rf-labels text.label-minor { display: block; }
+  .real-russia-map.map-zoom-high #rf-labels text { font-size: 15px; }
+  .real-russia-map.map-zoom-high #rf-labels text.is-small { font-size: 12px; }
+  .real-russia-map.map-zoom-high #rf-labels text.is-tiny { font-size: 10px; }
+}
+
+@media (max-width: 420px) {
+  .site-header { flex-direction: row; }
+  .brand { min-width: 150px; }
+  .map-viewport { height: 58vh; min-height: 340px; }
+  .map-pan-layer { width: 205%; }
+  .hero-modern .hero-top h1 { font-size: clamp(18px, 6.4vw, 23px); }
+}
