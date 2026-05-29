@@ -1566,7 +1566,10 @@ p { margin-top: 0; }
         var padding = Math.max(8, Math.min(18, vp.width * 0.025));
         var availableW = Math.max(1, vp.width - padding * 2);
         var availableH = Math.max(1, vp.height - padding * 2);
-        var fit = Math.min(availableW / mapRect.width, availableH / mapRect.height, 1);
+        // Add a conservative safety margin for real mobile browsers/WebViews:
+        // iOS Safari/Telegram can report SVG bounds a little optimistically while painting.
+        // The start state should always show the whole map, so we intentionally fit smaller.
+        var fit = Math.min(availableW / mapRect.width, availableH / mapRect.height, 1) * 0.84;
         var mapCenterX = mapRect.left - vp.left + mapRect.width / 2;
         var mapCenterY = mapRect.top - vp.top + mapRect.height / 2;
         return {
