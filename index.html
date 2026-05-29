@@ -473,7 +473,7 @@ p { margin-top: 0; }
   .cards.three, .cards.four, .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .materials-cta { grid-template-columns: 1fr; }
 }
-@media (max-width: 760px) {
+@media (max-width: 768px) {
   body { background-size: auto; }
   .site-header { position: static; gap: 12px; padding-block: 12px; }
   .brand { font-size: 15px; }
@@ -637,7 +637,7 @@ p { margin-top: 0; }
 .map-tooltip { position: relative; z-index: 2; margin-top: 12px; padding: 12px 14px; border-radius: 18px; background: #324d5b; color: #fff; box-shadow: 0 14px 30px rgba(50,77,91,.20); font-size: 13px; line-height: 1.35; }
 .map-tooltip b { display: block; font-size: 15px; margin-bottom: 2px; }
 @media (max-width: 1120px) { .hero-grid { grid-template-columns: 1fr; } .hero-content { max-width: 860px; } .project-map-card { max-width: 1060px; width: 100%; justify-self: center; } .hero-modern h1 { max-width: 820px; } }
-@media (max-width: 760px) { .hero-grid { grid-template-columns: 1fr; } .site-header { align-items: flex-start; gap: 12px; } .top-nav { width: 100%; justify-content: flex-start; } .hero-logos { width: 100%; border-radius: 26px; } .hero-logo { flex: 1 1 130px; min-height: 54px; max-width: none; } .hero-modern h1 { font-size: clamp(28px, 8vw, 38px); } .hero-modern .hero-actions .button { width: auto; flex: 1 1 190px; } .map-stat strong { font-size: clamp(22px, 7vw, 30px); } .map-stat span { font-size: clamp(12px, 3.6vw, 15px); } #rf-labels text { font-size: 18px; } #rf-labels text.is-small { font-size: 13px; } #rf-labels text.is-tiny { font-size: 10px; } }
+@media (max-width: 768px) { .hero-grid { grid-template-columns: 1fr; } .site-header { align-items: flex-start; gap: 12px; } .top-nav { width: 100%; justify-content: flex-start; } .hero-logos { width: 100%; border-radius: 26px; } .hero-logo { flex: 1 1 130px; min-height: 54px; max-width: none; } .hero-modern h1 { font-size: clamp(28px, 8vw, 38px); } .hero-modern .hero-actions .button { width: auto; flex: 1 1 190px; } .map-stat strong { font-size: clamp(22px, 7vw, 30px); } .map-stat span { font-size: clamp(12px, 3.6vw, 15px); } #rf-labels text { font-size: 18px; } #rf-labels text.is-small { font-size: 13px; } #rf-labels text.is-tiny { font-size: 10px; } }
 @media (max-width: 420px) { .site-header { flex-direction: column; } .brand .brand-subtitle { font-size: 11px; } .hero-logos { display: grid; grid-template-columns: 1fr 1fr; padding: 7px; gap: 8px; } .hero-logo { min-width: 0; padding-inline: 10px; } .project-map-card { padding: 10px; } .map-stat { gap: 5px; } .map-tooltip { font-size: 12px; } .map-legend-item { font-size: 10px; } }
 
 /* Hero as single report cover */
@@ -1025,7 +1025,7 @@ p { margin-top: 0; }
 .map-controls { display: none; }
 .map-control-button { font: inherit; }
 
-@media (max-width: 760px) {
+@media (max-width: 768px) {
   html, body { max-width: 100%; overflow-x: hidden; }
   body::before { opacity: .24; filter: blur(.2px); }
   .site-header {
@@ -1424,7 +1424,7 @@ p { margin-top: 0; }
       const svg = document.querySelector('.real-russia-map');
       const viewport = document.querySelector('#map-viewport');
       const panLayer = document.querySelector('#map-pan-layer');
-      function isMobileMap() { return window.matchMedia('(max-width: 760px)').matches; }
+      function isMobileMap() { return window.matchMedia('(max-width: 768px)').matches; }
       const regions = [];
       regionData.forEach(function (item) {
         var id = item[0], region = item[1], code = item[2], wave = item[3], start = item[4];
@@ -1529,7 +1529,8 @@ p { margin-top: 0; }
         touchPinchStart: null,
         hadPinch: false,
         lastTapMoved: false,
-        lastActivationAt: 0
+        lastActivationAt: 0,
+        fitScale: 1
       };
       const MIN_SCALE = 1;
       const MAX_SCALE = 3.2;
@@ -1544,8 +1545,35 @@ p { margin-top: 0; }
 
       function updateLabelZoom() {
         if (!svg) return;
-        if (mapState.scale >= 1.55 && mapState.scale < 2.35) svg.classList.add('map-zoom-medium'); else svg.classList.remove('map-zoom-medium');
-        if (mapState.scale >= 2.35) svg.classList.add('map-zoom-high'); else svg.classList.remove('map-zoom-high');
+        var relativeScale = mapState.fitScale ? mapState.scale / mapState.fitScale : mapState.scale;
+        if (relativeScale >= 1.55 && relativeScale < 2.35) svg.classList.add('map-zoom-medium'); else svg.classList.remove('map-zoom-medium');
+        if (relativeScale >= 2.35) svg.classList.add('map-zoom-high'); else svg.classList.remove('map-zoom-high');
+      }
+
+      function getRenderedMapRect() {
+        var group = document.querySelector('#rf-regions');
+        var target = group || svg || panLayer;
+        if (!target || !target.getBoundingClientRect) return null;
+        return target.getBoundingClientRect();
+      }
+
+      function calculateMobileFit() {
+        if (!viewport || !panLayer || !isMobileMap()) return { scale: 1, x: 0, y: 0 };
+        panLayer.style.transform = 'translate3d(0, 0, 0) scale(1)';
+        var vp = viewport.getBoundingClientRect();
+        var mapRect = getRenderedMapRect();
+        if (!mapRect || !mapRect.width || !mapRect.height || !vp.width || !vp.height) return { scale: 1, x: 0, y: 0 };
+        var padding = Math.max(8, Math.min(18, vp.width * 0.025));
+        var availableW = Math.max(1, vp.width - padding * 2);
+        var availableH = Math.max(1, vp.height - padding * 2);
+        var fit = Math.min(availableW / mapRect.width, availableH / mapRect.height, 1);
+        var mapCenterX = mapRect.left - vp.left + mapRect.width / 2;
+        var mapCenterY = mapRect.top - vp.top + mapRect.height / 2;
+        return {
+          scale: fit,
+          x: vp.width / 2 - mapCenterX * fit,
+          y: vp.height / 2 - mapCenterY * fit
+        };
       }
 
       function getBounds(scale = mapState.scale) {
@@ -1554,7 +1582,7 @@ p { margin-top: 0; }
         const vh = viewport.clientHeight;
         const lw = panLayer.offsetWidth * scale;
         const lh = panLayer.offsetHeight * scale;
-        const margin = 42;
+        const margin = 24;
         const minX = lw > vw ? vw - lw - margin : (vw - lw) / 2;
         const maxX = lw > vw ? margin : (vw - lw) / 2;
         const minY = lh > vh ? vh - lh - margin : (vh - lh) / 2;
@@ -1567,7 +1595,7 @@ p { margin-top: 0; }
         const bounds = getBounds();
         mapState.x = clampValue(mapState.x, bounds.minX, bounds.maxX);
         mapState.y = clampValue(mapState.y, bounds.minY, bounds.maxY);
-        panLayer.style.transform = `translate3d(${mapState.x}px, ${mapState.y}px, 0) scale(${mapState.scale})`;
+        panLayer.style.transform = 'translate3d(' + mapState.x + 'px, ' + mapState.y + 'px, 0) scale(' + mapState.scale + ')';
         updateLabelZoom();
       }
 
@@ -1578,20 +1606,23 @@ p { margin-top: 0; }
           updateLabelZoom();
           return;
         }
-        // На мобильном стартовый вид должен быть как на компьютере: вся карта видна целиком,
-        // а увеличение уже делается pinch/кнопками. Не растягиваем слой шире viewport.
-        mapState.scale = 1;
-        mapState.initialX = 0;
-        mapState.initialY = 0;
-        mapState.x = 0;
-        mapState.y = 0;
+        // Mobile initial state is computed as fit-to-screen: the whole map is visible,
+        // centered, and this fitted state becomes the minimum zoom.
+        var fit = calculateMobileFit();
+        mapState.fitScale = fit.scale;
+        mapState.scale = fit.scale;
+        mapState.initialX = fit.x;
+        mapState.initialY = fit.y;
+        mapState.x = fit.x;
+        mapState.y = fit.y;
         applyMapTransform();
       }
 
       function zoomAt(nextScale, clientX, clientY) {
         if (!viewport || !panLayer || !isMobileMap()) return;
         const oldScale = mapState.scale;
-        const scale = clampValue(nextScale, MIN_SCALE, MAX_SCALE);
+        const minScale = isMobileMap() ? (mapState.fitScale || MIN_SCALE) : MIN_SCALE;
+        const scale = clampValue(nextScale, minScale, MAX_SCALE);
         const rect = viewport.getBoundingClientRect();
         var pointX = (clientX != null ? clientX : (rect.left + rect.width / 2)) - rect.left;
         var pointY = (clientY != null ? clientY : (rect.top + rect.height / 2)) - rect.top;
@@ -1681,8 +1712,8 @@ p { margin-top: 0; }
           button.addEventListener('click', (event) => {
             event.stopPropagation();
             const action = button.dataset.mapAction;
-            if (action === 'zoom-in') zoomAt(mapState.scale + .35);
-            if (action === 'zoom-out') zoomAt(mapState.scale - .35);
+            if (action === 'zoom-in') zoomAt(mapState.scale + Math.max(.22, (mapState.fitScale || 1) * .35));
+            if (action === 'zoom-out') zoomAt(mapState.scale - Math.max(.22, (mapState.fitScale || 1) * .35));
             if (action === 'reset') resetMap();
           });
         });
@@ -1833,7 +1864,8 @@ p { margin-top: 0; }
           if (!isMobileMap() || isInteractiveControl(event.target) || mapState.lastTapMoved || mapState.hadPinch) return;
           activateRegionFromPoint(event.clientX, event.clientY);
         });
-        window.addEventListener('resize', () => { setMobilePrompt(); resetMap(); });
+        window.addEventListener('resize', function () { setMobilePrompt(); resetMap(); });
+        window.addEventListener('orientationchange', function () { setTimeout(function () { setMobilePrompt(); resetMap(); }, 120); });
         setMobilePrompt();
         requestAnimationFrame(resetMap);
       }
