@@ -880,6 +880,26 @@
       .practice-download { font-size: 11px; padding-inline: 8px; }
     }
 
+
+    /* 2026-06-01 footer aligned with index */
+    .site-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 18px clamp(18px, 5vw, 72px);
+      min-height: 0;
+      color: #637083;
+      border-top: 1px solid var(--line);
+      background: #fff;
+      text-align: left;
+      font-size: 14px;
+    }
+    .site-footer p { margin: 0; }
+    @media (max-width: 768px) {
+      .site-footer { align-items: flex-start; flex-direction: column; }
+    }
+
   </style>
 </head>
 <body>
@@ -1318,7 +1338,7 @@
     </section>
   </main>
 
-  <footer class="site-footer">© 2026 ФГБУ «ЦНИИОИЗ» Минздрава России. Материалы будут пополняться по мере готовности и подтверждения ссылок.</footer>
+  <footer class="site-footer"><p>© 2026 ФГБУ «ЦНИИОИЗ» Минздрава России. Публичный отчет проекта.</p></footer>
 
   <script>
     document.querySelectorAll('[data-slider]').forEach(function (slider) {
