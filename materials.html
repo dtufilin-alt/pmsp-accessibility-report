@@ -1010,6 +1010,44 @@
       .normative-caption a { width: 100%; }
     }
 
+
+    /* 2026-06-01 normative grid: 5 columns x 2 rows, no titles */
+    .normative-grid {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .normative-card {
+      grid-template-columns: 1fr;
+      min-height: 286px;
+      padding: 12px;
+      gap: 10px;
+    }
+    .normative-preview {
+      height: 205px;
+      width: 100%;
+    }
+    .normative-caption {
+      min-height: 42px;
+      justify-content: flex-end;
+    }
+    .normative-caption h4,
+    .normative-caption span { display: none !important; }
+    .normative-caption a {
+      width: 100%;
+      margin-top: 0;
+    }
+    @media (max-width: 1100px) {
+      .normative-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+    @media (max-width: 720px) {
+      .normative-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .normative-preview { height: 190px; }
+    }
+    @media (max-width: 420px) {
+      .normative-grid { grid-template-columns: 1fr; }
+      .normative-preview { height: 220px; }
+    }
+
   </style>
 </head>
 <body>
@@ -1450,8 +1488,6 @@
               <img src="normative/previews/01-6-pmsp-mr.jpg" alt="Обложка документа: 6 ПМСП МР" loading="lazy">
             </a>
             <div class="normative-caption">
-              <h4>6 ПМСП МР</h4>
-              <span>2023</span>
               <a href="normative/docs/01-6-pmsp-mr.pdf" download>Скачать документ</a>
             </div>
           </article>
@@ -1460,8 +1496,6 @@
               <img src="normative/previews/02-osnovnye-proczessy-pmsp-tom2-maket-finalnaya-versiya.jpg" alt="Обложка документа: Основные процессы ПМСП. Том 2" loading="lazy">
             </a>
             <div class="normative-caption">
-              <h4>Основные процессы ПМСП. Том 2</h4>
-              <span>2023</span>
               <a href="normative/docs/02-osnovnye-proczessy-pmsp-tom2-maket-finalnaya-versiya.pdf" download>Скачать документ</a>
             </div>
           </article>
@@ -1470,8 +1504,6 @@
               <img src="normative/previews/03-osnovnye-proczessy-pmsp-tom3.jpg" alt="Обложка документа: Основные процессы ПМСП. Том 3" loading="lazy">
             </a>
             <div class="normative-caption">
-              <h4>Основные процессы ПМСП. Том 3</h4>
-              <span>2023</span>
               <a href="normative/docs/03-osnovnye-proczessy-pmsp-tom3.pdf" download>Скачать документ</a>
             </div>
           </article>
@@ -1480,8 +1512,6 @@
               <img src="normative/previews/04-instrukciya-tmk.jpg" alt="Обложка документа: Инструкция ТМК" loading="lazy">
             </a>
             <div class="normative-caption">
-              <h4>Инструкция ТМК</h4>
-              <span>2023</span>
               <a href="normative/docs/04-instrukciya-tmk.pdf" download>Скачать документ</a>
             </div>
           </article>
@@ -1490,8 +1520,6 @@
               <img src="normative/previews/05-instrukciya-zapis-na-priem-k-vrachu.svg" alt="Обложка документа: Инструкция: запись на прием к врачу" loading="lazy">
             </a>
             <div class="normative-caption">
-              <h4>Инструкция: запись на прием к врачу</h4>
-              <span>2023</span>
               <a href="normative/docs/05-instrukciya-zapis-na-priem-k-vrachu.docx" download>Скачать документ</a>
             </div>
           </article>
@@ -1500,8 +1528,6 @@
               <img src="normative/previews/06-mr-19-23-kontakt-centr.jpg" alt="Обложка документа: МР 19-23. Контакт-центр" loading="lazy">
             </a>
             <div class="normative-caption">
-              <h4>МР 19-23. Контакт-центр</h4>
-              <span>2023</span>
               <a href="normative/docs/06-mr-19-23-kontakt-centr.pdf" download>Скачать документ</a>
             </div>
           </article>
@@ -1510,8 +1536,6 @@
               <img src="normative/previews/07-mr-26-23-org-resheniya-po-povysheniyu-dostupnosti-pmsp.jpg" alt="Обложка документа: МР 26-23. Организационные решения по повышению доступности ПМСП" loading="lazy">
             </a>
             <div class="normative-caption">
-              <h4>МР 26-23. Организационные решения по повышению доступности ПМСП</h4>
-              <span>2023</span>
               <a href="normative/docs/07-mr-26-23-org-resheniya-po-povysheniyu-dostupnosti-pmsp.pdf" download>Скачать документ</a>
             </div>
           </article>
@@ -1520,8 +1544,6 @@
               <img src="normative/previews/08-metodicheskie-rekomendacii-zapis-trete-izdanie.jpg" alt="Обложка документа: Методические рекомендации. Запись, третье издание" loading="lazy">
             </a>
             <div class="normative-caption">
-              <h4>Методические рекомендации. Запись, третье издание</h4>
-              <span>2024</span>
               <a href="normative/docs/08-metodicheskie-rekomendacii-zapis-trete-izdanie.pdf" download>Скачать документ</a>
             </div>
           </article>
@@ -1530,8 +1552,6 @@
               <img src="normative/previews/09-prilozhenie2-model-zrelosti-redakciya1.jpg" alt="Обложка документа: Приложение 2. Модель зрелости, редакция 1" loading="lazy">
             </a>
             <div class="normative-caption">
-              <h4>Приложение 2. Модель зрелости, редакция 1</h4>
-              <span>2023</span>
               <a href="normative/docs/09-prilozhenie2-model-zrelosti-redakciya1.pdf" download>Скачать документ</a>
             </div>
           </article>
@@ -1540,8 +1560,6 @@
               <img src="normative/previews/10-prilozhenie-proekt-rekomendaciy-pep-esia.jpg" alt="Обложка документа: Приложение. Проект рекомендаций ПЭП ЕСИА" loading="lazy">
             </a>
             <div class="normative-caption">
-              <h4>Приложение. Проект рекомендаций ПЭП ЕСИА</h4>
-              <span>2023</span>
               <a href="normative/docs/10-prilozhenie-proekt-rekomendaciy-pep-esia.pdf" download>Скачать документ</a>
             </div>
           </article>
