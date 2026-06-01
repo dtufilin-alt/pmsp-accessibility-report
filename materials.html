@@ -900,6 +900,116 @@
       .site-footer { align-items: flex-start; flex-direction: column; }
     }
 
+
+    /* 2026-06-01 normative materials catalog */
+    .regulations-card {
+      padding: clamp(18px, 2.4vw, 28px);
+      border-radius: var(--radius-xl);
+      background: linear-gradient(135deg, rgba(255,255,255,.98), rgba(249,252,247,.88));
+      border: 1px solid rgba(99,153,181,.18);
+      box-shadow: var(--shadow-soft);
+    }
+    .method-title {
+      margin: 0 0 18px;
+      color: var(--blue-dark);
+      font-size: clamp(24px, 2.4vw, 34px);
+      line-height: 1.08;
+      letter-spacing: -.035em;
+      font-weight: 950;
+    }
+    .normative-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .normative-card {
+      display: grid;
+      grid-template-columns: 170px minmax(0, 1fr);
+      gap: 14px;
+      min-height: 210px;
+      padding: 14px;
+      border-radius: 24px;
+      background: rgba(255,255,255,.94);
+      border: 1px solid rgba(99,153,181,.16);
+      box-shadow: 0 12px 28px rgba(37,56,76,.08);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .normative-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 36px rgba(37,56,76,.13);
+    }
+    .normative-preview {
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, rgba(239,247,246,.92), rgba(255,255,255,.96));
+      border: 1px solid rgba(99,153,181,.14);
+      overflow: hidden;
+    }
+    .normative-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 12px;
+      background: #fff;
+      box-shadow: 0 8px 18px rgba(37,56,76,.10);
+    }
+    .normative-caption {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      justify-content: center;
+    }
+    .normative-caption h4 {
+      margin: 0;
+      color: var(--blue-dark);
+      font-size: 17px;
+      line-height: 1.18;
+      font-weight: 900;
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .normative-caption span {
+      width: max-content;
+      padding: 5px 10px;
+      border-radius: 999px;
+      color: var(--green-dark);
+      background: rgba(239,247,232,.95);
+      border: 1px solid rgba(99,145,74,.18);
+      font-size: 12px;
+      font-weight: 900;
+    }
+    .normative-caption a {
+      margin-top: auto;
+      width: max-content;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 36px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      color: #fff;
+      background: linear-gradient(135deg, var(--green-dark), var(--green));
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 850;
+      box-shadow: 0 10px 22px rgba(99,145,74,.18);
+    }
+    @media (max-width: 900px) {
+      .normative-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 560px) {
+      .normative-card { grid-template-columns: 1fr; }
+      .normative-preview { height: 220px; }
+      .normative-caption a { width: 100%; }
+    }
+
   </style>
 </head>
 <body>
@@ -1331,9 +1441,111 @@
     </section>
 
     <section id="regulations" class="section regulations-section" aria-labelledby="regulations-title">
-      <div class="placeholder-card regulations-card">
+      <div class="regulations-card">
         <span id="regulations-title" class="kicker section-kicker"><span class="status-dot" aria-hidden="true"></span>Нормативная база</span>
-        <p>Материалы будут добавлены после утверждения.</p>
+        <h3 class="method-title">Методические материалы</h3>
+        <div class="normative-grid" aria-label="Методические материалы">
+          <article class="normative-card">
+            <a class="normative-preview" href="normative/docs/01-6-pmsp-mr.pdf" target="_blank" rel="noopener" aria-label="Открыть документ: 6 ПМСП МР">
+              <img src="normative/previews/01-6-pmsp-mr.jpg" alt="Обложка документа: 6 ПМСП МР" loading="lazy">
+            </a>
+            <div class="normative-caption">
+              <h4>6 ПМСП МР</h4>
+              <span>2023</span>
+              <a href="normative/docs/01-6-pmsp-mr.pdf" download>Скачать документ</a>
+            </div>
+          </article>
+          <article class="normative-card">
+            <a class="normative-preview" href="normative/docs/02-osnovnye-proczessy-pmsp-tom2-maket-finalnaya-versiya.pdf" target="_blank" rel="noopener" aria-label="Открыть документ: Основные процессы ПМСП. Том 2">
+              <img src="normative/previews/02-osnovnye-proczessy-pmsp-tom2-maket-finalnaya-versiya.jpg" alt="Обложка документа: Основные процессы ПМСП. Том 2" loading="lazy">
+            </a>
+            <div class="normative-caption">
+              <h4>Основные процессы ПМСП. Том 2</h4>
+              <span>2023</span>
+              <a href="normative/docs/02-osnovnye-proczessy-pmsp-tom2-maket-finalnaya-versiya.pdf" download>Скачать документ</a>
+            </div>
+          </article>
+          <article class="normative-card">
+            <a class="normative-preview" href="normative/docs/03-osnovnye-proczessy-pmsp-tom3.pdf" target="_blank" rel="noopener" aria-label="Открыть документ: Основные процессы ПМСП. Том 3">
+              <img src="normative/previews/03-osnovnye-proczessy-pmsp-tom3.jpg" alt="Обложка документа: Основные процессы ПМСП. Том 3" loading="lazy">
+            </a>
+            <div class="normative-caption">
+              <h4>Основные процессы ПМСП. Том 3</h4>
+              <span>2023</span>
+              <a href="normative/docs/03-osnovnye-proczessy-pmsp-tom3.pdf" download>Скачать документ</a>
+            </div>
+          </article>
+          <article class="normative-card">
+            <a class="normative-preview" href="normative/docs/04-instrukciya-tmk.pdf" target="_blank" rel="noopener" aria-label="Открыть документ: Инструкция ТМК">
+              <img src="normative/previews/04-instrukciya-tmk.jpg" alt="Обложка документа: Инструкция ТМК" loading="lazy">
+            </a>
+            <div class="normative-caption">
+              <h4>Инструкция ТМК</h4>
+              <span>2023</span>
+              <a href="normative/docs/04-instrukciya-tmk.pdf" download>Скачать документ</a>
+            </div>
+          </article>
+          <article class="normative-card">
+            <a class="normative-preview" href="normative/docs/05-instrukciya-zapis-na-priem-k-vrachu.docx" target="_blank" rel="noopener" aria-label="Открыть документ: Инструкция: запись на прием к врачу">
+              <img src="normative/previews/05-instrukciya-zapis-na-priem-k-vrachu.svg" alt="Обложка документа: Инструкция: запись на прием к врачу" loading="lazy">
+            </a>
+            <div class="normative-caption">
+              <h4>Инструкция: запись на прием к врачу</h4>
+              <span>2023</span>
+              <a href="normative/docs/05-instrukciya-zapis-na-priem-k-vrachu.docx" download>Скачать документ</a>
+            </div>
+          </article>
+          <article class="normative-card">
+            <a class="normative-preview" href="normative/docs/06-mr-19-23-kontakt-centr.pdf" target="_blank" rel="noopener" aria-label="Открыть документ: МР 19-23. Контакт-центр">
+              <img src="normative/previews/06-mr-19-23-kontakt-centr.jpg" alt="Обложка документа: МР 19-23. Контакт-центр" loading="lazy">
+            </a>
+            <div class="normative-caption">
+              <h4>МР 19-23. Контакт-центр</h4>
+              <span>2023</span>
+              <a href="normative/docs/06-mr-19-23-kontakt-centr.pdf" download>Скачать документ</a>
+            </div>
+          </article>
+          <article class="normative-card">
+            <a class="normative-preview" href="normative/docs/07-mr-26-23-org-resheniya-po-povysheniyu-dostupnosti-pmsp.pdf" target="_blank" rel="noopener" aria-label="Открыть документ: МР 26-23. Организационные решения по повышению доступности ПМСП">
+              <img src="normative/previews/07-mr-26-23-org-resheniya-po-povysheniyu-dostupnosti-pmsp.jpg" alt="Обложка документа: МР 26-23. Организационные решения по повышению доступности ПМСП" loading="lazy">
+            </a>
+            <div class="normative-caption">
+              <h4>МР 26-23. Организационные решения по повышению доступности ПМСП</h4>
+              <span>2023</span>
+              <a href="normative/docs/07-mr-26-23-org-resheniya-po-povysheniyu-dostupnosti-pmsp.pdf" download>Скачать документ</a>
+            </div>
+          </article>
+          <article class="normative-card">
+            <a class="normative-preview" href="normative/docs/08-metodicheskie-rekomendacii-zapis-trete-izdanie.pdf" target="_blank" rel="noopener" aria-label="Открыть документ: Методические рекомендации. Запись, третье издание">
+              <img src="normative/previews/08-metodicheskie-rekomendacii-zapis-trete-izdanie.jpg" alt="Обложка документа: Методические рекомендации. Запись, третье издание" loading="lazy">
+            </a>
+            <div class="normative-caption">
+              <h4>Методические рекомендации. Запись, третье издание</h4>
+              <span>2024</span>
+              <a href="normative/docs/08-metodicheskie-rekomendacii-zapis-trete-izdanie.pdf" download>Скачать документ</a>
+            </div>
+          </article>
+          <article class="normative-card">
+            <a class="normative-preview" href="normative/docs/09-prilozhenie2-model-zrelosti-redakciya1.pdf" target="_blank" rel="noopener" aria-label="Открыть документ: Приложение 2. Модель зрелости, редакция 1">
+              <img src="normative/previews/09-prilozhenie2-model-zrelosti-redakciya1.jpg" alt="Обложка документа: Приложение 2. Модель зрелости, редакция 1" loading="lazy">
+            </a>
+            <div class="normative-caption">
+              <h4>Приложение 2. Модель зрелости, редакция 1</h4>
+              <span>2023</span>
+              <a href="normative/docs/09-prilozhenie2-model-zrelosti-redakciya1.pdf" download>Скачать документ</a>
+            </div>
+          </article>
+          <article class="normative-card">
+            <a class="normative-preview" href="normative/docs/10-prilozhenie-proekt-rekomendaciy-pep-esia.pdf" target="_blank" rel="noopener" aria-label="Открыть документ: Приложение. Проект рекомендаций ПЭП ЕСИА">
+              <img src="normative/previews/10-prilozhenie-proekt-rekomendaciy-pep-esia.jpg" alt="Обложка документа: Приложение. Проект рекомендаций ПЭП ЕСИА" loading="lazy">
+            </a>
+            <div class="normative-caption">
+              <h4>Приложение. Проект рекомендаций ПЭП ЕСИА</h4>
+              <span>2023</span>
+              <a href="normative/docs/10-prilozhenie-proekt-rekomendaciy-pep-esia.pdf" download>Скачать документ</a>
+            </div>
+          </article>
+        </div>
       </div>
     </section>
   </main>
