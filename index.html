@@ -2952,6 +2952,115 @@ body::before { display: none !important; }
   .official-header .project-brand .brand-title { font-size: clamp(8.4px, 2.05vw, 10px); }
 }
 
+
+/* 2026-06-17 mobile header and requested content corrections */
+.incident-criteria-title {
+  width: min(100%, var(--container));
+  margin: clamp(26px, 4vw, 44px) auto clamp(18px, 2.8vw, 26px);
+  text-align: center;
+  color: #25384c;
+  font-size: clamp(22px, 2.4vw, 34px);
+  line-height: 1.12;
+  font-weight: 900;
+  letter-spacing: -.025em;
+}
+.report-about .about-page-card { cursor: pointer; }
+.report-about .about-page-card .about-page-toggle { position: relative; z-index: 2; }
+.report-about .about-page-back-title {
+  display: none;
+  margin: 0 0 10px;
+  color: #25384c;
+  font-size: clamp(18px, 1.7vw, 24px);
+  line-height: 1.14;
+  font-weight: 900;
+  letter-spacing: -.024em;
+}
+.report-about .about-page-card.is-open .about-page-back-title { display: block; }
+.report-about .about-page-card.is-open .about-page-text {
+  display: block;
+}
+.report-about .about-page-card:focus-visible {
+  outline: 3px solid rgba(196,75,75,.22);
+  outline-offset: 4px;
+}
+.report-about .about-page-text p { margin: 0; }
+.report-about .about-page-card.is-open .about-page-text { max-height: 680px; }
+@media (max-width: 768px) {
+  .report-about .about-page-card.is-open .about-page-text { max-height: 900px; }
+}
+
+@media (max-width: 768px) {
+  .official-header {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    min-height: 0 !important;
+    gap: 8px !important;
+    padding: 8px 10px !important;
+  }
+  .official-brand {
+    width: 100% !important;
+    flex: 0 1 auto !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    gap: 8px !important;
+  }
+  .project-brand { min-width: 0 !important; }
+  .project-brand .brand-title,
+  .official-header .project-brand .brand-title {
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    font-size: clamp(13px, 4vw, 17px) !important;
+    line-height: 1.12 !important;
+    letter-spacing: -.03em !important;
+  }
+  .official-header .top-nav.header-actions {
+    width: 100% !important;
+    max-width: none !important;
+    flex: 0 1 auto !important;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 6px !important;
+    justify-content: stretch !important;
+  }
+  .official-header .top-nav.header-actions a,
+  .official-header .top-nav.header-actions .button {
+    width: 100% !important;
+    min-height: 34px !important;
+    padding: 7px 10px !important;
+    font-size: 10.5px !important;
+    line-height: 1.15 !important;
+    white-space: normal !important;
+    text-align: center !important;
+  }
+  .hero.hero-modern { min-height: auto !important; }
+  .incident-criteria-title {
+    margin-top: 24px;
+    margin-bottom: 16px;
+    padding: 0 4px;
+    font-size: clamp(21px, 6vw, 28px);
+  }
+  .report-about .about-page-card,
+  .report-about .about-card.about-page-card {
+    grid-template-columns: minmax(0, 1fr) 40px;
+    gap: 12px;
+    padding: 17px 14px 17px 18px;
+  }
+  .report-about .about-page-back-title {
+    font-size: clamp(17px, 5vw, 22px);
+    line-height: 1.16;
+  }
+}
+@media (max-width: 420px) {
+  .official-brand { gap: 6px !important; }
+  .header-logos .hero-logo { width: 34px !important; height: 27px !important; min-height: 27px !important; }
+  .header-logos .hero-logo.mednet-logo { width: 29px !important; }
+  .project-brand .brand-title,
+  .official-header .project-brand .brand-title { font-size: clamp(12px, 4.35vw, 15px) !important; }
+  .official-header .top-nav.header-actions a,
+  .official-header .top-nav.header-actions .button { font-size: 10px !important; }
+}
+
 </style>
 </head>
 <body>
@@ -3049,6 +3158,7 @@ body::before { display: none !important; }
         </div>
         <a class="minzdrav-sign" href="https://minzdrav.gov.ru/" target="_blank" rel="noopener" aria-label="Министерство здравоохранения Российской Федерации"><img src="https://avatars.mds.yandex.net/i?id=c3e6d586848b52becc61b8c20beefae2_l-5236398-images-thumbs&n=13" alt="Министерство здравоохранения Российской Федерации"></a>
       </div>
+      <h3 class="incident-criteria-title">Критерии закрытия Инцидента № 38</h3>
       <div class="cards three criteria-list" aria-label="Критерии закрытия федерального инцидента №38">
         <article class="card check criterion-card" role="button" tabindex="0" aria-expanded="false"><span class="criterion-marker" aria-hidden="true">✓</span><div class="criterion-content"><h3>Ошибка при записи менее 10%</h3><p>Во всех субъектах РФ последние 4 недели доля организационных и технических ошибок со стороны ГИСЗ субъекта РФ составляет менее 10%.</p><div class="criterion-extra" aria-hidden="true">Показатель отражает снижение доли ошибок, с которыми сталкивается гражданин при попытке записаться на прием через цифровые каналы.</div></div></article>
         <article class="card check criterion-card" role="button" tabindex="0" aria-expanded="false"><span class="criterion-marker" aria-hidden="true">✓</span><div class="criterion-content"><h3>90% рабочего времени доступно для записи</h3><p>Целевой показатель рабочего времени от табеля учета рабочего времени медицинских работников, оказывающих помощь в амбулаторных условиях.</p><div class="criterion-extra" aria-hidden="true">У гражданина должна быть возможность выбрать доступные интервалы приема в расписании медицинской организации, а не видеть пустой календарь.</div></div></article>
@@ -3062,29 +3172,29 @@ body::before { display: none !important; }
         <h2 id="about-title">Системная работа по повышению доступности первичного звена</h2>
       </div>
       <div class="about-grid about-page-list" aria-label="Ключевые сведения о проекте">
-        <article class="about-card about-page-card about-goal" data-about-card>
+        <article class="about-card about-page-card about-goal" data-about-card role="button" tabindex="0" aria-expanded="false">
           <h3 class="about-page-title">Цель проекта</h3>
-          <p class="about-page-text" aria-hidden="true">Повысить доступность первичной медико-санитарной помощи для граждан за счет развития и расширения каналов записи на прием к врачу, включая ЕПГУ, региональные цифровые сервисы, контакт-центры, медицинские организации и платформу МАХ, а также за счет регулярного взаимодействия с субъектами Российской Федерации и методической поддержки региональных команд.</p>
+          <div class="about-page-text" aria-hidden="true"><h3 class="about-page-back-title">Цель проекта</h3><p>Повысить доступность первичной медико-санитарной помощи для граждан за счет развития и расширения каналов записи на прием к врачу, включая ЕПГУ, региональные цифровые сервисы, контакт-центры, медицинские организации и платформу МАХ, а также за счет регулярного взаимодействия с субъектами Российской Федерации и методической поддержки региональных команд.</p></div>
           <button class="about-page-toggle" type="button" aria-expanded="false" aria-label="Открыть карточку: Цель проекта"><span aria-hidden="true">→</span></button>
         </article>
-        <article class="about-card about-page-card about-audience" data-about-card>
+        <article class="about-card about-page-card about-audience" data-about-card role="button" tabindex="0" aria-expanded="false">
           <h3 class="about-page-title">Охват и аудитория</h3>
-          <p class="about-page-text" aria-hidden="true">Представители региональных органов исполнительной власти в сфере охраны здоровья, руководители и заместители руководителей медицинских организаций, оказывающих первичную медико-санитарную помощь, а также специалистов, участвующих в организации амбулаторного приема, управлении расписанием, маршрутизации пациентов и мониторинге доступности медицинской помощи.</p>
+          <div class="about-page-text" aria-hidden="true"><h3 class="about-page-back-title">Охват и аудитория</h3><p>Представители региональных органов исполнительной власти в сфере охраны здоровья, руководители и заместители руководителей медицинских организаций, оказывающих первичную медико-санитарную помощь, а также специалистов, участвующих в организации амбулаторного приема, управлении расписанием, маршрутизации пациентов и мониторинге доступности медицинской помощи.</p></div>
           <button class="about-page-toggle" type="button" aria-expanded="false" aria-label="Открыть карточку: Охват и аудитория"><span aria-hidden="true">→</span></button>
         </article>
-        <article class="about-card about-page-card about-organization-role" data-about-card>
+        <article class="about-card about-page-card about-organization-role" data-about-card role="button" tabindex="0" aria-expanded="false">
           <h3 class="about-page-title">Роль ФГБУ «ЦНИИОИЗ» Минздрава России</h3>
-          <p class="about-page-text" aria-hidden="true">Обеспечивает аналитическое, организационное и методическое сопровождение проекта, включая сбор отчетности, проведение совещаний и развитие единого репозитория материалов.</p>
+          <div class="about-page-text" aria-hidden="true"><h3 class="about-page-back-title">Роль ФГБУ «ЦНИИОИЗ» Минздрава России</h3><p>Обеспечивает аналитическое, организационное и методическое сопровождение проекта, включая сбор отчетности, проведение совещаний и развитие единого репозитория материалов.</p></div>
           <button class="about-page-toggle" type="button" aria-expanded="false" aria-label="Открыть карточку: Роль ФГБУ «ЦНИИОИЗ» Минздрава России"><span aria-hidden="true">→</span></button>
         </article>
-        <article class="about-card about-page-card about-nmic-role" data-about-card>
+        <article class="about-card about-page-card about-nmic-role" data-about-card role="button" tabindex="0" aria-expanded="false">
           <h3 class="about-page-title">Роль ФГБУ «НМИЦ ТПМ» Минздрава России</h3>
-          <p class="about-page-text" aria-hidden="true">Обеспечивает экспертно-методическое сопровождение медицинских организаций по вопросам повышения доступности записи на прием к врачу. В рамках данной работы специалисты Центра осуществляют выезды в медицинские организации, проводят оценку процессов по чек-листу, анализируют доступность каналов записи, а также выполняют проверку фактической доступности записи посредством анонимных звонков. По итогам мероприятий формируются рекомендации по устранению выявленных барьеров и совершенствованию работы медицинских организаций.</p>
+          <div class="about-page-text" aria-hidden="true"><h3 class="about-page-back-title">Роль ФГБУ «НМИЦ ТПМ» Минздрава России</h3><p>Обеспечивает экспертно-методическое сопровождение медицинских организаций по вопросам повышения доступности записи на прием к врачу. В рамках данной работы специалисты Центра осуществляют выезды в медицинские организации, проводят оценку процессов по чек-листу, анализируют доступность каналов записи, а также выполняют проверку фактической доступности записи посредством анонимных звонков. По итогам мероприятий формируются рекомендации по устранению выявленных барьеров и совершенствованию работы медицинских организаций.</p></div>
           <button class="about-page-toggle" type="button" aria-expanded="false" aria-label="Открыть карточку: Роль ФГБУ «НМИЦ ТПМ» Минздрава России"><span aria-hidden="true">→</span></button>
         </article>
-        <article class="about-card about-page-card about-incident-link" data-about-card>
+        <article class="about-card about-page-card about-incident-link" data-about-card role="button" tabindex="0" aria-expanded="false">
           <h3 class="about-page-title">Связь с федеральным инцидентом</h3>
-          <p class="about-page-text" aria-hidden="true">Проект связан с федеральным инцидентом №38 «Запись на прием к врачу» и решает практическую проблему доступности записи к основным медицинским специальностям, на диспансеризацию, профилактические осмотры и вакцинацию.</p>
+          <div class="about-page-text" aria-hidden="true"><h3 class="about-page-back-title">Связь с федеральным инцидентом</h3><p>Проект связан с федеральным инцидентом №38 «Запись на прием к врачу» и решает практическую проблему доступности записи к основным медицинским специальностям, на диспансеризацию, профилактические осмотры и вакцинацию.</p></div>
           <button class="about-page-toggle" type="button" aria-expanded="false" aria-label="Открыть карточку: Связь с федеральным инцидентом"><span aria-hidden="true">→</span></button>
         </article>
       </div>
@@ -3100,6 +3210,7 @@ body::before { display: none !important; }
       <div class="timeline" aria-label="Поэтапное развитие">
         <div class="timeline-line" aria-hidden="true"></div>
             <article class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><div class="timeline-card"><h3>Запуск федерального инцидента №38</h3><p>Определение фокуса работы и критериев доступности записи к врачу.</p></div></article>
+            <article class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><div class="timeline-card"><h3>Разработка необходимых методических материалов</h3><p>Подготовка методических рекомендаций, инструкций, чек-листов и типовых решений для организации работы региональных команд и медицинских организаций по повышению доступности первичной медико-санитарной помощи.</p></div></article>
             <article class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><div class="timeline-card"><h3>Регулярная работа с субъектами РФ</h3><p>Сопровождение регионов, еженедельный сбор и анализ отчетности.</p></div></article>
             <article class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><div class="timeline-card"><h3>Выездные мероприятия и методическая поддержка</h3><p>Совместная работа с НМИЦ ТПМ и развитие модели зрелости пациентоцентричной записи.</p></div></article>
       </div>
@@ -3738,14 +3849,30 @@ body::before { display: none !important; }
           if (!button) return;
           function setOpen(isOpen) {
             card.classList.toggle('is-open', isOpen);
+            card.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
             button.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
             if (text) text.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
             if (title) title.setAttribute('aria-hidden', isOpen ? 'true' : 'false');
             const titleText = title ? title.textContent.trim() : 'карточку';
             button.setAttribute('aria-label', (isOpen ? 'Закрыть карточку: ' : 'Открыть карточку: ') + titleText);
           }
+          function shouldIgnoreCardClick(target) {
+            return Boolean(target && target.closest && target.closest('a, button, input, textarea, select, label'));
+          }
+          function toggleFromCard(event) {
+            if (shouldIgnoreCardClick(event.target)) return;
+            setOpen(!card.classList.contains('is-open'));
+          }
+          card.addEventListener('click', toggleFromCard);
+          card.addEventListener('keydown', function (event) {
+            if (event.key === 'Enter' || event.key === ' ') {
+              event.preventDefault();
+              setOpen(!card.classList.contains('is-open'));
+            }
+          });
           button.addEventListener('click', function (event) {
             event.preventDefault();
+            event.stopPropagation();
             setOpen(!card.classList.contains('is-open'));
           });
         });
