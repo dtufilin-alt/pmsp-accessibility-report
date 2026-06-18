@@ -1208,6 +1208,155 @@
       .practice-slide-body { min-height: 132px !important; }
     }
 
+
+    /* 2026-06-18 compact webinars and structured methodical base */
+    .webinars-section { padding-top: clamp(22px, 3vw, 38px); }
+    .webinars-section .section-heading { margin-bottom: 12px; }
+    .webinar-list.video-triangle {
+      width: min(100%, 820px);
+      grid-template-columns: repeat(2, minmax(0, 385px));
+      gap: 14px;
+    }
+    .webinar-list.video-triangle .webinar-card {
+      padding: 8px;
+      border-radius: 22px;
+    }
+    .webinar-list.video-triangle .webinar-card:first-child { width: min(100%, 385px); }
+    .webinar-video-card .video-preview,
+    .rutube-preview,
+    .rutube-frame { border-radius: 17px; }
+    .webinar-materials {
+      margin-top: clamp(16px, 2.2vw, 24px);
+      padding: clamp(14px, 2vw, 20px);
+    }
+    .webinar-materials h3 {
+      margin-bottom: 12px;
+      font-size: clamp(20px, 2vw, 28px);
+      line-height: 1.08;
+    }
+    .webinar-materials-grid { gap: 10px; }
+    .webinar-material-card {
+      min-height: 154px;
+      padding: 13px;
+      border-radius: 18px;
+      gap: 6px;
+    }
+    .webinar-material-card h4 {
+      margin-bottom: 4px;
+      font-size: 14px;
+      line-height: 1.18;
+    }
+    .webinar-material-card p {
+      margin-bottom: 8px;
+      font-size: 13px;
+      line-height: 1.1;
+    }
+    .webinar-material-card .button { min-height: 34px; padding: 8px 10px; font-size: 12px; }
+    .methodical-base-card { padding: clamp(18px, 2.4vw, 28px); }
+    .methodical-catalog { display: grid; gap: 22px; }
+    .method-subsection {
+      padding: clamp(14px, 2vw, 20px);
+      border-radius: 24px;
+      background: rgba(255,255,255,.72);
+      border: 1px solid rgba(99,153,181,.14);
+    }
+    .method-subtitle {
+      margin: 0 0 14px;
+      color: var(--blue-dark);
+      font-size: clamp(18px, 1.7vw, 24px);
+      line-height: 1.15;
+      font-weight: 950;
+      letter-spacing: -.025em;
+    }
+    .methodical-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .methodical-card {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 12px;
+      border-radius: 20px;
+      background: rgba(255,255,255,.96);
+      border: 1px solid rgba(99,153,181,.16);
+      box-shadow: 0 10px 24px rgba(37,56,76,.07);
+    }
+    .methodical-preview {
+      height: 188px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, rgba(239,247,246,.92), rgba(255,255,255,.96));
+      border: 1px solid rgba(99,153,181,.14);
+      overflow: hidden;
+    }
+    .methodical-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 10px;
+      background: #fff;
+      box-shadow: 0 8px 18px rgba(37,56,76,.10);
+    }
+    .methodical-caption { min-width: 0; display: flex; flex-direction: column; gap: 7px; flex: 1; }
+    .methodical-caption h5 {
+      margin: 0;
+      color: rgba(37,56,76,.78);
+      font-size: 13px;
+      line-height: 1.25;
+      font-weight: 750;
+      overflow-wrap: anywhere;
+    }
+    .methodical-caption span {
+      width: max-content;
+      padding: 4px 8px;
+      border-radius: 999px;
+      color: var(--green-dark);
+      background: rgba(239,247,232,.95);
+      border: 1px solid rgba(99,145,74,.18);
+      font-size: 11px;
+      font-weight: 900;
+    }
+    .methodical-caption a {
+      margin-top: auto;
+      width: 100%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 34px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      color: #fff;
+      background: linear-gradient(135deg, var(--green-dark), var(--green));
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 850;
+      box-shadow: 0 10px 22px rgba(99,145,74,.18);
+    }
+    @media (max-width: 1080px) {
+      .methodical-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+    @media (max-width: 820px) {
+      .webinar-list.video-triangle { grid-template-columns: minmax(0, 560px); gap: 12px; }
+      .webinar-list.video-triangle .webinar-card:first-child { width: 100%; }
+      .webinar-materials-grid, .methodical-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .webinar-material-card { min-height: 0; }
+    }
+    @media (max-width: 560px) {
+      .webinar-list.video-triangle { width: min(100%, 420px); }
+      .webinar-list.video-triangle .webinar-card { padding: 7px; }
+      .webinar-materials { margin-top: 14px; padding: 13px; }
+      .webinar-materials-grid, .methodical-grid { grid-template-columns: 1fr; }
+      .method-subsection { padding: 13px; }
+      .methodical-preview { height: 210px; }
+      .methodical-caption h5 { font-size: 13px; }
+    }
+
   </style>
 </head>
 <body>
@@ -1225,7 +1374,7 @@
       <a class="primary" href="index.html">Главная страница</a>
       <a class="secondary" href="#webinars">Вебинары</a>
       <a class="secondary" href="#practices">Лучшие практики</a>
-      <a class="secondary" href="#regulations">Нормативная база</a>
+      <a class="secondary" href="#regulations">Методическая база</a>
     </nav>
   </header>
 
@@ -1354,7 +1503,7 @@
                   <img src="practices/2023/previews/06-luchshaya-praktika-idealnaya-poliklinika-moskovskaya-oblast.jpg" alt="Превью материала: Лучшая практика Идеальная поликлиника Московская область" loading="lazy">
                 </a>
                 <div class="practice-slide-body">
-                  <h4 class="practice-title" title="Лучшая практика Идеальная поликлиника Московская область">«Идеальная поликлиника»</h4>
+                  <h4 class="practice-title" title="Лучшая практика Идеальная поликлиника Московская область">Идеальная поликлиника</h4>
                   <a class="practice-download" href="practices/2023/docs/06-luchshaya-praktika-idealnaya-poliklinika-moskovskaya-oblast.pdf" download>Скачать материал</a>
                 </div>
               </article>
@@ -1417,7 +1566,7 @@
                   <img src="practices/2023/previews/13-opyt-novgorodskoi-oblasti-proekt-vezhlivaya-registratura.jpg" alt="Превью материала: Опыт Новгородской области проект Вежливая регистратура" loading="lazy">
                 </a>
                 <div class="practice-slide-body">
-                  <h4 class="practice-title" title="Опыт Новгородской области проект Вежливая регистратура">Проект «Вежливая регистратура»</h4>
+                  <h4 class="practice-title" title="Опыт Новгородской области проект Вежливая регистратура">Проект Вежливая регистратура</h4>
                   <a class="practice-download" href="practices/2023/docs/13-opyt-novgorodskoi-oblasti-proekt-vezhlivaya-registratura.pdf" download>Скачать материал</a>
                 </div>
               </article>
@@ -1466,7 +1615,7 @@
                   <img src="practices/2024-2025/previews/02-vezhlivaya-registratura-novgorodskaya-oblast.jpg" alt="Превью материала: Вежливая регистратура Новгородская область" loading="lazy">
                 </a>
                 <div class="practice-slide-body">
-                  <h4 class="practice-title" title="Вежливая регистратура Новгородская область">«Вежливая регистратура»</h4>
+                  <h4 class="practice-title" title="Вежливая регистратура Новгородская область">Вежливая регистратура</h4>
                   <a class="practice-download" href="practices/2024-2025/docs/02-vezhlivaya-registratura-novgorodskaya-oblast.pdf" download>Скачать материал</a>
                 </div>
               </article>
@@ -1493,7 +1642,7 @@
                   <img src="practices/2024-2025/previews/05-gp-svetlana-moskovskaya-oblast.jpg" alt="Превью материала: ГП Светлана (Московская область)" loading="lazy">
                 </a>
                 <div class="practice-slide-body">
-                  <h4 class="practice-title" title="ГП Светлана (Московская область)">Опыт поликлиники «Светлана»</h4>
+                  <h4 class="practice-title" title="ГП Светлана (Московская область)">Опыт поликлиники Светлана</h4>
                   <a class="practice-download" href="practices/2024-2025/docs/05-gp-svetlana-moskovskaya-oblast.pdf" download>Скачать материал</a>
                 </div>
               </article>
@@ -1680,90 +1829,177 @@
     </section>
 
     <section id="regulations" class="section regulations-section" aria-labelledby="regulations-title">
-      <div class="regulations-card">
-        <span id="regulations-title" class="kicker section-kicker"><span class="status-dot" aria-hidden="true"></span>Нормативная база</span>
+      <div class="regulations-card methodical-base-card">
+        <span id="regulations-title" class="kicker section-kicker"><span class="status-dot" aria-hidden="true"></span>Методическая база</span>
         <h3 class="method-title">Методические материалы</h3>
-        <div class="normative-grid" aria-label="Методические материалы">
-          <article class="normative-card">
-            <a class="normative-preview" href="normative/docs/01-6-pmsp-mr.pdf" target="_blank" rel="noopener" aria-label="Открыть документ: 6 ПМСП МР">
-              <img src="normative/previews/01-6-pmsp-mr.jpg" alt="Обложка документа: 6 ПМСП МР" loading="lazy">
-            </a>
-            <div class="normative-caption">
-              <a href="normative/docs/01-6-pmsp-mr.pdf" download>Скачать документ</a>
+        <div class="methodical-catalog" aria-label="Методические материалы">
+          <section class="method-subsection" aria-labelledby="method-subsection-1">
+            <h4 id="method-subsection-1" class="method-subtitle">Общие методические рекомендации</h4>
+            <div class="methodical-grid">
+
+              <article class="methodical-card">
+                <a class="methodical-preview" href="methodical/docs/obschie-metodicheskie-rekomendacii-01-mr-vneshniy-vid-sotrudnikov-medicinskoy-organizacii-medicinskaya-odezhda.pdf" target="_blank" rel="noopener" aria-label="Открыть документ: МР Внешний вид сотрудников медицинской организации — медицинская одежда">
+                  <img src="methodical/previews/obschie-metodicheskie-rekomendacii-01-mr-vneshniy-vid-sotrudnikov-medicinskoy-organizacii-medicinskaya-odezhda.jpg" alt="Превью документа: МР Внешний вид сотрудников медицинской организации — медицинская одежда" loading="lazy">
+                </a>
+                <div class="methodical-caption">
+                  <h5 title="МР Внешний вид сотрудников медицинской организации — медицинская одежда">МР Внешний вид сотрудников медицинской организации — медицинская одежда</h5>
+                  <span>PDF</span>
+                  <a href="methodical/docs/obschie-metodicheskie-rekomendacii-01-mr-vneshniy-vid-sotrudnikov-medicinskoy-organizacii-medicinskaya-odezhda.pdf" download>Скачать документ</a>
+                </div>
+              </article>
+
+              <article class="methodical-card">
+                <a class="methodical-preview" href="methodical/docs/obschie-metodicheskie-rekomendacii-02-mr-dlya-rukovoditeley-medicinskih-organizaciy-pervichnogo-zvena-zdravoohraneniya.pdf" target="_blank" rel="noopener" aria-label="Открыть документ: МР Для руководителей медицинских организаций первичного звена здравоохранения">
+                  <img src="methodical/previews/obschie-metodicheskie-rekomendacii-02-mr-dlya-rukovoditeley-medicinskih-organizaciy-pervichnogo-zvena-zdravoohraneniya.jpg" alt="Превью документа: МР Для руководителей медицинских организаций первичного звена здравоохранения" loading="lazy">
+                </a>
+                <div class="methodical-caption">
+                  <h5 title="МР Для руководителей медицинских организаций первичного звена здравоохранения">МР Для руководителей медицинских организаций первичного звена здравоохранения</h5>
+                  <span>PDF</span>
+                  <a href="methodical/docs/obschie-metodicheskie-rekomendacii-02-mr-dlya-rukovoditeley-medicinskih-organizaciy-pervichnogo-zvena-zdravoohraneniya.pdf" download>Скачать документ</a>
+                </div>
+              </article>
+
+              <article class="methodical-card">
+                <a class="methodical-preview" href="methodical/docs/obschie-metodicheskie-rekomendacii-03-mr-osnovnye-processy-pervichnoy-mediko-sanitarnoy-pomoschi.pdf" target="_blank" rel="noopener" aria-label="Открыть документ: МР Основные процессы первичной медико-санитарной помощи">
+                  <img src="methodical/previews/obschie-metodicheskie-rekomendacii-03-mr-osnovnye-processy-pervichnoy-mediko-sanitarnoy-pomoschi.jpg" alt="Превью документа: МР Основные процессы первичной медико-санитарной помощи" loading="lazy">
+                </a>
+                <div class="methodical-caption">
+                  <h5 title="МР Основные процессы первичной медико-санитарной помощи">МР Основные процессы первичной медико-санитарной помощи</h5>
+                  <span>PDF</span>
+                  <a href="methodical/docs/obschie-metodicheskie-rekomendacii-03-mr-osnovnye-processy-pervichnoy-mediko-sanitarnoy-pomoschi.pdf" download>Скачать документ</a>
+                </div>
+              </article>
+
+              <article class="methodical-card">
+                <a class="methodical-preview" href="methodical/docs/obschie-metodicheskie-rekomendacii-04-model-zrelosti-pacientocentrichnoy-zapisi-k-vrachu.pdf" target="_blank" rel="noopener" aria-label="Открыть документ: Модель зрелости пациентоцентричной записи к врачу">
+                  <img src="methodical/previews/obschie-metodicheskie-rekomendacii-04-model-zrelosti-pacientocentrichnoy-zapisi-k-vrachu.jpg" alt="Превью документа: Модель зрелости пациентоцентричной записи к врачу" loading="lazy">
+                </a>
+                <div class="methodical-caption">
+                  <h5 title="Модель зрелости пациентоцентричной записи к врачу">Модель зрелости пациентоцентричной записи к врачу</h5>
+                  <span>PDF</span>
+                  <a href="methodical/docs/obschie-metodicheskie-rekomendacii-04-model-zrelosti-pacientocentrichnoy-zapisi-k-vrachu.pdf" download>Скачать документ</a>
+                </div>
+              </article>
+
             </div>
-          </article>
-          <article class="normative-card">
-            <a class="normative-preview" href="normative/docs/02-osnovnye-proczessy-pmsp-tom2-maket-finalnaya-versiya.pdf" target="_blank" rel="noopener" aria-label="Открыть документ: Основные процессы ПМСП. Том 2">
-              <img src="normative/previews/02-osnovnye-proczessy-pmsp-tom2-maket-finalnaya-versiya.jpg" alt="Обложка документа: Основные процессы ПМСП. Том 2" loading="lazy">
-            </a>
-            <div class="normative-caption">
-              <a href="normative/docs/02-osnovnye-proczessy-pmsp-tom2-maket-finalnaya-versiya.pdf" download>Скачать документ</a>
+          </section>
+          <section class="method-subsection" aria-labelledby="method-subsection-2">
+            <h4 id="method-subsection-2" class="method-subtitle">Рекомендации ФГБУ «ЦНИИОИЗ» Минздрава России</h4>
+            <div class="methodical-grid">
+
+              <article class="methodical-card">
+                <a class="methodical-preview" href="methodical/docs/rekomendacii-fgbu-cniioiz-minzdrava-rossii-01-mr-zapis-trete-izdanie.pdf" target="_blank" rel="noopener" aria-label="Открыть документ: МР Запись (третье издание)">
+                  <img src="methodical/previews/rekomendacii-fgbu-cniioiz-minzdrava-rossii-01-mr-zapis-trete-izdanie.jpg" alt="Превью документа: МР Запись (третье издание)" loading="lazy">
+                </a>
+                <div class="methodical-caption">
+                  <h5 title="МР Запись (третье издание)">МР Запись (третье издание)</h5>
+                  <span>PDF</span>
+                  <a href="methodical/docs/rekomendacii-fgbu-cniioiz-minzdrava-rossii-01-mr-zapis-trete-izdanie.pdf" download>Скачать документ</a>
+                </div>
+              </article>
+
+              <article class="methodical-card">
+                <a class="methodical-preview" href="methodical/docs/rekomendacii-fgbu-cniioiz-minzdrava-rossii-02-mr-kontakt-centr.pdf" target="_blank" rel="noopener" aria-label="Открыть документ: МР Контакт-центр">
+                  <img src="methodical/previews/rekomendacii-fgbu-cniioiz-minzdrava-rossii-02-mr-kontakt-centr.jpg" alt="Превью документа: МР Контакт-центр" loading="lazy">
+                </a>
+                <div class="methodical-caption">
+                  <h5 title="МР Контакт-центр">МР Контакт-центр</h5>
+                  <span>PDF</span>
+                  <a href="methodical/docs/rekomendacii-fgbu-cniioiz-minzdrava-rossii-02-mr-kontakt-centr.pdf" download>Скачать документ</a>
+                </div>
+              </article>
+
+              <article class="methodical-card">
+                <a class="methodical-preview" href="methodical/docs/rekomendacii-fgbu-cniioiz-minzdrava-rossii-03-mr-organizacionnye-resheniya-po-povysheniyu-dostupnosti-pmsp.pdf" target="_blank" rel="noopener" aria-label="Открыть документ: МР Организационные решения по повышению доступности ПМСП">
+                  <img src="methodical/previews/rekomendacii-fgbu-cniioiz-minzdrava-rossii-03-mr-organizacionnye-resheniya-po-povysheniyu-dostupnosti-pmsp.jpg" alt="Превью документа: МР Организационные решения по повышению доступности ПМСП" loading="lazy">
+                </a>
+                <div class="methodical-caption">
+                  <h5 title="МР Организационные решения по повышению доступности ПМСП">МР Организационные решения по повышению доступности ПМСП</h5>
+                  <span>PDF</span>
+                  <a href="methodical/docs/rekomendacii-fgbu-cniioiz-minzdrava-rossii-03-mr-organizacionnye-resheniya-po-povysheniyu-dostupnosti-pmsp.pdf" download>Скачать документ</a>
+                </div>
+              </article>
+
             </div>
-          </article>
-          <article class="normative-card">
-            <a class="normative-preview" href="normative/docs/03-osnovnye-proczessy-pmsp-tom3.pdf" target="_blank" rel="noopener" aria-label="Открыть документ: Основные процессы ПМСП. Том 3">
-              <img src="normative/previews/03-osnovnye-proczessy-pmsp-tom3.jpg" alt="Обложка документа: Основные процессы ПМСП. Том 3" loading="lazy">
-            </a>
-            <div class="normative-caption">
-              <a href="normative/docs/03-osnovnye-proczessy-pmsp-tom3.pdf" download>Скачать документ</a>
+          </section>
+          <section class="method-subsection" aria-labelledby="method-subsection-3">
+            <h4 id="method-subsection-3" class="method-subtitle">Инструкции по работе с мессенджером MAX</h4>
+            <div class="methodical-grid">
+
+              <article class="methodical-card">
+                <a class="methodical-preview" href="methodical/docs/instrukcii-po-rabote-s-messendzherom-max-01-instrukciya-tmk.pdf" target="_blank" rel="noopener" aria-label="Открыть документ: Инструкция ТМК">
+                  <img src="methodical/previews/instrukcii-po-rabote-s-messendzherom-max-01-instrukciya-tmk.jpg" alt="Превью документа: Инструкция ТМК" loading="lazy">
+                </a>
+                <div class="methodical-caption">
+                  <h5 title="Инструкция ТМК">Инструкция ТМК</h5>
+                  <span>PDF</span>
+                  <a href="methodical/docs/instrukcii-po-rabote-s-messendzherom-max-01-instrukciya-tmk.pdf" download>Скачать документ</a>
+                </div>
+              </article>
+
+              <article class="methodical-card">
+                <a class="methodical-preview" href="methodical/docs/instrukcii-po-rabote-s-messendzherom-max-02-instrukciya-zapis-na-priem-k-vrachu.docx" target="_blank" rel="noopener" aria-label="Открыть документ: Инструкция запись на прием к врачу">
+                  <img src="methodical/previews/instrukcii-po-rabote-s-messendzherom-max-02-instrukciya-zapis-na-priem-k-vrachu.jpg" alt="Превью документа: Инструкция запись на прием к врачу" loading="lazy">
+                </a>
+                <div class="methodical-caption">
+                  <h5 title="Инструкция запись на прием к врачу">Инструкция запись на прием к врачу</h5>
+                  <span>DOCX</span>
+                  <a href="methodical/docs/instrukcii-po-rabote-s-messendzherom-max-02-instrukciya-zapis-na-priem-k-vrachu.docx" download>Скачать документ</a>
+                </div>
+              </article>
+
+              <article class="methodical-card">
+                <a class="methodical-preview" href="methodical/docs/instrukcii-po-rabote-s-messendzherom-max-03-rekomendacii-podpisanie-medicinskih-dogovorov-i-soglasiy-na-medicinskoe-vmeshatelstvo.pdf" target="_blank" rel="noopener" aria-label="Открыть документ: Рекомендации подписание медицинских договоров и согласий на медицинское вмешательство">
+                  <img src="methodical/previews/instrukcii-po-rabote-s-messendzherom-max-03-rekomendacii-podpisanie-medicinskih-dogovorov-i-soglasiy-na-medicinskoe-vmeshatelstvo.jpg" alt="Превью документа: Рекомендации подписание медицинских договоров и согласий на медицинское вмешательство" loading="lazy">
+                </a>
+                <div class="methodical-caption">
+                  <h5 title="Рекомендации подписание медицинских договоров и согласий на медицинское вмешательство">Рекомендации подписание медицинских договоров и согласий на медицинское вмешательство</h5>
+                  <span>PDF</span>
+                  <a href="methodical/docs/instrukcii-po-rabote-s-messendzherom-max-03-rekomendacii-podpisanie-medicinskih-dogovorov-i-soglasiy-na-medicinskoe-vmeshatelstvo.pdf" download>Скачать документ</a>
+                </div>
+              </article>
+
             </div>
-          </article>
-          <article class="normative-card">
-            <a class="normative-preview" href="normative/docs/04-instrukciya-tmk.pdf" target="_blank" rel="noopener" aria-label="Открыть документ: Инструкция ТМК">
-              <img src="normative/previews/04-instrukciya-tmk.jpg" alt="Обложка документа: Инструкция ТМК" loading="lazy">
-            </a>
-            <div class="normative-caption">
-              <a href="normative/docs/04-instrukciya-tmk.pdf" download>Скачать документ</a>
+          </section>
+          <section class="method-subsection" aria-labelledby="method-subsection-4">
+            <h4 id="method-subsection-4" class="method-subtitle">Региональные акты</h4>
+            <div class="methodical-grid">
+
+              <article class="methodical-card">
+                <a class="methodical-preview" href="methodical/docs/regionalnye-akty-01-prikaz-o-rezhime-raboty-nizhegorodskaya-oblast.pdf" target="_blank" rel="noopener" aria-label="Открыть документ: Приказ о режиме работы (Нижегородская область)">
+                  <img src="methodical/previews/regionalnye-akty-01-prikaz-o-rezhime-raboty-nizhegorodskaya-oblast.jpg" alt="Превью документа: Приказ о режиме работы (Нижегородская область)" loading="lazy">
+                </a>
+                <div class="methodical-caption">
+                  <h5 title="Приказ о режиме работы (Нижегородская область)">Приказ о режиме работы (Нижегородская область)</h5>
+                  <span>PDF</span>
+                  <a href="methodical/docs/regionalnye-akty-01-prikaz-o-rezhime-raboty-nizhegorodskaya-oblast.pdf" download>Скачать документ</a>
+                </div>
+              </article>
+
+              <article class="methodical-card">
+                <a class="methodical-preview" href="methodical/docs/regionalnye-akty-02-prikaza-kontrol-zapis-na-priem-k-vrachu-hmao.pdf" target="_blank" rel="noopener" aria-label="Открыть документ: Приказа контроль запись на прием к врачу (ХМАО)">
+                  <img src="methodical/previews/regionalnye-akty-02-prikaza-kontrol-zapis-na-priem-k-vrachu-hmao.jpg" alt="Превью документа: Приказа контроль запись на прием к врачу (ХМАО)" loading="lazy">
+                </a>
+                <div class="methodical-caption">
+                  <h5 title="Приказа контроль запись на прием к врачу (ХМАО)">Приказа контроль запись на прием к врачу (ХМАО)</h5>
+                  <span>PDF</span>
+                  <a href="methodical/docs/regionalnye-akty-02-prikaza-kontrol-zapis-na-priem-k-vrachu-hmao.pdf" download>Скачать документ</a>
+                </div>
+              </article>
+
+              <article class="methodical-card">
+                <a class="methodical-preview" href="methodical/docs/regionalnye-akty-03-proekt-prikaza-kontrol-zapis-na-priem-k-vrachu.docx" target="_blank" rel="noopener" aria-label="Открыть документ: Проект приказа контроль запись на прием к врачу">
+                  <img src="methodical/previews/regionalnye-akty-03-proekt-prikaza-kontrol-zapis-na-priem-k-vrachu.jpg" alt="Превью документа: Проект приказа контроль запись на прием к врачу" loading="lazy">
+                </a>
+                <div class="methodical-caption">
+                  <h5 title="Проект приказа контроль запись на прием к врачу">Проект приказа контроль запись на прием к врачу</h5>
+                  <span>DOCX</span>
+                  <a href="methodical/docs/regionalnye-akty-03-proekt-prikaza-kontrol-zapis-na-priem-k-vrachu.docx" download>Скачать документ</a>
+                </div>
+              </article>
+
             </div>
-          </article>
-          <article class="normative-card">
-            <a class="normative-preview" href="normative/docs/05-instrukciya-zapis-na-priem-k-vrachu.pdf" target="_blank" rel="noopener" aria-label="Открыть документ: Инструкция: запись на прием к врачу">
-              <img src="normative/previews/05-instrukciya-zapis-na-priem-k-vrachu.jpg" alt="Обложка документа: Инструкция: запись на прием к врачу" loading="lazy">
-            </a>
-            <div class="normative-caption">
-              <a href="normative/docs/05-instrukciya-zapis-na-priem-k-vrachu.pdf" download>Скачать документ</a>
-            </div>
-          </article>
-          <article class="normative-card">
-            <a class="normative-preview" href="normative/docs/06-mr-19-23-kontakt-centr.pdf" target="_blank" rel="noopener" aria-label="Открыть документ: МР 19-23. Контакт-центр">
-              <img src="normative/previews/06-mr-19-23-kontakt-centr.jpg" alt="Обложка документа: МР 19-23. Контакт-центр" loading="lazy">
-            </a>
-            <div class="normative-caption">
-              <a href="normative/docs/06-mr-19-23-kontakt-centr.pdf" download>Скачать документ</a>
-            </div>
-          </article>
-          <article class="normative-card">
-            <a class="normative-preview" href="normative/docs/07-mr-26-23-org-resheniya-po-povysheniyu-dostupnosti-pmsp.pdf" target="_blank" rel="noopener" aria-label="Открыть документ: МР 26-23. Организационные решения по повышению доступности ПМСП">
-              <img src="normative/previews/07-mr-26-23-org-resheniya-po-povysheniyu-dostupnosti-pmsp.jpg" alt="Обложка документа: МР 26-23. Организационные решения по повышению доступности ПМСП" loading="lazy">
-            </a>
-            <div class="normative-caption">
-              <a href="normative/docs/07-mr-26-23-org-resheniya-po-povysheniyu-dostupnosti-pmsp.pdf" download>Скачать документ</a>
-            </div>
-          </article>
-          <article class="normative-card">
-            <a class="normative-preview" href="normative/docs/08-metodicheskie-rekomendacii-zapis-trete-izdanie.pdf" target="_blank" rel="noopener" aria-label="Открыть документ: Методические рекомендации. Запись, третье издание">
-              <img src="normative/previews/08-metodicheskie-rekomendacii-zapis-trete-izdanie.jpg" alt="Обложка документа: Методические рекомендации. Запись, третье издание" loading="lazy">
-            </a>
-            <div class="normative-caption">
-              <a href="normative/docs/08-metodicheskie-rekomendacii-zapis-trete-izdanie.pdf" download>Скачать документ</a>
-            </div>
-          </article>
-          <article class="normative-card">
-            <a class="normative-preview" href="normative/docs/09-prilozhenie2-model-zrelosti-redakciya1.pdf" target="_blank" rel="noopener" aria-label="Открыть документ: Приложение 2. Модель зрелости, редакция 1">
-              <img src="normative/previews/09-prilozhenie2-model-zrelosti-redakciya1.jpg" alt="Обложка документа: Приложение 2. Модель зрелости, редакция 1" loading="lazy">
-            </a>
-            <div class="normative-caption">
-              <a href="normative/docs/09-prilozhenie2-model-zrelosti-redakciya1.pdf" download>Скачать документ</a>
-            </div>
-          </article>
-          <article class="normative-card">
-            <a class="normative-preview" href="normative/docs/10-prilozhenie-proekt-rekomendaciy-pep-esia.pdf" target="_blank" rel="noopener" aria-label="Открыть документ: Приложение. Проект рекомендаций ПЭП ЕСИА">
-              <img src="normative/previews/10-prilozhenie-proekt-rekomendaciy-pep-esia.jpg" alt="Обложка документа: Приложение. Проект рекомендаций ПЭП ЕСИА" loading="lazy">
-            </a>
-            <div class="normative-caption">
-              <a href="normative/docs/10-prilozhenie-proekt-rekomendaciy-pep-esia.pdf" download>Скачать документ</a>
-            </div>
-          </article>
+          </section>
         </div>
       </div>
     </section>
