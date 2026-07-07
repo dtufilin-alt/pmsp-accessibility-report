@@ -3061,6 +3061,51 @@ body::before { display: none !important; }
   .official-header .top-nav.header-actions .button { font-size: 10px !important; }
 }
 
+/* 2026-07-07 typical program download service */
+.report-results .materials-cta.typical-program-service {
+  grid-template-columns: minmax(0, var(--container));
+}
+.typical-program-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+  margin-top: 26px;
+  padding: clamp(18px, 2.2vw, 26px);
+  border-radius: 28px;
+  background: rgba(255,255,255,.92);
+  color: #25384c;
+  border: 1px solid rgba(255,255,255,.86);
+  box-shadow: 0 24px 54px rgba(13,43,60,.24);
+}
+.typical-program-file {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+}
+.typical-program-file h3 { margin: 0 0 4px; color: #25384c; }
+.typical-program-file p { margin: 0; color: #5f7180; }
+.typical-program-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 64px;
+  height: 64px;
+  border-radius: 20px;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 950;
+  letter-spacing: .06em;
+  background: linear-gradient(135deg, #2f6fad, #4a90d9);
+  box-shadow: 0 14px 28px rgba(47,111,173,.24);
+}
+@media (max-width: 768px) {
+  .typical-program-card { align-items: stretch; flex-direction: column; }
+  .typical-program-card .button { width: 100%; text-align: center; }
+}
+
 </style>
 </head>
 <body>
@@ -3077,7 +3122,7 @@ body::before { display: none !important; }
     <nav class="top-nav header-actions" aria-label="Быстрые переходы">
       <a class="button primary" href="#about">Узнать больше о проекте</a>
       <a class="button secondary" href="#incident">Инцидент №38</a>
-      <a class="button secondary" href="materials.html">Перейти к материалам проекта</a>
+      <a class="button secondary" href="#materials">Скачать типовую программу</a>
     </nav>
   </header>
 
@@ -3214,17 +3259,22 @@ body::before { display: none !important; }
             <article class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><div class="timeline-card"><h3>Регулярная работа с субъектами РФ</h3><p>Сопровождение регионов, еженедельный сбор и анализ отчетности.</p></div></article>
             <article class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><div class="timeline-card"><h3>Выездные мероприятия и методическая поддержка</h3><p>Совместная работа с НМИЦ ТПМ и развитие модели зрелости пациентоцентричной записи.</p></div></article>
       </div>
-      <div class="materials-cta materials-gateway">
+      <div class="materials-cta materials-gateway typical-program-service">
         <div class="materials-content">
-          <h2>Единый репозиторий материалов проекта</h2>
-          <p>В репозитории собраны шаблоны документов, методические рекомендации, презентации, вебинары, методические материалы и лучшие региональные практики.</p>
-          <div class="materials-categories" aria-label="Категории материалов проекта">
-            <article class="material-category-card"><span class="category-marker" aria-hidden="true"></span><h3>Вебинары</h3></article>
-            <article class="material-category-card"><span class="category-marker" aria-hidden="true"></span><h3>Лучшие региональные практики</h3></article>
-            <article class="material-category-card"><span class="category-marker" aria-hidden="true"></span><h3>Методическая база</h3></article>
+          <span class="eyebrow">Сервис скачивания</span>
+          <h2>Типовая программа проекта</h2>
+          <p>Скачайте актуальный шаблон типовой программы в формате Microsoft Word для подготовки региональной рабочей программы по повышению доступности первичной медико-санитарной помощи.</p>
+          <div class="typical-program-card" aria-label="Файл типовой программы">
+            <div class="typical-program-file">
+              <span class="typical-program-icon" aria-hidden="true">DOCX</span>
+              <div>
+                <h3>Шаблон РП 2 — 2025</h3>
+                <p>Формат: .docx · документ Word</p>
+              </div>
+            </div>
+            <a class="button primary materials-repo-button" href="downloads/tipovaya-programma-pmsp-2025.docx" download>Скачать типовую программу</a>
           </div>
         </div>
-        <a class="button primary materials-repo-button" href="materials.html">Перейти к материалам проекта</a>
       </div>
     </section>
 
