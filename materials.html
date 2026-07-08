@@ -1,0 +1,2064 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Материалы проекта — ПМСП</title>
+  <meta name="description" content="Единый публичный репозиторий материалов проекта по повышению доступности ПМСП." />
+  <style>
+    :root {
+      --bg: #f7faf4;
+      --paper: #ffffff;
+      --text: #25384c;
+      --muted: #627789;
+      --muted-strong: #496174;
+      --blue-dark: #25384c;
+      --blue: #6399b5;
+      --green: #98c185;
+      --green-dark: #63914a;
+      --red: #c44b4b;
+      --red-soft: #a55551;
+      --line: rgba(99,153,181,.18);
+      --line-strong: rgba(99,153,181,.30);
+      --shadow-soft: 0 14px 34px rgba(37,56,76,.10);
+      --shadow: 0 24px 58px rgba(37,56,76,.14);
+      --radius-lg: 28px;
+      --radius-xl: 36px;
+      --container: 1180px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Montserrat", "Segoe UI", Roboto, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 8% 4%, rgba(214,134,127,.14), transparent 28rem),
+        radial-gradient(circle at 88% 12%, rgba(152,193,133,.18), transparent 30rem),
+        linear-gradient(180deg, #fbfaf7 0%, #fff 42%, var(--bg) 100%);
+      line-height: 1.6;
+      min-width: 320px;
+    }
+    a { color: inherit; }
+    a:focus-visible, button:focus-visible { outline: 3px solid rgba(152,193,133,.55); outline-offset: 4px; }
+    .official-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      min-height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: clamp(14px, 2vw, 28px);
+      padding: 12px clamp(18px, 3vw, 48px);
+      background:
+        radial-gradient(circle at 9% 18%, rgba(152,193,133,.34), transparent 28%),
+        radial-gradient(circle at 72% 12%, rgba(99,153,181,.24), transparent 30%),
+        linear-gradient(135deg, rgba(255,255,255,.96), rgba(237,247,232,.92));
+      border-bottom: 1px solid rgba(99,153,181,.22);
+      box-shadow: 0 16px 42px rgba(50,77,91,.10);
+      backdrop-filter: blur(14px);
+    }
+    .official-brand { display: flex; align-items: center; gap: 18px; min-width: 0; flex: 1 1 auto; }
+    .header-logos {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      flex: 0 0 auto;
+      padding: 7px;
+      border-radius: 24px;
+      background: rgba(255,255,255,.72);
+      border: 1px solid rgba(200,216,194,.72);
+      box-shadow: 0 10px 26px rgba(50,77,91,.08);
+    }
+    .hero-logo {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 84px;
+      height: 54px;
+      min-height: 54px;
+      padding: 8px 12px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.88);
+      text-decoration: none;
+      box-shadow: 0 6px 18px rgba(50,77,91,.065);
+    }
+    .hero-logo.mednet-logo { width: 62px; padding-inline: 10px; }
+    .hero-logo img { display: block; max-width: 100%; max-height: 36px; object-fit: contain; }
+    .hero-logo.mednet-logo img { max-width: 38px; max-height: 38px; }
+    .project-brand { min-width: 0; text-decoration: none; }
+    .project-brand .brand-title {
+      display: block;
+      max-width: none;
+      white-space: nowrap;
+      font-size: clamp(22px, 2.35vw, 36px);
+      line-height: 1;
+      font-weight: 950;
+      color: var(--blue-dark);
+      letter-spacing: -.045em;
+    }
+    .top-nav { display: flex; align-items: center; justify-content: flex-end; gap: 8px; flex: 0 0 auto; }
+    .button, .top-nav a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 40px;
+      padding: 10px 15px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 850;
+      white-space: nowrap;
+      text-decoration: none;
+      border: 1px solid rgba(99,153,181,.26);
+      box-shadow: 0 9px 20px rgba(50,77,91,.075);
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease;
+    }
+    .button:hover, .top-nav a:hover { transform: translateY(-1px); box-shadow: 0 14px 28px rgba(50,77,91,.13); }
+    .button.primary, .top-nav a.primary { color: #fff; background: linear-gradient(135deg, var(--blue-dark), var(--blue) 74%, var(--green)); border-color: transparent; }
+    .button.secondary, .top-nav a.secondary { color: var(--blue-dark); background: rgba(255,255,255,.82); }
+    .button.download { color: #fff; background: linear-gradient(135deg, var(--green-dark), var(--green)); border-color: transparent; }
+    .button.video { color: #fff; background: linear-gradient(135deg, var(--blue-dark), #476f82); border-color: transparent; }
+    .button.is-disabled { cursor: default; opacity: .72; background: rgba(255,255,255,.78); color: var(--muted-strong); border-color: rgba(99,153,181,.20); box-shadow: none; }
+    .button.is-disabled:hover { transform: none; box-shadow: none; }
+    .section { padding: clamp(44px, 6vw, 78px) clamp(18px, 5vw, 72px); }
+    .container, .section-heading, .webinar-list, .placeholder-grid { width: min(100%, var(--container)); margin-left: auto; margin-right: auto; }
+    .intro { padding-top: clamp(34px, 4.2vw, 54px); padding-bottom: clamp(34px, 4.8vw, 58px); }
+    .intro-card {
+      width: min(100%, var(--container));
+      margin: 0 auto;
+      padding: clamp(24px, 4vw, 42px);
+      border-radius: var(--radius-xl);
+      background:
+        radial-gradient(circle at 86% 18%, rgba(152,193,133,.28), transparent 18rem),
+        linear-gradient(135deg, rgba(255,255,255,.96), rgba(247,250,244,.88));
+      border: 1px solid rgba(99,153,181,.20);
+      box-shadow: var(--shadow-soft);
+    }
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+      color: var(--red-soft);
+      font-size: clamp(17px, 2vw, 28px);
+      line-height: 1.08;
+      font-weight: 950;
+      letter-spacing: -0.02em;
+    }
+    .status-dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 999px;
+      flex: 0 0 auto;
+      background: linear-gradient(135deg, #b94444, var(--red-soft));
+      box-shadow: 0 0 0 0 rgba(196,75,75,.22), 0 5px 14px rgba(165,85,81,.18);
+      animation: statusPulse 2.25s ease-in-out infinite;
+    }
+    @keyframes statusPulse {
+      0%, 100% { transform: scale(.96); box-shadow: 0 0 0 0 rgba(196,75,75,.22), 0 5px 14px rgba(165,85,81,.18); }
+      50% { transform: scale(1.08); box-shadow: 0 0 0 10px rgba(196,75,75,0), 0 8px 20px rgba(165,85,81,.28); }
+    }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { max-width: 940px; margin-bottom: 14px; color: #25384c; font-size: clamp(34px, 5.2vw, 66px); line-height: .98; letter-spacing: -.06em; font-weight: 950; }
+    h2 { max-width: 900px; margin-bottom: 0; color: #25384c; font-size: clamp(30px, 4vw, 54px); line-height: 1.06; letter-spacing: -.045em; font-weight: 950; }
+    h3 { color: #25384c; font-size: clamp(21px, 2vw, 30px); line-height: 1.12; letter-spacing: -.03em; font-weight: 900; }
+    .lead { max-width: 900px; margin-bottom: 0; color: var(--muted-strong); font-size: clamp(16px, 1.45vw, 20px); }
+    .section-heading { margin-bottom: clamp(22px, 3vw, 34px); }
+    .webinars-section { padding-top: clamp(28px, 4vw, 52px); }
+    .webinar-list { display: grid; gap: 22px; }
+    .webinar-card {
+      display: grid;
+      grid-template-columns: minmax(300px, .92fr) minmax(0, 1.25fr);
+      gap: clamp(18px, 3vw, 34px);
+      align-items: stretch;
+      padding: clamp(18px, 2.4vw, 28px);
+      border-radius: var(--radius-xl);
+      background: linear-gradient(135deg, rgba(255,255,255,.98), rgba(249,252,247,.88));
+      border: 1px solid rgba(99,153,181,.18);
+      box-shadow: var(--shadow-soft);
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+    .webinar-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); border-color: rgba(99,153,181,.30); }
+    .video-preview {
+      position: relative;
+      min-height: 252px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      gap: 12px;
+      overflow: hidden;
+      padding: 24px;
+      border-radius: 26px;
+      color: #fff;
+      text-decoration: none;
+      background:
+        radial-gradient(circle at 78% 18%, rgba(152,193,133,.52), transparent 12rem),
+        linear-gradient(135deg, #243b47, #496f82 58%, #5f8f49);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.18), 0 18px 34px rgba(37,56,76,.16);
+    }
+    .video-preview::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(0,0,0,.22));
+      pointer-events: none;
+    }
+    .play-icon {
+      position: relative;
+      width: 74px;
+      height: 74px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      background: rgba(255,255,255,.92);
+      box-shadow: 0 18px 36px rgba(0,0,0,.18);
+    }
+    .play-icon::after {
+      content: "";
+      margin-left: 5px;
+      width: 0;
+      height: 0;
+      border-top: 14px solid transparent;
+      border-bottom: 14px solid transparent;
+      border-left: 22px solid var(--blue-dark);
+    }
+    .video-preview h3, .video-preview span { position: relative; z-index: 1; }
+    .video-preview h3 { margin: auto 0 0; color: #fff; font-size: clamp(22px, 2.3vw, 32px); text-shadow: 0 8px 22px rgba(0,0,0,.18); }
+    .video-label { display: inline-flex; width: max-content; padding: 7px 12px; border-radius: 999px; background: rgba(255,255,255,.18); border: 1px solid rgba(255,255,255,.22); font-weight: 850; font-size: 12px; }
+    .webinar-content { display: flex; flex-direction: column; min-width: 0; padding: 4px 0; }
+    .webinar-content p { color: var(--muted-strong); margin-bottom: 18px; }
+    .webinar-meta { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+    .tag { display: inline-flex; align-items: center; min-height: 30px; padding: 6px 11px; border-radius: 999px; color: #7d303b; background: rgba(245,225,223,.78); border: 1px solid rgba(196,75,75,.16); font-size: 12px; font-weight: 850; }
+    .webinar-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: auto; }
+    .material-note { width: 100%; margin: 4px 0 0; color: var(--muted); font-size: 14px; font-weight: 700; }
+    .placeholder-section { padding-top: clamp(28px, 4vw, 52px); }
+    .placeholder-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+    .placeholder-card {
+      padding: clamp(22px, 3vw, 32px);
+      border-radius: var(--radius-lg);
+      background: linear-gradient(135deg, rgba(255,255,255,.96), rgba(239,247,246,.82));
+      border: 1px solid rgba(99,153,181,.18);
+      box-shadow: var(--shadow-soft);
+    }
+    .placeholder-card p { margin-bottom: 0; color: var(--muted-strong); }
+    .site-footer {
+      padding: 22px clamp(18px, 5vw, 72px);
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      background: rgba(255,255,255,.72);
+      text-align: center;
+      font-size: 14px;
+    }
+    @media (max-width: 1180px) {
+      .official-header { flex-direction: column; align-items: stretch; gap: 9px; }
+      .official-brand { justify-content: center; }
+      .top-nav { justify-content: center; flex-wrap: wrap; }
+      .project-brand .brand-title { font-size: clamp(20px, 3vw, 30px); }
+    }
+    @media (max-width: 820px) {
+      .official-header { min-height: 0; padding: 8px 9px; gap: 7px; }
+      .official-brand { justify-content: flex-start; gap: 8px; }
+      .header-logos { gap: 5px; padding: 4px; border-radius: 16px; }
+      .hero-logo { width: 42px; height: 30px; min-height: 30px; padding: 4px 6px; border-radius: 12px; }
+      .hero-logo.mednet-logo { width: 34px; }
+      .hero-logo img { max-height: 18px; }
+      .hero-logo.mednet-logo img { max-width: 20px; max-height: 20px; }
+      .project-brand .brand-title { white-space: normal; font-size: clamp(12px, 3.5vw, 15px); line-height: 1.08; }
+      .top-nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 5px; }
+      .top-nav a { min-height: 32px; padding: 7px 8px; font-size: 10px; }
+      .top-nav a.primary { grid-column: 1 / -1; }
+      .section { padding-inline: 14px; }
+      .intro { padding-top: 24px; }
+      .intro-card { border-radius: 26px; padding: 22px; }
+      .webinar-card { grid-template-columns: 1fr; border-radius: 26px; padding: 14px; }
+      .video-preview { min-height: 220px; border-radius: 22px; padding: 20px; }
+      .webinar-content { padding: 4px 4px 8px; }
+      .webinar-actions { display: grid; grid-template-columns: 1fr; }
+      .webinar-actions .button { width: 100%; }
+      .placeholder-grid { grid-template-columns: 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+    }
+
+    /* 2026-06-01 align materials header with index and keep title non-clickable */
+    .official-header {
+      min-height: 62px;
+      flex-direction: row !important;
+      align-items: center !important;
+      flex-wrap: nowrap;
+      padding-top: 8px;
+      padding-bottom: 8px;
+    }
+    .official-brand { flex: 1 1 auto; min-width: 0; gap: 12px; justify-content: flex-start; }
+    .header-logos { flex: 0 0 auto; gap: 7px; padding: 5px; }
+    .header-logos .hero-logo, .hero-logo { width: 68px; height: 44px; min-height: 44px; padding: 6px 9px; border-radius: 16px; }
+    .header-logos .hero-logo.mednet-logo, .hero-logo.mednet-logo { width: 50px; padding-inline: 8px; }
+    .header-logos .hero-logo img, .hero-logo img { max-height: 29px; }
+    .header-logos .hero-logo.mednet-logo img, .hero-logo.mednet-logo img { max-width: 31px; max-height: 31px; }
+    .project-brand { flex: 1 1 auto; min-width: 0; pointer-events: none; cursor: default; }
+    .project-brand .brand-title {
+      font-size: clamp(12px, 1.02vw, 16px);
+      letter-spacing: -.025em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .official-header .top-nav.header-actions, .top-nav.header-actions {
+      flex: 0 0 auto;
+      flex-wrap: nowrap;
+      justify-content: flex-end;
+      gap: 6px;
+      max-width: 52vw;
+    }
+    .official-header .top-nav.header-actions a, .top-nav.header-actions a {
+      min-height: 34px;
+      padding: 7px 10px;
+      font-size: 10.5px;
+    }
+    @media (max-width: 1180px) {
+      .official-header { flex-direction: row !important; align-items: center !important; }
+      .official-brand { justify-content: flex-start; }
+      .official-header .top-nav.header-actions, .top-nav.header-actions { flex-wrap: wrap; max-width: 52vw; }
+    }
+    @media (max-width: 820px) {
+      .official-header { flex-direction: row !important; align-items: center !important; min-height: 78px; gap: 6px; }
+      .official-brand { flex: 1 1 50%; gap: 6px; }
+      .header-logos { gap: 3px; padding: 3px; }
+      .header-logos .hero-logo, .hero-logo { width: 36px; height: 28px; min-height: 28px; padding: 3px 5px; border-radius: 10px; }
+      .header-logos .hero-logo.mednet-logo, .hero-logo.mednet-logo { width: 30px; padding-inline: 4px; }
+      .header-logos .hero-logo img, .hero-logo img { max-height: 17px; }
+      .header-logos .hero-logo.mednet-logo img, .hero-logo.mednet-logo img { max-width: 18px; max-height: 18px; }
+      .project-brand .brand-title { font-size: clamp(8.4px, 2.05vw, 10px); letter-spacing: -.03em; white-space: normal; line-height: 1.05; }
+      .official-header .top-nav.header-actions, .top-nav.header-actions { display: flex; flex: 0 0 48%; max-width: 48%; flex-wrap: wrap; gap: 4px; }
+      .official-header .top-nav.header-actions a, .top-nav.header-actions a { flex: 1 1 70px; min-height: 24px; padding: 4px 5px; font-size: 7.6px; line-height: 1.05; }
+      .top-nav a.primary { grid-column: auto; }
+    }
+
+
+    /* 2026-06-01 narrower webinar cards without extra labels/actions */
+    .webinar-list { width: min(100%, 980px); }
+    .webinar-card {
+      grid-template-columns: minmax(260px, .78fr) minmax(0, 1fr);
+      padding: clamp(14px, 2vw, 22px);
+    }
+    .video-preview { min-height: 210px; }
+    .webinar-content { justify-content: center; }
+    .webinar-content h3 { margin-bottom: 0; }
+    @media (max-width: 820px) {
+      .webinar-list { width: min(100%, 620px); }
+      .webinar-card { grid-template-columns: 1fr; }
+      .video-preview { min-height: 190px; }
+    }
+
+
+    /* 2026-06-01 two-column webinar layout by years */
+    .webinar-list {
+      width: min(100%, var(--container));
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      align-items: start;
+    }
+    .webinar-card {
+      grid-template-columns: 1fr;
+      gap: 16px;
+      padding: clamp(14px, 1.8vw, 20px);
+    }
+    .video-preview { min-height: 190px; }
+    .webinar-content { padding: 0 2px 4px; }
+    .webinar-content h3 { font-size: clamp(19px, 1.6vw, 25px); }
+    @media (max-width: 820px) {
+      .webinar-list { grid-template-columns: 1fr; width: min(100%, 620px); }
+    }
+
+
+    /* 2026-06-01 compact repository intro and aligned webinar cards */
+    .intro {
+      padding-top: clamp(24px, 3vw, 38px);
+      padding-bottom: clamp(16px, 2vw, 24px);
+    }
+    .intro-card {
+      width: min(100%, 920px);
+      padding: clamp(18px, 2.6vw, 28px) clamp(22px, 3.2vw, 36px);
+      border-radius: 26px;
+    }
+    .intro-card h1 {
+      margin-bottom: 0;
+      font-size: clamp(30px, 4vw, 52px);
+    }
+    .webinars-section {
+      padding-top: clamp(16px, 2.4vw, 28px);
+    }
+    .webinars-section .section-heading {
+      margin-bottom: clamp(16px, 2.4vw, 26px);
+    }
+    .webinars-kicker {
+      color: var(--blue-dark);
+      font-size: clamp(26px, 3.3vw, 44px);
+      line-height: 1.08;
+      font-weight: 950;
+      letter-spacing: -0.035em;
+      margin-bottom: 0;
+    }
+    .webinar-list {
+      grid-auto-rows: 1fr;
+      align-items: stretch;
+    }
+    .webinar-card {
+      height: 100%;
+      min-height: 430px;
+      grid-template-rows: 210px 1fr;
+    }
+    .video-preview {
+      min-height: 210px;
+      height: 210px;
+    }
+    .webinar-content {
+      min-height: 150px;
+      justify-content: space-between;
+    }
+    .webinar-meta {
+      min-height: 30px;
+    }
+    @media (max-width: 820px) {
+      .intro-card { width: min(100%, 620px); }
+      .webinar-card { min-height: 0; grid-template-rows: auto; }
+      .video-preview { height: auto; min-height: 190px; }
+      .webinar-content { min-height: 0; }
+    }
+
+
+    /* 2026-06-01 polished equal webinar cards and round play */
+    .webinar-list {
+      align-items: stretch;
+    }
+    .webinar-card {
+      display: grid;
+      grid-template-rows: 230px 112px;
+      min-height: 382px;
+      height: 100%;
+      gap: 14px;
+    }
+    .video-preview {
+      height: 230px;
+      min-height: 230px;
+      width: 100%;
+      display: grid;
+      grid-template-rows: 74px 1fr;
+      align-content: stretch;
+      gap: 14px;
+    }
+    .play-icon {
+      width: 74px !important;
+      height: 74px !important;
+      min-width: 74px;
+      min-height: 74px;
+      aspect-ratio: 1 / 1;
+      border-radius: 50% !important;
+      align-self: start;
+      justify-self: start;
+      flex: 0 0 74px;
+    }
+    .play-icon::after {
+      display: block;
+      flex: 0 0 auto;
+    }
+    .video-preview h3 {
+      align-self: end;
+      margin: 0;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .webinar-content {
+      min-height: 112px;
+      height: 112px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .material-download {
+      width: max-content;
+      min-width: 190px;
+      color: var(--green-dark) !important;
+      background: linear-gradient(135deg, rgba(255,255,255,.96), rgba(239,247,232,.92)) !important;
+      border-color: rgba(99,145,74,.28) !important;
+      box-shadow: 0 10px 22px rgba(50,77,91,.08) !important;
+      opacity: 1 !important;
+    }
+    .material-download:hover {
+      transform: none;
+      box-shadow: 0 10px 22px rgba(50,77,91,.08) !important;
+    }
+    @media (max-width: 820px) {
+      .webinar-card { grid-template-rows: auto auto; min-height: 0; }
+      .video-preview { height: auto; min-height: 210px; }
+      .webinar-content { height: auto; min-height: 96px; }
+      .material-download { width: 100%; }
+    }
+
+
+    /* 2026-06-01 green full-width repository title and smaller webinar titles */
+    .intro-card {
+      width: min(100%, var(--container));
+      padding: clamp(18px, 2.2vw, 26px) clamp(22px, 3vw, 40px);
+      background:
+        radial-gradient(circle at 88% 20%, rgba(255,255,255,.22), transparent 18rem),
+        linear-gradient(135deg, #5f8f49, #98c185);
+      border-color: rgba(99,145,74,.28);
+      box-shadow: 0 18px 42px rgba(50,77,91,.13);
+      text-align: center;
+    }
+    .intro-card h1 {
+      max-width: none;
+      width: 100%;
+      margin: 0;
+      color: #fff;
+      white-space: nowrap;
+      font-size: clamp(25px, 3.55vw, 46px);
+      letter-spacing: -.045em;
+      text-shadow: 0 10px 24px rgba(37,56,76,.16);
+    }
+    .webinars-kicker {
+      color: #c44b4b;
+    }
+    .video-preview h3 {
+      font-size: clamp(16px, 1.35vw, 21px);
+      line-height: 1.15;
+      -webkit-line-clamp: 4;
+    }
+    @media (max-width: 820px) {
+      .intro-card h1 {
+        white-space: normal;
+        font-size: clamp(25px, 7vw, 36px);
+      }
+      .video-preview h3 { font-size: clamp(17px, 5vw, 22px); }
+    }
+
+
+    /* 2026-06-01 align repository/practice sections with index styling */
+    .intro-card {
+      width: min(100%, var(--container));
+      padding: clamp(30px, 4.5vw, 54px) clamp(26px, 5vw, 72px);
+      border-radius: var(--radius-xl);
+      color: #fff;
+      background:
+        radial-gradient(circle at 85% 20%, rgba(152,193,133,.34), transparent 22rem),
+        linear-gradient(135deg, #263f4b, #4a7388 52%, #63914a);
+      border: 0;
+      box-shadow: 0 22px 54px rgba(37,56,76,.18);
+      text-align: left;
+    }
+    .intro-card h1 {
+      color: #fff;
+      max-width: none;
+      width: 100%;
+      white-space: nowrap;
+      font-size: clamp(25px, 3.2vw, 44px);
+      line-height: 1.04;
+      letter-spacing: -.045em;
+      text-shadow: none;
+    }
+    .webinars-kicker,
+    .section-kicker {
+      color: var(--blue-dark);
+      font-size: clamp(26px, 3.3vw, 44px);
+      line-height: 1.08;
+      font-weight: 950;
+      letter-spacing: -0.035em;
+      margin-bottom: 14px;
+    }
+    .placeholder-grid {
+      grid-template-columns: 1fr;
+      max-width: 980px;
+    }
+    .placeholder-card {
+      min-height: 170px;
+    }
+    .placeholder-card .section-kicker {
+      display: inline-flex;
+    }
+    @media (max-width: 820px) {
+      .intro-card h1 { white-space: normal; }
+    }
+
+
+    /* 2026-06-01 full-width repository hero and green section dots */
+    .intro {
+      padding: 0;
+      margin: 0;
+    }
+    .intro-card {
+      width: 100vw;
+      max-width: none;
+      margin-left: 50%;
+      transform: translateX(-50%);
+      min-height: clamp(170px, 20vw, 250px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 0;
+      padding-left: max(clamp(18px, 5vw, 72px), calc((100vw - var(--container)) / 2 + 18px));
+      padding-right: max(clamp(18px, 5vw, 72px), calc((100vw - var(--container)) / 2 + 18px));
+    }
+    .intro-card h1 {
+      text-align: center;
+    }
+    .webinars-kicker .status-dot,
+    .section-kicker .status-dot {
+      width: 18px;
+      height: 18px;
+      background: linear-gradient(135deg, var(--green-dark), var(--green));
+      box-shadow: 0 0 0 0 rgba(99,145,74,.30), 0 7px 18px rgba(99,145,74,.22);
+      animation: greenStatusPulse 2.15s ease-in-out infinite;
+    }
+    @keyframes greenStatusPulse {
+      0%, 100% { transform: scale(.96); box-shadow: 0 0 0 0 rgba(99,145,74,.28), 0 7px 18px rgba(99,145,74,.22); }
+      50% { transform: scale(1.08); box-shadow: 0 0 0 12px rgba(99,145,74,0), 0 10px 24px rgba(99,145,74,.30); }
+    }
+    .material-download:not(.is-disabled) {
+      color: #fff !important;
+      background: linear-gradient(135deg, var(--green-dark), var(--green)) !important;
+      border-color: transparent !important;
+      box-shadow: 0 14px 30px rgba(99,145,74,.22) !important;
+      text-decoration: none;
+    }
+    .material-download:not(.is-disabled):hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 36px rgba(99,145,74,.28) !important;
+    }
+    @media (max-width: 820px) {
+      .intro-card {
+        min-height: 150px;
+        transform: translateX(-50%);
+      }
+    }
+
+
+    /* 2026-06-01 interactive practices catalog */
+    .practice-catalog,
+    .regulations-section .regulations-card {
+      width: min(100%, var(--container));
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .practice-catalog {
+      display: grid;
+      gap: clamp(22px, 3vw, 34px);
+    }
+    .practice-year {
+      padding: clamp(18px, 2.4vw, 28px);
+      border-radius: var(--radius-xl);
+      background: linear-gradient(135deg, rgba(255,255,255,.98), rgba(249,252,247,.88));
+      border: 1px solid rgba(99,153,181,.18);
+      box-shadow: var(--shadow-soft);
+    }
+    .practice-year-heading {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 16px;
+    }
+    .practice-year-heading h3 {
+      margin: 0;
+      color: var(--blue-dark);
+      font-size: clamp(24px, 2.4vw, 34px);
+      line-height: 1.08;
+      letter-spacing: -.035em;
+      font-weight: 950;
+    }
+    .practice-year-heading p {
+      max-width: 430px;
+      margin: 0;
+      color: var(--muted-strong);
+      font-size: 14px;
+      font-weight: 700;
+    }
+    .practice-slider {
+      position: relative;
+      display: grid;
+      grid-template-columns: 46px minmax(0, 1fr) 46px;
+      gap: 12px;
+      align-items: center;
+    }
+    .practice-track {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(260px, calc((100% - 28px) / 3));
+      gap: 14px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      padding: 4px 2px 12px;
+      scrollbar-width: thin;
+    }
+    .practice-slide {
+      scroll-snap-align: start;
+      min-height: 330px;
+      display: flex;
+      flex-direction: column;
+      padding: 14px;
+      border-radius: 24px;
+      background: rgba(255,255,255,.92);
+      border: 1px solid rgba(99,153,181,.18);
+      box-shadow: 0 12px 28px rgba(37,56,76,.08);
+    }
+    .practice-cover {
+      height: 190px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 18px;
+      border-radius: 20px;
+      color: #fff;
+      background:
+        radial-gradient(circle at 80% 18%, rgba(152,193,133,.36), transparent 11rem),
+        linear-gradient(135deg, #263f4b, #4a7388 58%, #63914a);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.15);
+    }
+    .practice-cover span {
+      width: max-content;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.18);
+      border: 1px solid rgba(255,255,255,.22);
+      font-weight: 850;
+      font-size: 12px;
+    }
+    .practice-cover strong {
+      font-size: clamp(20px, 2vw, 28px);
+      line-height: 1.05;
+      letter-spacing: -.035em;
+    }
+    .practice-slide h4 {
+      margin: 14px 0 8px;
+      color: var(--blue-dark);
+      font-size: 18px;
+      line-height: 1.2;
+      font-weight: 900;
+    }
+    .practice-slide p {
+      margin: 0;
+      color: var(--muted-strong);
+      font-size: 14px;
+    }
+    .slider-arrow {
+      width: 46px;
+      height: 46px;
+      border-radius: 999px;
+      border: 1px solid rgba(99,145,74,.26);
+      background: linear-gradient(135deg, var(--green-dark), var(--green));
+      color: #fff;
+      font-size: 30px;
+      line-height: 1;
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: 0 12px 26px rgba(99,145,74,.18);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .slider-arrow:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 34px rgba(99,145,74,.26);
+    }
+    .regulations-section { padding-top: clamp(20px, 3vw, 34px); }
+    @media (max-width: 820px) {
+      .practice-year-heading { display: block; }
+      .practice-year-heading p { margin-top: 8px; }
+      .practice-slider { grid-template-columns: 1fr; }
+      .slider-arrow { display: none; }
+      .practice-track { grid-auto-columns: minmax(252px, 86%); padding-bottom: 14px; }
+      .practice-cover { height: 178px; }
+    }
+
+
+    /* 2026-06-01 real practice previews from PDFs/PPT */
+    .practice-slide {
+      min-height: 390px;
+    }
+    .practice-preview {
+      height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, rgba(239,247,246,.92), rgba(255,255,255,.96));
+      border: 1px solid rgba(99,153,181,.14);
+      overflow: hidden;
+      text-decoration: none;
+    }
+    .practice-preview img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 14px;
+      box-shadow: 0 10px 22px rgba(37,56,76,.10);
+      background: #fff;
+    }
+    .practice-slide-body {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      min-height: 142px;
+      padding-top: 12px;
+    }
+    .practice-type {
+      width: max-content;
+      padding: 5px 9px;
+      border-radius: 999px;
+      color: var(--green-dark);
+      background: rgba(239,247,232,.95);
+      border: 1px solid rgba(99,145,74,.18);
+      font-size: 11px;
+      font-weight: 900;
+    }
+    .practice-slide h4 {
+      margin: 0;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .practice-download {
+      margin-top: auto;
+      width: max-content;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 36px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      color: #fff;
+      background: linear-gradient(135deg, var(--green-dark), var(--green));
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 850;
+      box-shadow: 0 10px 22px rgba(99,145,74,.18);
+    }
+    @media (max-width: 820px) {
+      .practice-preview { height: 210px; }
+      .practice-download { width: 100%; }
+    }
+
+
+    /* 2026-06-01 gallery final behavior */
+    .practice-year-heading { align-items: center; }
+    .practice-year-heading p { display: none !important; }
+    .practice-track {
+      grid-auto-columns: calc((100% - 28px) / 3);
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .practice-track::-webkit-scrollbar { display: none; }
+    .practice-slide {
+      min-height: 326px;
+      justify-content: space-between;
+    }
+    .practice-slide-body {
+      min-height: 58px;
+      padding-top: 12px;
+      justify-content: flex-end;
+    }
+    .practice-type,
+    .practice-slide h4 { display: none !important; }
+    .practice-download { width: 100%; }
+    @media (max-width: 820px) {
+      .practice-track { grid-auto-columns: calc((100% - 14px) / 2); }
+      .practice-slide { min-height: 300px; }
+    }
+    @media (max-width: 520px) {
+      .practice-track { grid-auto-columns: calc((100% - 12px) / 2); gap: 12px; }
+      .practice-year { padding: 14px; }
+      .practice-preview { height: 170px; }
+      .practice-slide { min-height: 258px; padding: 10px; }
+      .practice-download { font-size: 11px; padding-inline: 8px; }
+    }
+
+
+    /* 2026-06-01 footer aligned with index */
+    .site-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 18px clamp(18px, 5vw, 72px);
+      min-height: 0;
+      color: #637083;
+      border-top: 1px solid var(--line);
+      background: #fff;
+      text-align: left;
+      font-size: 14px;
+    }
+    .site-footer p { margin: 0; }
+    @media (max-width: 768px) {
+      .site-footer { align-items: flex-start; flex-direction: column; }
+    }
+
+
+    /* 2026-06-01 normative materials catalog */
+    .regulations-card {
+      padding: clamp(18px, 2.4vw, 28px);
+      border-radius: var(--radius-xl);
+      background: linear-gradient(135deg, rgba(255,255,255,.98), rgba(249,252,247,.88));
+      border: 1px solid rgba(99,153,181,.18);
+      box-shadow: var(--shadow-soft);
+    }
+    .method-title {
+      margin: 0 0 18px;
+      color: var(--blue-dark);
+      font-size: clamp(24px, 2.4vw, 34px);
+      line-height: 1.08;
+      letter-spacing: -.035em;
+      font-weight: 950;
+    }
+    .normative-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .normative-card {
+      display: grid;
+      grid-template-columns: 170px minmax(0, 1fr);
+      gap: 14px;
+      min-height: 210px;
+      padding: 14px;
+      border-radius: 24px;
+      background: rgba(255,255,255,.94);
+      border: 1px solid rgba(99,153,181,.16);
+      box-shadow: 0 12px 28px rgba(37,56,76,.08);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .normative-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 36px rgba(37,56,76,.13);
+    }
+    .normative-preview {
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, rgba(239,247,246,.92), rgba(255,255,255,.96));
+      border: 1px solid rgba(99,153,181,.14);
+      overflow: hidden;
+    }
+    .normative-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 12px;
+      background: #fff;
+      box-shadow: 0 8px 18px rgba(37,56,76,.10);
+    }
+    .normative-caption {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      justify-content: center;
+    }
+    .normative-caption h4 {
+      margin: 0;
+      color: var(--blue-dark);
+      font-size: 17px;
+      line-height: 1.18;
+      font-weight: 900;
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .normative-caption span {
+      width: max-content;
+      padding: 5px 10px;
+      border-radius: 999px;
+      color: var(--green-dark);
+      background: rgba(239,247,232,.95);
+      border: 1px solid rgba(99,145,74,.18);
+      font-size: 12px;
+      font-weight: 900;
+    }
+    .normative-caption a {
+      margin-top: auto;
+      width: max-content;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 36px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      color: #fff;
+      background: linear-gradient(135deg, var(--green-dark), var(--green));
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 850;
+      box-shadow: 0 10px 22px rgba(99,145,74,.18);
+    }
+    @media (max-width: 900px) {
+      .normative-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 560px) {
+      .normative-card { grid-template-columns: 1fr; }
+      .normative-preview { height: 220px; }
+      .normative-caption a { width: 100%; }
+    }
+
+
+    /* 2026-06-01 normative grid: 5 columns x 2 rows, no titles */
+    .normative-grid {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .normative-card {
+      grid-template-columns: 1fr;
+      min-height: 286px;
+      padding: 12px;
+      gap: 10px;
+    }
+    .normative-preview {
+      height: 205px;
+      width: 100%;
+    }
+    .normative-caption {
+      min-height: 42px;
+      justify-content: flex-end;
+    }
+    .normative-caption h4,
+    .normative-caption span { display: none !important; }
+    .normative-caption a {
+      width: 100%;
+      margin-top: 0;
+    }
+    @media (max-width: 1100px) {
+      .normative-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+    @media (max-width: 720px) {
+      .normative-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .normative-preview { height: 190px; }
+    }
+    @media (max-width: 420px) {
+      .normative-grid { grid-template-columns: 1fr; }
+      .normative-preview { height: 220px; }
+    }
+
+
+    /* 2026-06-17 webinar video triangle, separate materials, and practice titles */
+    .webinar-list.video-triangle {
+      width: min(100%, 1000px);
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 470px));
+      justify-content: center;
+      align-items: start;
+      gap: 22px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .webinar-video-card,
+    .webinar-list.video-triangle .webinar-card {
+      width: 100%;
+      min-width: 0;
+      display: block;
+      padding: 12px;
+      border-radius: 28px;
+      background: linear-gradient(135deg, rgba(255,255,255,.98), rgba(249,252,247,.88));
+      border: 1px solid rgba(99,153,181,.18);
+      box-shadow: var(--shadow-soft);
+    }
+    .webinar-list.video-triangle .webinar-card:first-child {
+      grid-column: 1 / -1;
+      width: min(100%, 470px);
+      justify-self: center;
+    }
+    .webinar-video-card .video-preview,
+    .rutube-preview,
+    .rutube-frame {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      min-height: 0;
+      height: auto;
+      border-radius: 22px;
+    }
+    .rutube-preview {
+      position: relative;
+      display: block;
+      overflow: hidden;
+      padding: 0;
+      border: 0;
+      cursor: pointer;
+      background: #172934;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.16), 0 18px 34px rgba(37,56,76,.16);
+    }
+    .rutube-preview img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: inherit;
+      transition: transform .22s ease, filter .22s ease;
+    }
+    .rutube-preview::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: linear-gradient(180deg, rgba(0,0,0,.05), rgba(0,0,0,.24));
+      pointer-events: none;
+    }
+    .rutube-preview .play-icon {
+      position: absolute;
+      z-index: 2;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .rutube-preview:hover img { transform: scale(1.025); filter: saturate(1.04); }
+    .rutube-frame {
+      display: block;
+      border: 0;
+      background: #172934;
+      box-shadow: 0 18px 34px rgba(37,56,76,.16);
+    }
+    .webinar-materials {
+      width: min(100%, var(--container));
+      margin: clamp(30px, 4vw, 46px) auto 0;
+      padding: clamp(20px, 3vw, 32px);
+      border-radius: var(--radius-xl);
+      background: linear-gradient(135deg, rgba(255,255,255,.96), rgba(239,247,246,.82));
+      border: 1px solid rgba(99,153,181,.18);
+      box-shadow: var(--shadow-soft);
+    }
+    .webinar-materials h3 {
+      margin: 0 0 18px;
+      text-align: center;
+      font-size: clamp(24px, 2.7vw, 36px);
+    }
+    .webinar-materials-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .webinar-material-card {
+      display: flex;
+      flex-direction: column;
+      min-height: 230px;
+      padding: 18px;
+      border-radius: 22px;
+      background: rgba(255,255,255,.88);
+      border: 1px solid rgba(99,153,181,.16);
+      box-shadow: 0 10px 24px rgba(37,56,76,.07);
+    }
+    .webinar-material-card h4 {
+      margin: 0 0 10px;
+      color: #25384c;
+      font-size: 16px;
+      line-height: 1.22;
+      font-weight: 900;
+    }
+    .webinar-material-card p {
+      margin: 0 0 16px;
+      color: var(--red-soft);
+      font-weight: 900;
+    }
+    .webinar-material-card .button { margin-top: auto; width: 100%; }
+    .practice-slide h4.practice-title {
+      display: -webkit-box !important;
+      min-height: 4.25em;
+      margin: 0 0 12px;
+      color: #25384c;
+      font-size: clamp(14px, 1.06vw, 16px);
+      line-height: 1.28;
+      font-weight: 900;
+      letter-spacing: -.015em;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .practice-slide-body {
+      min-height: 128px !important;
+      justify-content: flex-start !important;
+    }
+    @media (max-width: 980px) {
+      .webinar-materials-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 820px) {
+      .webinar-list.video-triangle {
+        grid-template-columns: minmax(0, 620px);
+        gap: 16px;
+      }
+      .webinar-list.video-triangle .webinar-card:first-child {
+        grid-column: auto;
+        width: 100%;
+      }
+    }
+    @media (max-width: 560px) {
+      .webinar-materials-grid { grid-template-columns: 1fr; }
+      .webinar-material-card { min-height: 0; }
+      .practice-slide h4.practice-title {
+        min-height: 4.45em;
+        font-size: 12.5px;
+        line-height: 1.25;
+      }
+      .practice-slide-body { min-height: 132px !important; }
+    }
+
+
+    /* 2026-06-18 compact webinars and structured methodical base */
+    .webinars-section { padding-top: clamp(22px, 3vw, 38px); }
+    .webinars-section .section-heading { margin-bottom: 12px; }
+    .webinar-list.video-triangle {
+      width: min(100%, 820px);
+      grid-template-columns: repeat(2, minmax(0, 385px));
+      gap: 14px;
+    }
+    .webinar-list.video-triangle .webinar-card {
+      padding: 8px;
+      border-radius: 22px;
+    }
+    .webinar-list.video-triangle .webinar-card:first-child { width: min(100%, 385px); }
+    .webinar-video-card .video-preview,
+    .rutube-preview,
+    .rutube-frame { border-radius: 17px; }
+    .webinar-materials {
+      margin-top: clamp(16px, 2.2vw, 24px);
+      padding: clamp(14px, 2vw, 20px);
+    }
+    .webinar-materials h3 {
+      margin-bottom: 12px;
+      font-size: clamp(20px, 2vw, 28px);
+      line-height: 1.08;
+    }
+    .webinar-materials-grid { gap: 10px; }
+    .webinar-material-card {
+      min-height: 154px;
+      padding: 13px;
+      border-radius: 18px;
+      gap: 6px;
+    }
+    .webinar-material-card h4 {
+      margin-bottom: 4px;
+      font-size: 14px;
+      line-height: 1.18;
+    }
+    .webinar-material-card p {
+      margin-bottom: 8px;
+      font-size: 13px;
+      line-height: 1.1;
+    }
+    .webinar-material-card .button { min-height: 34px; padding: 8px 10px; font-size: 12px; }
+    .methodical-base-card { padding: clamp(18px, 2.4vw, 28px); }
+    .methodical-catalog { display: grid; gap: 22px; }
+    .method-subsection {
+      padding: clamp(14px, 2vw, 20px);
+      border-radius: 24px;
+      background: rgba(255,255,255,.72);
+      border: 1px solid rgba(99,153,181,.14);
+    }
+    .method-subtitle {
+      margin: 0 0 14px;
+      color: var(--blue-dark);
+      font-size: clamp(18px, 1.7vw, 24px);
+      line-height: 1.15;
+      font-weight: 950;
+      letter-spacing: -.025em;
+    }
+    .methodical-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .methodical-card {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 12px;
+      border-radius: 20px;
+      background: rgba(255,255,255,.96);
+      border: 1px solid rgba(99,153,181,.16);
+      box-shadow: 0 10px 24px rgba(37,56,76,.07);
+    }
+    .methodical-preview {
+      height: 188px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, rgba(239,247,246,.92), rgba(255,255,255,.96));
+      border: 1px solid rgba(99,153,181,.14);
+      overflow: hidden;
+    }
+    .methodical-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 10px;
+      background: #fff;
+      box-shadow: 0 8px 18px rgba(37,56,76,.10);
+    }
+    .methodical-caption { min-width: 0; display: flex; flex-direction: column; gap: 7px; flex: 1; }
+    .methodical-caption h5 {
+      margin: 0;
+      color: rgba(37,56,76,.78);
+      font-size: 13px;
+      line-height: 1.25;
+      font-weight: 750;
+      overflow-wrap: anywhere;
+    }
+    .methodical-caption span {
+      width: max-content;
+      padding: 4px 8px;
+      border-radius: 999px;
+      color: var(--green-dark);
+      background: rgba(239,247,232,.95);
+      border: 1px solid rgba(99,145,74,.18);
+      font-size: 11px;
+      font-weight: 900;
+    }
+    .methodical-caption a {
+      margin-top: auto;
+      width: 100%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 34px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      color: #fff;
+      background: linear-gradient(135deg, var(--green-dark), var(--green));
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 850;
+      box-shadow: 0 10px 22px rgba(99,145,74,.18);
+    }
+    @media (max-width: 1080px) {
+      .methodical-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+    @media (max-width: 820px) {
+      .webinar-list.video-triangle { grid-template-columns: minmax(0, 560px); gap: 12px; }
+      .webinar-list.video-triangle .webinar-card:first-child { width: 100%; }
+      .webinar-materials-grid, .methodical-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .webinar-material-card { min-height: 0; }
+    }
+    @media (max-width: 560px) {
+      .webinar-list.video-triangle { width: min(100%, 420px); }
+      .webinar-list.video-triangle .webinar-card { padding: 7px; }
+      .webinar-materials { margin-top: 14px; padding: 13px; }
+      .webinar-materials-grid, .methodical-grid { grid-template-columns: 1fr; }
+      .method-subsection { padding: 13px; }
+      .methodical-preview { height: 210px; }
+      .methodical-caption h5 { font-size: 13px; }
+    }
+
+
+    /* 2026-06-19 fix webinar backing height and remove method file labels */
+    .webinar-list.video-triangle .webinar-card,
+    .webinar-video-card {
+      min-height: 0 !important;
+      height: auto !important;
+      padding: 6px;
+      line-height: 0;
+      border-radius: 20px;
+    }
+    .webinar-list.video-triangle .webinar-card .rutube-preview {
+      display: block;
+      margin: 0;
+    }
+    .methodical-caption span { display: none !important; }
+
+  </style>
+</head>
+<body>
+  <header class="official-header">
+    <div class="official-brand" aria-label="Проект и организации">
+      <div class="header-logos" aria-label="Организации проекта">
+            <a class="hero-logo mednet-logo" href="https://mednet.ru/" target="_blank" rel="noopener"><img src="data:image/png;base64,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" alt="ФГБУ ЦНИИОИЗ"></a>
+            <a class="hero-logo" href="https://gnicpm.ru/" target="_blank" rel="noopener"><img src="data:image/png;base64,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" alt="ФГБУ НМИЦ ТПМ"></a>
+      </div>
+      <div class="brand project-brand" aria-label="Название проекта">
+        <span class="brand-title" id="hero-title">Повышение доступности первичной медико-санитарной помощи</span>
+      </div>
+    </div>
+    <nav class="top-nav header-actions" aria-label="Навигация по материалам">
+      <a class="primary" href="index.html">Главная страница</a>
+      <a class="secondary" href="#webinars">Вебинары</a>
+      <a class="secondary" href="#practices">Лучшие практики</a>
+      <a class="secondary" href="#regulations">Методическая база</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="intro" aria-labelledby="repo-title">
+      <div class="intro-card">
+        <h1 id="repo-title">Единый репозиторий материалов проекта</h1>
+      </div>
+    </section>
+
+    <section id="webinars" class="section webinars-section" aria-labelledby="webinars-title">
+      <div class="section-heading">
+        <span class="kicker webinars-kicker"><span class="status-dot" aria-hidden="true"></span>Вебинары проекта</span>
+      </div>
+      <div class="webinar-list video-triangle" aria-label="Видеозаписи вебинаров">
+        <article class="webinar-card webinar-video-card">
+          <button class="video-preview rutube-preview" type="button" data-rutube-embed="https://rutube.ru/play/embed/87308df7aabc6977189db733007f871d?p=-t4dJRYGLwSqbSr_HI0xxg" aria-label="Запустить видеозапись вебинара: Повышение доступности медицинской помощи в первичном звене здравоохранения">
+            <img src="https://pic.rtbcdn.ru/video/32/db/32dbbfe9c12048c1c8b346e12d1e7d6a.jpg" alt="Превью вебинара: Повышение доступности медицинской помощи в первичном звене здравоохранения" loading="lazy">
+            <span class="play-icon" aria-hidden="true"></span>
+          </button>
+        </article>
+
+        <article class="webinar-card webinar-video-card">
+          <button class="video-preview rutube-preview" type="button" data-rutube-embed="https://rutube.ru/play/embed/ff87d64707a2b1aff4607968f359cbd0" aria-label="Запустить видеозапись вебинара: Эффективная организация записи на прием к врачу">
+            <img src="https://pic.rtbcdn.ru/video/5f/55/5f5548f4e91a417040af140d967c7501.png" alt="Превью вебинара: Эффективная организация записи на прием к врачу" loading="lazy">
+            <span class="play-icon" aria-hidden="true"></span>
+          </button>
+        </article>
+
+        <article class="webinar-card webinar-video-card">
+          <button class="video-preview rutube-preview" type="button" data-rutube-embed="https://rutube.ru/play/embed/5092a12de46abd71b1fb5598938f7d02?p=CZVh57owCsRq0s_abSaK-w" aria-label="Запустить видеозапись вебинара: Повышение доступности ПМСП: стандартизация практик внедрения методических рекомендаций">
+            <img src="https://pic.rtbcdn.ru/video/2025-12-02/0d/78/0d7803c20513b1a5a83af0c515dcb50b.jpg" alt="Превью вебинара: Повышение доступности ПМСП: стандартизация практик внедрения методических рекомендаций" loading="lazy">
+            <span class="play-icon" aria-hidden="true"></span>
+          </button>
+        </article>
+      </div>
+
+      <div class="webinar-materials" aria-label="Материалы вебинаров для скачивания">
+        <h3>Материалы вебинаров</h3>
+        <div class="webinar-materials-grid">
+          <article class="webinar-material-card">
+            <h4>Повышение доступности медицинской помощи в первичном звене здравоохранения</h4>
+            <p>2022 год</p>
+            <a class="button download material-download" href="downloads/archive-2022.zip" download>Скачать материалы</a>
+          </article>
+          <article class="webinar-material-card">
+            <h4>Формирование расписания приема врачей в медицинских организациях: методология и опыт внедрения изменений</h4>
+            <p>2023 год</p>
+            <a class="button download material-download" href="downloads/archive-2023.zip" download>Скачать материалы</a>
+          </article>
+          <article class="webinar-material-card">
+            <h4>Эффективная организация записи на прием к врачу</h4>
+            <p>2024 год</p>
+            <a class="button download material-download" href="downloads/archive-2024.zip" download>Скачать материалы</a>
+          </article>
+          <article class="webinar-material-card">
+            <h4>Повышение доступности ПМСП: стандартизация практик внедрения методических рекомендаций</h4>
+            <p>2025 год</p>
+            <a class="button download material-download" href="downloads/archive-2025.zip" download>Скачать материалы</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="practices" class="section practices-section" aria-labelledby="practices-title">
+      <div class="section-heading">
+        <span id="practices-title" class="kicker section-kicker"><span class="status-dot" aria-hidden="true"></span>Лучшие региональные практики</span>
+      </div>
+
+      <div class="practice-catalog" aria-label="Каталог лучших региональных практик">
+        <section class="practice-year" aria-labelledby="practice-2023-title">
+          <div class="practice-year-heading">
+            <h3 id="practice-2023-title">Материалы 2023</h3>
+            
+          </div>
+          <div class="practice-slider" data-slider>
+            <button class="slider-arrow slider-prev" type="button" aria-label="Предыдущий материал">‹</button>
+            <div class="practice-track" tabindex="0">
+              <article class="practice-slide">
+                <a class="practice-preview" href="practices/2023/docs/01-ifs-zarplata.pdf" target="_blank" rel="noopener" aria-label="Открыть материал: ИФС Зарплата">
+                  <img src="practices/2023/previews/01-ifs-zarplata.jpg" alt="Превью материала: ИФС Зарплата" loading="lazy">
+                </a>
+                <div class="practice-slide-body">
+                  <h4 class="practice-title" title="ИФС Зарплата">ИФС: зарплата</h4>
+                  <a class="practice-download" href="practices/2023/docs/01-ifs-zarplata.pdf" download>Скачать материал</a>
+                </div>
+              </article>
+              <article class="practice-slide">
+                <a class="practice-preview" href="practices/2023/docs/02-luchshaya-praktika-hr-sluzhby-ministerstva-zdravoohraneniya-tulskoi.pdf" target="_blank" rel="noopener" aria-label="Открыть материал: Лучшая практика HR службы министерства здравоохранения Тульской">
+                  <img src="practices/2023/previews/02-luchshaya-praktika-hr-sluzhby-ministerstva-zdravoohraneniya-tulskoi.jpg" alt="Превью материала: Лучшая практика HR службы министерства здравоохранения Тульской" loading="lazy">
+                </a>
+                <div class="practice-slide-body">
+                  <h4 class="practice-title" title="Лучшая практика HR службы министерства здравоохранения Тульской">HR-служба Минздрава Тульской области</h4>
+                  <a class="practice-download" href="practices/2023/docs/02-luchshaya-praktika-hr-sluzhby-ministerstva-zdravoohraneniya-tulskoi.pdf" download>Скачать материал</a>
+                </div>
+              </article>
+              <article class="practice-slide">
+                <a class="practice-preview" href="practices/2023/docs/03-luchshaya-praktika-volgogradskaya-oblast-po-organizacii-otdeleniya-neo.pdf" target="_blank" rel="noopener" aria-label="Открыть материал: Лучшая практика Волгоградская область по организации отделения неотложной">
+                  <img src="practices/2023/previews/03-luchshaya-praktika-volgogradskaya-oblast-po-organizacii-otdeleniya-neo.jpg" alt="Превью материала: Лучшая практика Волгоградская область по организации отделения неотложной" loading="lazy">
+                </a>
+                <div class="practice-slide-body">
+                  <h4 class="practice-title" title="Лучшая практика Волгоградская область по организации отделения неотложной">Организация отделения неотложной помощи</h4>
+                  <a class="practice-download" href="practices/2023/docs/03-luchshaya-praktika-volgogradskaya-oblast-po-organizacii-otdeleniya-neo.pdf" download>Скачать материал</a>
+                </div>
+              </article>
+              <article class="practice-slide">
+                <a class="practice-preview" href="practices/2023/docs/04-luchshaya-praktika-ivanovskaya-oblast-kontaktno-informacionnyi-centr.pdf" target="_blank" rel="noopener" aria-label="Открыть материал: Лучшая практика Ивановская область Контактно информационный центр">
+                  <img src="practices/2023/previews/04-luchshaya-praktika-ivanovskaya-oblast-kontaktno-informacionnyi-centr.jpg" alt="Превью материала: Лучшая практика Ивановская область Контактно информационный центр" loading="lazy">
+                </a>
+                <div class="practice-slide-body">
+                  <h4 class="practice-title" title="Лучшая практика Ивановская область Контактно информационный центр">Контактно-информационный центр</h4>
+                  <a class="practice-download" href="practices/2023/docs/04-luchshaya-praktika-ivanovskaya-oblast-kontaktno-informacionnyi-centr.pdf" download>Скачать материал</a>
+                </div>
+              </article>
+              <article class="practice-slide">
+                <a class="practice-preview" href="practices/2023/docs/05-luchshaya-praktika-ivanovskaya-oblast-org-raboty-dep-zdravoohraneniya.pdf" target="_blank" rel="noopener" aria-label="Открыть материал: Лучшая практика Ивановская область орг работы Деп здравоохранения">
+                  <img src="practices/2023/previews/05-luchshaya-praktika-ivanovskaya-oblast-org-raboty-dep-zdravoohraneniya.jpg" alt="Превью материала: Лучшая практика Ивановская область орг работы Деп здравоохранения" loading="lazy">
+                </a>
+                <div class="practice-slide-body">
+                  <h4 class="practice-title" title="Лучшая практика Ивановская область орг работы Деп здравоохранения">Организация работы департамента здравоохранения</h4>
+                  <a class="practice-download" href="practices/2023/docs/05-luchshaya-praktika-ivanovskaya-oblast-org-raboty-dep-zdravoohraneniya.pdf" download>Скачать материал</a>
+                </div>
+              </article>
+              <article class="practice-slide">
+                <a class="practice-preview" href="practices/2023/docs/06-luchshaya-praktika-idealnaya-poliklinika-moskovskaya-oblast.pdf" target="_blank" rel="noopener" aria-label="Открыть материал: Лучшая практика Идеальная поликлиника Московская область">
+                  <img src="practices/2023/previews/06-luchshaya-praktika-idealnaya-poliklinika-moskovskaya-oblast.jpg" alt="Превью материала: Лучшая практика Идеальная поликлиника Московская область" loading="lazy">
+                </a>
+                <div class="practice-slide-body">
+                  <h4 class="practice-title" title="Лучшая практика Идеальная поликлиника Московская область">Идеальная поликлиника</h4>
+                  <a class="practice-download" href="practices/2023/docs/06-luchshaya-praktika-idealnaya-poliklinika-moskovskaya-oblast.pdf" download>Скачать материал</a>
+                </div>
+              </article>
+              <article class="practice-slide">
+                <a class="practice-preview" href="practices/2023/docs/07-luchshaya-praktika-lengradskaya-oblast-realizaciya-3-h-faktornoi-prove.pdf" target="_blank" rel="noopener" aria-label="Открыть материал: Лучшая практика Ленградская область Реализация 3 х факторной проверки">
+                  <img src="practices/2023/previews/07-luchshaya-praktika-lengradskaya-oblast-realizaciya-3-h-faktornoi-prove.jpg" alt="Превью материала: Лучшая практика Ленградская область Реализация 3 х факторной проверки" loading="lazy">
+                </a>
+                <div class="practice-slide-body">
+                  <h4 class="practice-title" title="Лучшая практика Ленградская область Реализация 3 х факторной проверки">Трехфакторная проверка доступности записи</h4>
+                  <a class="practice-download" href="practices/2023/docs/07-luchshaya-praktika-lengradskaya-oblast-realizaciya-3-h-faktornoi-prove.pdf" download>Скачать материал</a>
+                </div>
+              </article>
+              <article class="practice-slide">
+                <a class="practice-preview" href="practices/2023/docs/08-luchshaya-praktika-obuz-shui-skaya-crb-ivanovskaya-oblast.pdf" target="_blank" rel="noopener" aria-label="Открыть материал: Лучшая практика ОБУЗ Шуйская ЦРБ Ивановская область">
+                  <img src="practices/2023/previews/08-luchshaya-praktika-obuz-shui-skaya-crb-ivanovskaya-oblast.jpg" alt="Превью материала: Лучшая практика ОБУЗ Шуйская ЦРБ Ивановская область" loading="lazy">
+                </a>
+                <div class="practice-slide-body">
+                  <h4 class="practice-title" title="Лучшая практика ОБУЗ Шуйская ЦРБ Ивановская область">Опыт Шуйской ЦРБ</h4>
+                  <a class="practice-download" href="practices/2023/docs/08-luchshaya-praktika-obuz-shui-skaya-crb-ivanovskaya-oblast.pdf" download>Скачать материал</a>
+                </div>
+              </article>
+              <article class="practice-slide">
+                <a class="practice-preview" href="practices/2023/docs/09-luchshaya-praktika-samarskoi-oblasti-mehanizmy-povysheniya-dostupnosti.pdf" target="_blank" rel="noopener" aria-label="Открыть материал: Лучшая практика Самарской области Механизмы повышения доступности">
+                  <img src="practices/2023/previews/09-luchshaya-praktika-samarskoi-oblasti-mehanizmy-povysheniya-dostupnosti.jpg" alt="Превью материала: Лучшая практика Самарской области Механизмы повышения доступности" loading="lazy">
+                </a>
+                <div class="practice-slide-body">
+                  <h4 class="practice-title" title="Лучшая практика Самарской области Механизмы повышения доступности">Механизмы повышения доступности</h4>
+                  <a class="practice-download" href="practices/2023/docs/09-luchshaya-praktika-samarskoi-oblasti-mehanizmy-povysheniya-dostupnosti.pdf" download>Скачать материал</a>
+                </div>
+              </article>
+              <article class="practice-slide">
+                <a class="practice-preview" href="practices/2023/docs/10-luchshaya-praktika-tulskaya-oblast-kc.pdf" target="_blank" rel="noopener" aria-label="Открыть материал: Лучшая практика Тульская область КЦ">
+                  <img src="practices/2023/previews/10-luchshaya-praktika-tulskaya-oblast-kc.jpg" alt="Превью материала: Лучшая практика Тульская область КЦ" loading="lazy">
+                </a>
+                <div class="practice-slide-body">
+                  <h4 class="practice-title" title="Лучшая практика Тульская область КЦ">Контакт-центр Тульской области</h4>
+                  <a class="practice-download" href="practices/2023/docs/10-luchshaya-praktika-tulskaya-oblast-kc.pdf" download>Скачать материал</a>
+                </div>
+              </article>
+              <article class="practice-slide">
+                <a class="practice-preview" href="practices/2023/docs/11-opyt-moskovskoi-oblasti-po-rabote-s-emd-spravki-onlai-n.pdf" target="_blank" rel="noopener" aria-label="Открыть материал: Опыт Московской области по работе с ЭМД справки онлайн">
+                  <img src="practices/2023/previews/11-opyt-moskovskoi-oblasti-po-rabote-s-emd-spravki-onlai-n.jpg" alt="Превью материала: Опыт Московской области по работе с ЭМД справки онлайн" loading="lazy">
+                </a>
+                <div class="practice-slide-body">
+                  <h4 class="practice-title" title="Опыт Московской области по работе с ЭМД справки онлайн">ЭМД и онлайн-справки</h4>
+                  <a class="practice-download" href="practices/2023/docs/11-opyt-moskovskoi-oblasti-po-rabote-s-emd-spravki-onlai-n.pdf" download>Скачать материал</a>
+                </div>
+              </article>
+              <article class="practice-slide">
+                <a class="practice-preview" href="practices/2023/docs/12-opyt-murmanskoi-oblasti-v-razdelenii-potokov-i-pereraspredelenii.pdf" target="_blank" rel="noopener" aria-label="Открыть материал: Опыт Мурманской области в разделении потоков и перераспределении">
+                  <img src="practices/2023/previews/12-opyt-murmanskoi-oblasti-v-razdelenii-potokov-i-pereraspredelenii.jpg" alt="Превью материала: Опыт Мурманской области в разделении потоков и перераспределении" loading="lazy">
+                </a>
+                <div class="practice-slide-body">
+                  <h4 class="practice-title" title="Опыт Мурманской области в разделении потоков и перераспределении">Разделение потоков и перераспределение нагрузки</h4>
+                  <a class="practice-download" href="practices/2023/docs/12-opyt-murmanskoi-oblasti-v-razdelenii-potokov-i-pereraspredelenii.pdf" download>Скачать материал</a>
+                </div>
+              </article>
+              <article class="practice-slide">
+                <a class="practice-preview" href="practices/2023/docs/13-opyt-novgorodskoi-oblasti-proekt-vezhlivaya-registratura.pdf" target="_blank" rel="noopener" aria-label="Открыть материал: Опыт Новгородской области проект Вежливая регистратура">
+                  <img src="practices/2023/previews/13-opyt-novgorodskoi-oblasti-proekt-vezhlivaya-registratura.jpg" alt="Превью материала: Опыт Новгородской области проект Вежливая регистратура" loading="lazy">
+                </a>
+                <div class="practice-slide-body">
+                  <h4 class="practice-title" title="Опыт Новгородской области проект Вежливая регистратура">Проект Вежливая регистратура</h4>
+                  <a class="practice-download" href="practices/2023/docs/13-opyt-novgorodskoi-oblasti-proekt-vezhlivaya-registratura.pdf" download>Скачать материал</a>
+                </div>
+              </article>
+              <article class="practice-slide">
+                <a class="practice-preview" href="practices/2023/docs/14-opyt-primorskogo-kraya-po-organizacii-otdeleniya-neotlozhnoi-medicinsk.pdf" target="_blank" rel="noopener" aria-label="Открыть материал: Опыт Приморского края по организации отделения неотложной медицинской">
+                  <img src="practices/2023/previews/14-opyt-primorskogo-kraya-po-organizacii-otdeleniya-neotlozhnoi-medicinsk.jpg" alt="Превью материала: Опыт Приморского края по организации отделения неотложной медицинской" loading="lazy">
+                </a>
+                <div class="practice-slide-body">
+                  <h4 class="practice-title" title="Опыт Приморского края по организации отделения неотложной медицинской">Отделение неотложной медицинской помощи</h4>
+                  <a class="practice-download" href="practices/2023/docs/14-opyt-primorskogo-kraya-po-organizacii-otdeleniya-neotlozhnoi-medicinsk.pdf" download>Скачать материал</a>
+                </div>
+              </article>
+              <article class="practice-slide">
+                <a class="practice-preview" href="practices/2023/docs/15-pereraspredelenie-funkcii-v-mo-respublika-bashkortostan.pdf" target="_blank" rel="noopener" aria-label="Открыть материал: Перераспределение функций в МО Республика Башкортостан">
+                  <img src="practices/2023/previews/15-pereraspredelenie-funkcii-v-mo-respublika-bashkortostan.jpg" alt="Превью материала: Перераспределение функций в МО Республика Башкортостан" loading="lazy">
+                </a>
+                <div class="practice-slide-body">
+                  <h4 class="practice-title" title="Перераспределение функций в МО Республика Башкортостан">Перераспределение функций в медорганизации</h4>
+                  <a class="practice-download" href="practices/2023/docs/15-pereraspredelenie-funkcii-v-mo-respublika-bashkortostan.pdf" download>Скачать материал</a>
+                </div>
+              </article>
+            </div>
+            <button class="slider-arrow slider-next" type="button" aria-label="Следующий материал">›</button>
+          </div>
+        </section>
+
+        <section class="practice-year" aria-labelledby="practice-2024-title">
+          <div class="practice-year-heading">
+            <h3 id="practice-2024-title">Материалы 2024–2025</h3>
+            
+          </div>
+          <div class="practice-slider" data-slider>
+            <button class="slider-arrow slider-prev" type="button" aria-label="Предыдущий материал">‹</button>
+            <div class="practice-track" tabindex="0">
+              <article class="practice-slide">
+                <a class="practice-preview" href="practices/2024-2025/docs/01-belozerova-e-a-edinyi-brendbuk-respublika-bashkortostan.pdf" target="_blank" rel="noopener" aria-label="Открыть материал: Белозерова Е А Единый брендбук Республика Башкортостан">
+                  <img src="practices/2024-2025/previews/01-belozerova-e-a-edinyi-brendbuk-respublika-bashkortostan.jpg" alt="Превью материала: Белозерова Е А Единый брендбук Республика Башкортостан" loading="lazy">
+                </a>
+                <div class="practice-slide-body">
+                  <h4 class="practice-title" title="Белозерова Е А Единый брендбук Республика Башкортостан">Единый брендбук медорганизаций</h4>
+                  <a class="practice-download" href="practices/2024-2025/docs/01-belozerova-e-a-edinyi-brendbuk-respublika-bashkortostan.pdf" download>Скачать материал</a>
+                </div>
+              </article>
+              <article class="practice-slide">
+                <a class="practice-preview" href="practices/2024-2025/docs/02-vezhlivaya-registratura-novgorodskaya-oblast.pdf" target="_blank" rel="noopener" aria-label="Открыть материал: Вежливая регистратура Новгородская область">
+                  <img src="practices/2024-2025/previews/02-vezhlivaya-registratura-novgorodskaya-oblast.jpg" alt="Превью материала: Вежливая регистратура Новгородская область" loading="lazy">
+                </a>
+                <div class="practice-slide-body">
+                  <h4 class="practice-title" title="Вежливая регистратура Новгородская область">Вежливая регистратура</h4>
+                  <a class="practice-download" href="practices/2024-2025/docs/02-vezhlivaya-registratura-novgorodskaya-oblast.pdf" download>Скачать материал</a>
+                </div>
+              </article>
+              <article class="practice-slide">
+                <a class="practice-preview" href="practices/2024-2025/docs/03-gauz-to-gp-17-sozdanie-ambulatornogo-centra-profilaktiki-ssk-i.pdf" target="_blank" rel="noopener" aria-label="Открыть материал: ГАУЗ ТО ГП №17 создание амбулаторного центра профилактики ССК и">
+                  <img src="practices/2024-2025/previews/03-gauz-to-gp-17-sozdanie-ambulatornogo-centra-profilaktiki-ssk-i.jpg" alt="Превью материала: ГАУЗ ТО ГП №17 создание амбулаторного центра профилактики ССК и" loading="lazy">
+                </a>
+                <div class="practice-slide-body">
+                  <h4 class="practice-title" title="ГАУЗ ТО ГП №17 создание амбулаторного центра профилактики ССК и">Амбулаторный центр профилактики ССК</h4>
+                  <a class="practice-download" href="practices/2024-2025/docs/03-gauz-to-gp-17-sozdanie-ambulatornogo-centra-profilaktiki-ssk-i.pdf" download>Скачать материал</a>
+                </div>
+              </article>
+              <article class="practice-slide">
+                <a class="practice-preview" href="practices/2024-2025/docs/04-gdkp-5-dn-endokrinologiya.pdf" target="_blank" rel="noopener" aria-label="Открыть материал: ГДКП № 5 ДН эндокринология">
+                  <img src="practices/2024-2025/previews/04-gdkp-5-dn-endokrinologiya.jpg" alt="Превью материала: ГДКП № 5 ДН эндокринология" loading="lazy">
+                </a>
+                <div class="practice-slide-body">
+                  <h4 class="practice-title" title="ГДКП № 5 ДН эндокринология">Диспансерное наблюдение: эндокринология</h4>
+                  <a class="practice-download" href="practices/2024-2025/docs/04-gdkp-5-dn-endokrinologiya.pdf" download>Скачать материал</a>
+                </div>
+              </article>
+              <article class="practice-slide">
+                <a class="practice-preview" href="practices/2024-2025/docs/05-gp-svetlana-moskovskaya-oblast.pdf" target="_blank" rel="noopener" aria-label="Открыть материал: ГП Светлана (Московская область)">
+                  <img src="practices/2024-2025/previews/05-gp-svetlana-moskovskaya-oblast.jpg" alt="Превью материала: ГП Светлана (Московская область)" loading="lazy">
+                </a>
+                <div class="practice-slide-body">
+                  <h4 class="practice-title" title="ГП Светлана (Московская область)">Опыт поликлиники Светлана</h4>
+                  <a class="practice-download" href="practices/2024-2025/docs/05-gp-svetlana-moskovskaya-oblast.pdf" download>Скачать материал</a>
+                </div>
+              </article>
+              <article class="practice-slide">
+                <a class="practice-preview" href="practices/2024-2025/docs/06-ivanovskaya-oblast-kontaktno-informacionnyi-centr-kic-1.pdf" target="_blank" rel="noopener" aria-label="Открыть материал: Ивановская область Контактно информационный центр КИЦ (1)">
+                  <img src="practices/2024-2025/previews/06-ivanovskaya-oblast-kontaktno-informacionnyi-centr-kic-1.jpg" alt="Превью материала: Ивановская область Контактно информационный центр КИЦ (1)" loading="lazy">
+                </a>
+                <div class="practice-slide-body">
+                  <h4 class="practice-title" title="Ивановская область Контактно информационный центр КИЦ (1)">Контактно-информационный центр КИЦ</h4>
+                  <a class="practice-download" href="practices/2024-2025/docs/06-ivanovskaya-oblast-kontaktno-informacionnyi-centr-kic-1.pdf" download>Скачать материал</a>
+                </div>
+              </article>
+              <article class="practice-slide">
+                <a class="practice-preview" href="practices/2024-2025/docs/07-ivanovskaya-oblast-kontaktno-informacionnyi-centr-kic.pdf" target="_blank" rel="noopener" aria-label="Открыть материал: Ивановская область Контактно информационный центр КИЦ">
+                  <img src="practices/2024-2025/previews/07-ivanovskaya-oblast-kontaktno-informacionnyi-centr-kic.jpg" alt="Превью материала: Ивановская область Контактно информационный центр КИЦ" loading="lazy">
+                </a>
+                <div class="practice-slide-body">
+                  <h4 class="practice-title" title="Ивановская область Контактно информационный центр КИЦ">Контактно-информационный центр КИЦ</h4>
+                  <a class="practice-download" href="practices/2024-2025/docs/07-ivanovskaya-oblast-kontaktno-informacionnyi-centr-kic.pdf" download>Скачать материал</a>
+                </div>
+              </article>
+              <article class="practice-slide">
+                <a class="practice-preview" href="practices/2024-2025/docs/08-kemerovskaya-oblast-gbuz-kkkd-kontakt-centr-medicinskoi-organizacii.pdf" target="_blank" rel="noopener" aria-label="Открыть материал: Кемеровская область ГБУЗ КККД контакт центр медицинской организации">
+                  <img src="practices/2024-2025/previews/08-kemerovskaya-oblast-gbuz-kkkd-kontakt-centr-medicinskoi-organizacii.jpg" alt="Превью материала: Кемеровская область ГБУЗ КККД контакт центр медицинской организации" loading="lazy">
+                </a>
+                <div class="practice-slide-body">
+                  <h4 class="practice-title" title="Кемеровская область ГБУЗ КККД контакт центр медицинской организации">Контакт-центр медицинской организации</h4>
+                  <a class="practice-download" href="practices/2024-2025/docs/08-kemerovskaya-oblast-gbuz-kkkd-kontakt-centr-medicinskoi-organizacii.pdf" download>Скачать материал</a>
+                </div>
+              </article>
+              <article class="practice-slide">
+                <a class="practice-preview" href="practices/2024-2025/docs/09-luchshaya-praktika-murmanskaya-oblast.pdf" target="_blank" rel="noopener" aria-label="Открыть материал: Лучшая практика Мурманская область">
+                  <img src="practices/2024-2025/previews/09-luchshaya-praktika-murmanskaya-oblast.jpg" alt="Превью материала: Лучшая практика Мурманская область" loading="lazy">
+                </a>
+                <div class="practice-slide-body">
+                  <h4 class="practice-title" title="Лучшая практика Мурманская область">Лучшая практика Мурманской области</h4>
+                  <a class="practice-download" href="practices/2024-2025/docs/09-luchshaya-praktika-murmanskaya-oblast.pdf" download>Скачать материал</a>
+                </div>
+              </article>
+              <article class="practice-slide">
+                <a class="practice-preview" href="practices/2024-2025/docs/10-opyt-gp12-tyumenskoi-oblasti-pereraspredelenie-funkcii.pdf" target="_blank" rel="noopener" aria-label="Открыть материал: Опыт ГП12 Тюменской области перераспределение функций">
+                  <img src="practices/2024-2025/previews/10-opyt-gp12-tyumenskoi-oblasti-pereraspredelenie-funkcii.jpg" alt="Превью материала: Опыт ГП12 Тюменской области перераспределение функций" loading="lazy">
+                </a>
+                <div class="practice-slide-body">
+                  <h4 class="practice-title" title="Опыт ГП12 Тюменской области перераспределение функций">Перераспределение функций в ГП №12</h4>
+                  <a class="practice-download" href="practices/2024-2025/docs/10-opyt-gp12-tyumenskoi-oblasti-pereraspredelenie-funkcii.pdf" download>Скачать материал</a>
+                </div>
+              </article>
+              <article class="practice-slide">
+                <a class="practice-preview" href="practices/2024-2025/docs/11-opyt-spb-gbuz-gp-88-po-organizacii-deyatelnosti-kabineta-dovrachebnoi.pdf" target="_blank" rel="noopener" aria-label="Открыть материал: Опыт СПб ГБУЗ ГП №88 по организации деятельности кабинета доврачебной">
+                  <img src="practices/2024-2025/previews/11-opyt-spb-gbuz-gp-88-po-organizacii-deyatelnosti-kabineta-dovrachebnoi.jpg" alt="Превью материала: Опыт СПб ГБУЗ ГП №88 по организации деятельности кабинета доврачебной" loading="lazy">
+                </a>
+                <div class="practice-slide-body">
+                  <h4 class="practice-title" title="Опыт СПб ГБУЗ ГП №88 по организации деятельности кабинета доврачебной">Кабинет доврачебной помощи</h4>
+                  <a class="practice-download" href="practices/2024-2025/docs/11-opyt-spb-gbuz-gp-88-po-organizacii-deyatelnosti-kabineta-dovrachebnoi.pdf" download>Скачать материал</a>
+                </div>
+              </article>
+              <article class="practice-slide">
+                <a class="practice-preview" href="practices/2024-2025/docs/12-organizacionno-planirovochnye-resheniya-v-mo-okazyvayuschih-pmsp-voron.pdf" target="_blank" rel="noopener" aria-label="Открыть материал: Организационно планировочные решения в МО оказывающих ПМСП Воронежская">
+                  <img src="practices/2024-2025/previews/12-organizacionno-planirovochnye-resheniya-v-mo-okazyvayuschih-pmsp-voron.jpg" alt="Превью материала: Организационно планировочные решения в МО оказывающих ПМСП Воронежская" loading="lazy">
+                </a>
+                <div class="practice-slide-body">
+                  <h4 class="practice-title" title="Организационно планировочные решения в МО оказывающих ПМСП Воронежская">Планировочные решения для ПМСП</h4>
+                  <a class="practice-download" href="practices/2024-2025/docs/12-organizacionno-planirovochnye-resheniya-v-mo-okazyvayuschih-pmsp-voron.pdf" download>Скачать материал</a>
+                </div>
+              </article>
+              <article class="practice-slide">
+                <a class="practice-preview" href="practices/2024-2025/docs/13-organizaciya-puti-pacienta-pri-obraschenii-s-informacionnoi-celyu-orga.pdf" target="_blank" rel="noopener" aria-label="Открыть материал: Организация пути пациента при обращении с информационной целью организационные">
+                  <img src="practices/2024-2025/previews/13-organizaciya-puti-pacienta-pri-obraschenii-s-informacionnoi-celyu-orga.jpg" alt="Превью материала: Организация пути пациента при обращении с информационной целью организационные" loading="lazy">
+                </a>
+                <div class="practice-slide-body">
+                  <h4 class="practice-title" title="Организация пути пациента при обращении с информационной целью организационные">Маршрут пациента при информационном обращении</h4>
+                  <a class="practice-download" href="practices/2024-2025/docs/13-organizaciya-puti-pacienta-pri-obraschenii-s-informacionnoi-celyu-orga.pdf" download>Скачать материал</a>
+                </div>
+              </article>
+              <article class="practice-slide">
+                <a class="practice-preview" href="practices/2024-2025/docs/14-patronazh-i-socpomoschniki-lipeckaya-oblast.pdf" target="_blank" rel="noopener" aria-label="Открыть материал: Патронаж и соцпомощники Липецкая область">
+                  <img src="practices/2024-2025/previews/14-patronazh-i-socpomoschniki-lipeckaya-oblast.jpg" alt="Превью материала: Патронаж и соцпомощники Липецкая область" loading="lazy">
+                </a>
+                <div class="practice-slide-body">
+                  <h4 class="practice-title" title="Патронаж и соцпомощники Липецкая область">Патронаж и социальные помощники</h4>
+                  <a class="practice-download" href="practices/2024-2025/docs/14-patronazh-i-socpomoschniki-lipeckaya-oblast.pdf" download>Скачать материал</a>
+                </div>
+              </article>
+              <article class="practice-slide">
+                <a class="practice-preview" href="practices/2024-2025/docs/15-rol-organizacii-prostranstva-v-processe-prohozhdeniya-dispanserizacii.pdf" target="_blank" rel="noopener" aria-label="Открыть материал: Роль организации пространства в процессе прохождения диспансеризации">
+                  <img src="practices/2024-2025/previews/15-rol-organizacii-prostranstva-v-processe-prohozhdeniya-dispanserizacii.jpg" alt="Превью материала: Роль организации пространства в процессе прохождения диспансеризации" loading="lazy">
+                </a>
+                <div class="practice-slide-body">
+                  <h4 class="practice-title" title="Роль организации пространства в процессе прохождения диспансеризации">Организация пространства при диспансеризации</h4>
+                  <a class="practice-download" href="practices/2024-2025/docs/15-rol-organizacii-prostranstva-v-processe-prohozhdeniya-dispanserizacii.pdf" download>Скачать материал</a>
+                </div>
+              </article>
+              <article class="practice-slide">
+                <a class="practice-preview" href="practices/2024-2025/docs/16-spb-gbuz-gp-27-organizaciya-zapisi-na-priem-k-vracham.pdf" target="_blank" rel="noopener" aria-label="Открыть материал: СПБ ГБУЗ ГП №27 Организация записи на прием к врачам">
+                  <img src="practices/2024-2025/previews/16-spb-gbuz-gp-27-organizaciya-zapisi-na-priem-k-vracham.jpg" alt="Превью материала: СПБ ГБУЗ ГП №27 Организация записи на прием к врачам" loading="lazy">
+                </a>
+                <div class="practice-slide-body">
+                  <h4 class="practice-title" title="СПБ ГБУЗ ГП №27 Организация записи на прием к врачам">Организация записи на прием к врачам</h4>
+                  <a class="practice-download" href="practices/2024-2025/docs/16-spb-gbuz-gp-27-organizaciya-zapisi-na-priem-k-vracham.pdf" download>Скачать материал</a>
+                </div>
+              </article>
+              <article class="practice-slide">
+                <a class="practice-preview" href="practices/2024-2025/docs/17-standart-hmao-yugry-po-rabote-s-otzyvami-naseleniya-na-agregatorah.pdf" target="_blank" rel="noopener" aria-label="Открыть материал: Стандарт ХМАО Югры по работе с отзывами населения на агрегаторах">
+                  <img src="practices/2024-2025/previews/17-standart-hmao-yugry-po-rabote-s-otzyvami-naseleniya-na-agregatorah.jpg" alt="Превью материала: Стандарт ХМАО Югры по работе с отзывами населения на агрегаторах" loading="lazy">
+                </a>
+                <div class="practice-slide-body">
+                  <h4 class="practice-title" title="Стандарт ХМАО Югры по работе с отзывами населения на агрегаторах">Стандарт работы с отзывами населения</h4>
+                  <a class="practice-download" href="practices/2024-2025/docs/17-standart-hmao-yugry-po-rabote-s-otzyvami-naseleniya-na-agregatorah.pdf" download>Скачать материал</a>
+                </div>
+              </article>
+              <article class="practice-slide">
+                <a class="practice-preview" href="practices/2024-2025/docs/18-cur-sluzhba-zaboty-respublika-bashkortostan.pdf" target="_blank" rel="noopener" aria-label="Открыть материал: ЦУР Служба заботы Республика Башкортостан">
+                  <img src="practices/2024-2025/previews/18-cur-sluzhba-zaboty-respublika-bashkortostan.jpg" alt="Превью материала: ЦУР Служба заботы Республика Башкортостан" loading="lazy">
+                </a>
+                <div class="practice-slide-body">
+                  <h4 class="practice-title" title="ЦУР Служба заботы Республика Башкортостан">ЦУР: служба заботы</h4>
+                  <a class="practice-download" href="practices/2024-2025/docs/18-cur-sluzhba-zaboty-respublika-bashkortostan.pdf" download>Скачать материал</a>
+                </div>
+              </article>
+            </div>
+            <button class="slider-arrow slider-next" type="button" aria-label="Следующий материал">›</button>
+          </div>
+        </section>
+
+        <section class="practice-year" aria-labelledby="practice-2026-title">
+          <div class="practice-year-heading">
+            <h3 id="practice-2026-title">Материалы 2026</h3>
+            
+          </div>
+          <div class="practice-slider" data-slider>
+            <button class="slider-arrow slider-prev" type="button" aria-label="Предыдущий материал">‹</button>
+            <div class="practice-track" tabindex="0">
+              <article class="practice-slide">
+                <a class="practice-preview" href="practices/2026/docs/01-doklad-kazin-e-a-13-02-2026.pdf" target="_blank" rel="noopener" aria-label="Открыть материал: Доклад Казин Е А 13.02.2026">
+                  <img src="practices/2026/previews/01-doklad-kazin-e-a-13-02-2026.jpg" alt="Превью материала: Доклад Казин Е А 13.02.2026" loading="lazy">
+                </a>
+                <div class="practice-slide-body">
+                  <h4 class="practice-title" title="Доклад Казин Е А 13.02.2026">Доклад о развитии доступности ПМСП</h4>
+                  <a class="practice-download" href="practices/2026/docs/01-doklad-kazin-e-a-13-02-2026.pdf" download>Скачать материал</a>
+                </div>
+              </article>
+              <article class="practice-slide">
+                <a class="practice-preview" href="practices/2026/docs/02-platforma-proaktivnogo-upravleniya-pmsp-gp8-tyumenskaya-oblast.pdf" target="_blank" rel="noopener" aria-label="Открыть материал: Платформа проактивного управления ПМСП ГП8 Тюменская область">
+                  <img src="practices/2026/previews/02-platforma-proaktivnogo-upravleniya-pmsp-gp8-tyumenskaya-oblast.jpg" alt="Превью материала: Платформа проактивного управления ПМСП ГП8 Тюменская область" loading="lazy">
+                </a>
+                <div class="practice-slide-body">
+                  <h4 class="practice-title" title="Платформа проактивного управления ПМСП ГП8 Тюменская область">Платформа проактивного управления ПМСП</h4>
+                  <a class="practice-download" href="practices/2026/docs/02-platforma-proaktivnogo-upravleniya-pmsp-gp8-tyumenskaya-oblast.pdf" download>Скачать материал</a>
+                </div>
+              </article>
+              <article class="practice-slide">
+                <a class="practice-preview" href="practices/2026/docs/03-prezentaciya-mah-yugra-po-tmk.pdf" target="_blank" rel="noopener" aria-label="Открыть материал: Презентация МАХ Югра по ТМК">
+                  <img src="practices/2026/previews/03-prezentaciya-mah-yugra-po-tmk.jpg" alt="Превью материала: Презентация МАХ Югра по ТМК" loading="lazy">
+                </a>
+                <div class="practice-slide-body">
+                  <h4 class="practice-title" title="Презентация МАХ Югра по ТМК">МАХ Югра: телемедицинские консультации</h4>
+                  <a class="practice-download" href="practices/2026/docs/03-prezentaciya-mah-yugra-po-tmk.pdf" download>Скачать материал</a>
+                </div>
+              </article>
+              <article class="practice-slide">
+                <a class="practice-preview" href="practices/2026/docs/04-proekt-kchmmc.pdf" target="_blank" rel="noopener" aria-label="Открыть материал: Проект КЧММЦ">
+                  <img src="practices/2026/previews/04-proekt-kchmmc.jpg" alt="Превью материала: Проект КЧММЦ" loading="lazy">
+                </a>
+                <div class="practice-slide-body">
+                  <h4 class="practice-title" title="Проект КЧММЦ">Проект КЧММЦ</h4>
+                  <a class="practice-download" href="practices/2026/docs/04-proekt-kchmmc.pdf" download>Скачать материал</a>
+                </div>
+              </article>
+              <article class="practice-slide">
+                <a class="practice-preview" href="practices/2026/docs/05-rtmc.pdf" target="_blank" rel="noopener" aria-label="Открыть материал: РТМЦ">
+                  <img src="practices/2026/previews/05-rtmc.jpg" alt="Превью материала: РТМЦ" loading="lazy">
+                </a>
+                <div class="practice-slide-body">
+                  <h4 class="practice-title" title="РТМЦ">РТМЦ</h4>
+                  <a class="practice-download" href="practices/2026/docs/05-rtmc.pdf" download>Скачать материал</a>
+                </div>
+              </article>
+            </div>
+            <button class="slider-arrow slider-next" type="button" aria-label="Следующий материал">›</button>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section id="regulations" class="section regulations-section" aria-labelledby="regulations-title">
+      <div class="regulations-card methodical-base-card">
+        <span id="regulations-title" class="kicker section-kicker"><span class="status-dot" aria-hidden="true"></span>Методическая база</span>
+        <h3 class="method-title">Методические материалы</h3>
+        <div class="methodical-catalog" aria-label="Методические материалы">
+          <section class="method-subsection" aria-labelledby="method-subsection-1">
+            <h4 id="method-subsection-1" class="method-subtitle">Общие методические рекомендации</h4>
+            <div class="methodical-grid">
+
+              <article class="methodical-card">
+                <a class="methodical-preview" href="methodical/docs/obschie-metodicheskie-rekomendacii-01-mr-vneshniy-vid-sotrudnikov-medicinskoy-organizacii-medicinskaya-odezhda.pdf" target="_blank" rel="noopener" aria-label="Открыть документ: МР Внешний вид сотрудников медицинской организации — медицинская одежда">
+                  <img src="methodical/previews/obschie-metodicheskie-rekomendacii-01-mr-vneshniy-vid-sotrudnikov-medicinskoy-organizacii-medicinskaya-odezhda.jpg" alt="Превью документа: МР Внешний вид сотрудников медицинской организации — медицинская одежда" loading="lazy">
+                </a>
+                <div class="methodical-caption">
+                  <h5 title="МР Внешний вид сотрудников медицинской организации — медицинская одежда">МР Внешний вид сотрудников медицинской организации — медицинская одежда</h5>
+                  <a href="methodical/docs/obschie-metodicheskie-rekomendacii-01-mr-vneshniy-vid-sotrudnikov-medicinskoy-organizacii-medicinskaya-odezhda.pdf" download>Скачать документ</a>
+                </div>
+              </article>
+
+              <article class="methodical-card">
+                <a class="methodical-preview" href="methodical/docs/obschie-metodicheskie-rekomendacii-02-mr-dlya-rukovoditeley-medicinskih-organizaciy-pervichnogo-zvena-zdravoohraneniya.pdf" target="_blank" rel="noopener" aria-label="Открыть документ: МР Для руководителей медицинских организаций первичного звена здравоохранения">
+                  <img src="methodical/previews/obschie-metodicheskie-rekomendacii-02-mr-dlya-rukovoditeley-medicinskih-organizaciy-pervichnogo-zvena-zdravoohraneniya.jpg" alt="Превью документа: МР Для руководителей медицинских организаций первичного звена здравоохранения" loading="lazy">
+                </a>
+                <div class="methodical-caption">
+                  <h5 title="МР Для руководителей медицинских организаций первичного звена здравоохранения">МР Для руководителей медицинских организаций первичного звена здравоохранения</h5>
+                  <a href="methodical/docs/obschie-metodicheskie-rekomendacii-02-mr-dlya-rukovoditeley-medicinskih-organizaciy-pervichnogo-zvena-zdravoohraneniya.pdf" download>Скачать документ</a>
+                </div>
+              </article>
+
+              <article class="methodical-card">
+                <a class="methodical-preview" href="methodical/docs/obschie-metodicheskie-rekomendacii-03-mr-osnovnye-processy-pervichnoy-mediko-sanitarnoy-pomoschi.pdf" target="_blank" rel="noopener" aria-label="Открыть документ: МР Основные процессы первичной медико-санитарной помощи">
+                  <img src="methodical/previews/obschie-metodicheskie-rekomendacii-03-mr-osnovnye-processy-pervichnoy-mediko-sanitarnoy-pomoschi.jpg" alt="Превью документа: МР Основные процессы первичной медико-санитарной помощи" loading="lazy">
+                </a>
+                <div class="methodical-caption">
+                  <h5 title="МР Основные процессы первичной медико-санитарной помощи">МР Основные процессы первичной медико-санитарной помощи</h5>
+                  <a href="methodical/docs/obschie-metodicheskie-rekomendacii-03-mr-osnovnye-processy-pervichnoy-mediko-sanitarnoy-pomoschi.pdf" download>Скачать документ</a>
+                </div>
+              </article>
+
+              <article class="methodical-card">
+                <a class="methodical-preview" href="methodical/docs/obschie-metodicheskie-rekomendacii-04-model-zrelosti-pacientocentrichnoy-zapisi-k-vrachu.pdf" target="_blank" rel="noopener" aria-label="Открыть документ: Модель зрелости пациентоцентричной записи к врачу">
+                  <img src="methodical/previews/obschie-metodicheskie-rekomendacii-04-model-zrelosti-pacientocentrichnoy-zapisi-k-vrachu.jpg" alt="Превью документа: Модель зрелости пациентоцентричной записи к врачу" loading="lazy">
+                </a>
+                <div class="methodical-caption">
+                  <h5 title="Модель зрелости пациентоцентричной записи к врачу">Модель зрелости пациентоцентричной записи к врачу</h5>
+                  <a href="methodical/docs/obschie-metodicheskie-rekomendacii-04-model-zrelosti-pacientocentrichnoy-zapisi-k-vrachu.pdf" download>Скачать документ</a>
+                </div>
+              </article>
+
+            </div>
+          </section>
+          <section class="method-subsection" aria-labelledby="method-subsection-2">
+            <h4 id="method-subsection-2" class="method-subtitle">Рекомендации ФГБУ «ЦНИИОИЗ» Минздрава России</h4>
+            <div class="methodical-grid">
+
+              <article class="methodical-card">
+                <a class="methodical-preview" href="methodical/docs/rekomendacii-fgbu-cniioiz-minzdrava-rossii-01-mr-zapis-trete-izdanie.pdf" target="_blank" rel="noopener" aria-label="Открыть документ: МР Запись (третье издание)">
+                  <img src="methodical/previews/rekomendacii-fgbu-cniioiz-minzdrava-rossii-01-mr-zapis-trete-izdanie.jpg" alt="Превью документа: МР Запись (третье издание)" loading="lazy">
+                </a>
+                <div class="methodical-caption">
+                  <h5 title="МР Запись (третье издание)">МР Запись (третье издание)</h5>
+                  <a href="methodical/docs/rekomendacii-fgbu-cniioiz-minzdrava-rossii-01-mr-zapis-trete-izdanie.pdf" download>Скачать документ</a>
+                </div>
+              </article>
+
+              <article class="methodical-card">
+                <a class="methodical-preview" href="methodical/docs/rekomendacii-fgbu-cniioiz-minzdrava-rossii-02-mr-kontakt-centr.pdf" target="_blank" rel="noopener" aria-label="Открыть документ: МР Контакт-центр">
+                  <img src="methodical/previews/rekomendacii-fgbu-cniioiz-minzdrava-rossii-02-mr-kontakt-centr.jpg" alt="Превью документа: МР Контакт-центр" loading="lazy">
+                </a>
+                <div class="methodical-caption">
+                  <h5 title="МР Контакт-центр">МР Контакт-центр</h5>
+                  <a href="methodical/docs/rekomendacii-fgbu-cniioiz-minzdrava-rossii-02-mr-kontakt-centr.pdf" download>Скачать документ</a>
+                </div>
+              </article>
+
+              <article class="methodical-card">
+                <a class="methodical-preview" href="methodical/docs/rekomendacii-fgbu-cniioiz-minzdrava-rossii-03-mr-organizacionnye-resheniya-po-povysheniyu-dostupnosti-pmsp.pdf" target="_blank" rel="noopener" aria-label="Открыть документ: МР Организационные решения по повышению доступности ПМСП">
+                  <img src="methodical/previews/rekomendacii-fgbu-cniioiz-minzdrava-rossii-03-mr-organizacionnye-resheniya-po-povysheniyu-dostupnosti-pmsp.jpg" alt="Превью документа: МР Организационные решения по повышению доступности ПМСП" loading="lazy">
+                </a>
+                <div class="methodical-caption">
+                  <h5 title="МР Организационные решения по повышению доступности ПМСП">МР Организационные решения по повышению доступности ПМСП</h5>
+                  <a href="methodical/docs/rekomendacii-fgbu-cniioiz-minzdrava-rossii-03-mr-organizacionnye-resheniya-po-povysheniyu-dostupnosti-pmsp.pdf" download>Скачать документ</a>
+                </div>
+              </article>
+
+            </div>
+          </section>
+          <section class="method-subsection" aria-labelledby="method-subsection-3">
+            <h4 id="method-subsection-3" class="method-subtitle">Инструкции по работе с мессенджером MAX</h4>
+            <div class="methodical-grid">
+
+              <article class="methodical-card">
+                <a class="methodical-preview" href="methodical/docs/instrukcii-po-rabote-s-messendzherom-max-01-instrukciya-tmk.pdf" target="_blank" rel="noopener" aria-label="Открыть документ: Инструкция ТМК">
+                  <img src="methodical/previews/instrukcii-po-rabote-s-messendzherom-max-01-instrukciya-tmk.jpg" alt="Превью документа: Инструкция ТМК" loading="lazy">
+                </a>
+                <div class="methodical-caption">
+                  <h5 title="Инструкция ТМК">Инструкция ТМК</h5>
+                  <a href="methodical/docs/instrukcii-po-rabote-s-messendzherom-max-01-instrukciya-tmk.pdf" download>Скачать документ</a>
+                </div>
+              </article>
+
+              <article class="methodical-card">
+                <a class="methodical-preview" href="methodical/docs/instrukcii-po-rabote-s-messendzherom-max-02-instrukciya-zapis-na-priem-k-vrachu.docx" target="_blank" rel="noopener" aria-label="Открыть документ: Инструкция запись на прием к врачу">
+                  <img src="methodical/previews/instrukcii-po-rabote-s-messendzherom-max-02-instrukciya-zapis-na-priem-k-vrachu.jpg" alt="Превью документа: Инструкция запись на прием к врачу" loading="lazy">
+                </a>
+                <div class="methodical-caption">
+                  <h5 title="Инструкция запись на прием к врачу">Инструкция запись на прием к врачу</h5>
+                  <span>DOCX</span>
+                  <a href="methodical/docs/instrukcii-po-rabote-s-messendzherom-max-02-instrukciya-zapis-na-priem-k-vrachu.docx" download>Скачать документ</a>
+                </div>
+              </article>
+
+              <article class="methodical-card">
+                <a class="methodical-preview" href="methodical/docs/instrukcii-po-rabote-s-messendzherom-max-03-rekomendacii-podpisanie-medicinskih-dogovorov-i-soglasiy-na-medicinskoe-vmeshatelstvo.pdf" target="_blank" rel="noopener" aria-label="Открыть документ: Рекомендации подписание медицинских договоров и согласий на медицинское вмешательство">
+                  <img src="methodical/previews/instrukcii-po-rabote-s-messendzherom-max-03-rekomendacii-podpisanie-medicinskih-dogovorov-i-soglasiy-na-medicinskoe-vmeshatelstvo.jpg" alt="Превью документа: Рекомендации подписание медицинских договоров и согласий на медицинское вмешательство" loading="lazy">
+                </a>
+                <div class="methodical-caption">
+                  <h5 title="Рекомендации подписание медицинских договоров и согласий на медицинское вмешательство">Рекомендации подписание медицинских договоров и согласий на медицинское вмешательство</h5>
+                  <a href="methodical/docs/instrukcii-po-rabote-s-messendzherom-max-03-rekomendacii-podpisanie-medicinskih-dogovorov-i-soglasiy-na-medicinskoe-vmeshatelstvo.pdf" download>Скачать документ</a>
+                </div>
+              </article>
+
+            </div>
+          </section>
+          <section class="method-subsection" aria-labelledby="method-subsection-4">
+            <h4 id="method-subsection-4" class="method-subtitle">Региональные акты</h4>
+            <div class="methodical-grid">
+
+              <article class="methodical-card">
+                <a class="methodical-preview" href="methodical/docs/regionalnye-akty-01-prikaz-o-rezhime-raboty-nizhegorodskaya-oblast.pdf" target="_blank" rel="noopener" aria-label="Открыть документ: Приказ о режиме работы (Нижегородская область)">
+                  <img src="methodical/previews/regionalnye-akty-01-prikaz-o-rezhime-raboty-nizhegorodskaya-oblast.jpg" alt="Превью документа: Приказ о режиме работы (Нижегородская область)" loading="lazy">
+                </a>
+                <div class="methodical-caption">
+                  <h5 title="Приказ о режиме работы (Нижегородская область)">Приказ о режиме работы (Нижегородская область)</h5>
+                  <a href="methodical/docs/regionalnye-akty-01-prikaz-o-rezhime-raboty-nizhegorodskaya-oblast.pdf" download>Скачать документ</a>
+                </div>
+              </article>
+
+              <article class="methodical-card">
+                <a class="methodical-preview" href="methodical/docs/regionalnye-akty-02-prikaza-kontrol-zapis-na-priem-k-vrachu-hmao.pdf" target="_blank" rel="noopener" aria-label="Открыть документ: Приказа контроль запись на прием к врачу (ХМАО)">
+                  <img src="methodical/previews/regionalnye-akty-02-prikaza-kontrol-zapis-na-priem-k-vrachu-hmao.jpg" alt="Превью документа: Приказа контроль запись на прием к врачу (ХМАО)" loading="lazy">
+                </a>
+                <div class="methodical-caption">
+                  <h5 title="Приказа контроль запись на прием к врачу (ХМАО)">Приказа контроль запись на прием к врачу (ХМАО)</h5>
+                  <a href="methodical/docs/regionalnye-akty-02-prikaza-kontrol-zapis-na-priem-k-vrachu-hmao.pdf" download>Скачать документ</a>
+                </div>
+              </article>
+
+              <article class="methodical-card">
+                <a class="methodical-preview" href="methodical/docs/regionalnye-akty-03-proekt-prikaza-kontrol-zapis-na-priem-k-vrachu.docx" target="_blank" rel="noopener" aria-label="Открыть документ: Проект приказа контроль запись на прием к врачу">
+                  <img src="methodical/previews/regionalnye-akty-03-proekt-prikaza-kontrol-zapis-na-priem-k-vrachu.jpg" alt="Превью документа: Проект приказа контроль запись на прием к врачу" loading="lazy">
+                </a>
+                <div class="methodical-caption">
+                  <h5 title="Проект приказа контроль запись на прием к врачу">Проект приказа контроль запись на прием к врачу</h5>
+                  <span>DOCX</span>
+                  <a href="methodical/docs/regionalnye-akty-03-proekt-prikaza-kontrol-zapis-na-priem-k-vrachu.docx" download>Скачать документ</a>
+                </div>
+              </article>
+
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><p>© 2026 ФГБУ «ЦНИИОИЗ» Минздрава России. Публичный отчет проекта.</p></footer>
+
+  <script>
+
+    document.querySelectorAll('[data-rutube-embed]').forEach(function (preview) {
+      preview.addEventListener('click', function () {
+        const src = preview.dataset.rutubeEmbed;
+        if (!src) return;
+        const iframe = document.createElement('iframe');
+        iframe.className = 'rutube-frame';
+        iframe.src = src;
+        iframe.title = preview.getAttribute('aria-label') || 'Видеозапись вебинара';
+        iframe.setAttribute('allow', 'clipboard-write; autoplay; encrypted-media; fullscreen; picture-in-picture');
+        iframe.setAttribute('allowfullscreen', '');
+        preview.replaceWith(iframe);
+        iframe.focus();
+      });
+    });
+
+    document.querySelectorAll('[data-slider]').forEach(function (slider) {
+      const track = slider.querySelector('.practice-track');
+      const prev = slider.querySelector('.slider-prev');
+      const next = slider.querySelector('.slider-next');
+      if (!track || !prev || !next) return;
+      function slides() { return Array.from(track.querySelectorAll('.practice-slide')); }
+      function gap() { return parseFloat(getComputedStyle(track).columnGap || getComputedStyle(track).gap || '14') || 14; }
+      function step() {
+        const slide = track.querySelector('.practice-slide');
+        return slide ? slide.getBoundingClientRect().width + gap() : track.clientWidth;
+      }
+      function maxScroll() { return track.scrollWidth - track.clientWidth - 2; }
+      function go(direction) {
+        const delta = step() * direction;
+        if (direction > 0 && track.scrollLeft >= maxScroll()) {
+          track.scrollTo({ left: 0, behavior: 'smooth' });
+          return;
+        }
+        if (direction < 0 && track.scrollLeft <= 2) {
+          track.scrollTo({ left: track.scrollWidth, behavior: 'smooth' });
+          return;
+        }
+        track.scrollBy({ left: delta, behavior: 'smooth' });
+      }
+      prev.addEventListener('click', function () { go(-1); });
+      next.addEventListener('click', function () { go(1); });
+      track.addEventListener('scroll', function () {
+        if (track.scrollLeft >= maxScroll()) setTimeout(function () { track.scrollTo({ left: 0, behavior: 'auto' }); }, 220);
+      }, { passive: true });
+    });
+  </script>
+</body>
+</html>
